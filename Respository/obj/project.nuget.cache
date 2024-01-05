@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "IW2IfF//J6Zkh8qDnp5SHb2geBzmU4dM8Jkf2V97bAnL/5nHQoPfzc0wev5ehp6/P6jFYvEJZf+WSgpmxgMZkg==",
+  "dgSpecHash": "Je4qUTDCz+lSxI+FZaqtj4f4DOBZ/0TbtRlf0tlaNA8wPYOia+yizvFyV58MdBva7bBW59VmOwpXIfpFXAmNuQ==",
   "success": true,
-  "projectFilePath": "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\Respository\\Respository.csproj",
+  "projectFilePath": "D:\\Work\\更改Elster前。可用于未升级的上海\\SHCBMByBagData\\Respository\\Respository.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sa\\.nuget\\packages\\csvhelper\\27.1.0\\csvhelper.27.1.0.nupkg.sha512",
     "C:\\Users\\sa\\.nuget\\packages\\influxdb.client\\3.1.0\\influxdb.client.3.1.0.nupkg.sha512",

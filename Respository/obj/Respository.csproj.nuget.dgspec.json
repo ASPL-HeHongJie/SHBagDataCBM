@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\Respository\\Respository.csproj": {}
+    "D:\\Work\\更改Elster前。可用于未升级的上海\\SHCBMByBagData\\Respository\\Respository.csproj": {}
   },
   "projects": {
-    "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\Models\\Models.csproj": {
+    "D:\\Work\\更改Elster前。可用于未升级的上海\\SHCBMByBagData\\Models\\Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\Models\\Models.csproj",
+        "projectUniqueName": "D:\\Work\\更改Elster前。可用于未升级的上海\\SHCBMByBagData\\Models\\Models.csproj",
         "projectName": "Models",
-        "projectPath": "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\Models\\Models.csproj",
+        "projectPath": "D:\\Work\\更改Elster前。可用于未升级的上海\\SHCBMByBagData\\Models\\Models.csproj",
         "packagesPath": "C:\\Users\\sa\\.nuget\\packages\\",
-        "outputPath": "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\Models\\obj\\",
+        "outputPath": "D:\\Work\\更改Elster前。可用于未升级的上海\\SHCBMByBagData\\Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -76,14 +76,14 @@
         }
       }
     },
-    "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\Respository\\Respository.csproj": {
+    "D:\\Work\\更改Elster前。可用于未升级的上海\\SHCBMByBagData\\Respository\\Respository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\Respository\\Respository.csproj",
+        "projectUniqueName": "D:\\Work\\更改Elster前。可用于未升级的上海\\SHCBMByBagData\\Respository\\Respository.csproj",
         "projectName": "Respository",
-        "projectPath": "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\Respository\\Respository.csproj",
+        "projectPath": "D:\\Work\\更改Elster前。可用于未升级的上海\\SHCBMByBagData\\Respository\\Respository.csproj",
         "packagesPath": "C:\\Users\\sa\\.nuget\\packages\\",
-        "outputPath": "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\Respository\\obj\\",
+        "outputPath": "D:\\Work\\更改Elster前。可用于未升级的上海\\SHCBMByBagData\\Respository\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -104,8 +104,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\Models\\Models.csproj": {
-                "projectPath": "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\Models\\Models.csproj"
+              "D:\\Work\\更改Elster前。可用于未升级的上海\\SHCBMByBagData\\Models\\Models.csproj": {
+                "projectPath": "D:\\Work\\更改Elster前。可用于未升级的上海\\SHCBMByBagData\\Models\\Models.csproj"
               }
             }
           }
