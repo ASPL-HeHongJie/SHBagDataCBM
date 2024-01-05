@@ -1,0 +1,576 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+<script src="~/js/ViewManualCheckReport/manualcheckrepeort.js" type="module"></script>
+<link rel="stylesheet" href="~/css/ViewManualCheckReport/manualcheckreport.css" />
+<style>
+    [v-cloak] {
+        display: none;
+    }
+</style>
+<div class="content" id="ManualCheckReport" v-cloak>
+    <div class="header_title">
+        <span>@ViewBag.Title</span>
+    </div>
+    <div class="Drop-downbox">
+        <div class="Drop-downbox_input">
+            <div v-if="isAreaType == 'false'">
+                <span>公司:</span>
+                <el-select v-model="companyName"
+                           placeholder="请选择"
+                           style="width: 7.817vw">
+                    <el-option v-for="item in datas"
+                               :key="item.value"
+                               :label="item.Name"
+                               :value="item.AbbrName">
+                    </el-option>
+                </el-select>
+            </div>
+            <div v-else-if="isAreaType == 'true'">
+                <span>作业区:</span>
+                <el-select v-model="areaName"
+                           placeholder="请选择"
+                           style="width: 7.817vw">
+                    <el-option v-for="item in OperationAreas"
+                               :key="item.value"
+                               :label="item.Name"
+                               :value="item.AbbrName">
+                    </el-option>
+                </el-select>
+            </div>
+            <div>
+                <span>场站:</span>
+                <el-select v-model="StationName"
+                           placeholder="请选择"
+                           style="width: 7.817vw"
+                           @@change="onSelectedDrug($event)">
+                    <el-option v-for="item in Stations"
+                               :key="item.ID"
+                               :label="item.Name"
+                               :value="item.ID">
+                    </el-option>
+                </el-select>
+            </div>
+            <div>
+                <span>回路:</span>
+                <el-select v-model="LoopName"
+                           placeholder="请选择"
+                           @@change="onLoops($event)">
+                    <el-option v-for="item in Loops"
+                               :key="item.ID"
+                               :label="item.Name"
+                               :value="item.ID">
+                    </el-option>
+                </el-select>
+            </div>
+        </div>
+        <div class="Drop-downbox_btn">
+            <el-button type="primary" icon="el-icon-search" @@click="search">刷新</el-button>
+        </div>
+    </div>
+    <div class="flow">
+        <div class="flow_top">
+            <span>流量核查</span>
+        </div>
+        <div class="flow_fot" v-if="this.FRcheckDataStatus == ''">
+            <div class="check">
+                
+                <div class="check_from">
+                    <div class="check_from_1">
+                        <table class="toop" border="1" style="width: 100%;height:31.998vh;">
+                            <thead>
+                                <tr style="text-align:left;">
+                                    <th colspan="8" style="padding-left:10px;font-size:18px;height:45px;">核查数据</th>
+                                </tr>
+                                <tr class="TableHeader">
+                                    <th style="width: 16%;padding-left: 10px;text-align:left;">参数</th>
+                                    <th style="width: 9%">在用值</th>
+                                    <th style="width: 16%">参数</th>
+                                    <th style="width: 9%">在用值</th>
+                                    <th style="width: 16%">参数</th>
+                                    <th style="width: 9%">在用值</th>
+                                    <th style="width: 16%">参数</th>
+                                    <th style="width: 9%">在用值</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="lie" style="background:#337aa6">
+                                    <td style="width: 16%;padding-left: 10px;text-align:left;">在用流速 m/s</td>
+                                    <td style="width: 9%;text-align: center">--</td>
+                                    <td style="width: 16%;text-align:center;">甲烷 %</td>
+                                    <td style="width: 9%;text-align: center">--</td>
+                                    <td style="width: 16%;text-align:center;">正戊烷 %</td>
+                                    <td style="width: 9%;text-align: center">--</td>
+                                    <td style="width: 16%;text-align:center;">申烷 %</td>
+                                    <td style="width: 9%;text-align: center">--</td>
+                                </tr>
+                                <tr class="lie">
+                                    <td style="width: 16%;padding-left: 10px;text-align:left;">在用温度 °C</td>
+                                    <td style="width: 9%;text-align: center">--</td>
+                                    <td style="width: 16%;text-align:center;">乙烷 %</td>
+                                    <td style="width: 9%;text-align: center">--</td>
+                                    <td style="width: 16%;text-align:center;">异戊烷 %</td>
+                                    <td style="width: 9%;text-align: center">--</td>
+                                    <td style="width: 16%;text-align:center;">壬烷 %</td>
+                                    <td style="width: 9%;text-align: center">--</td>
+                                </tr>
+                                <tr class="lie" style="background:#337aa6">
+                                    <td style="width: 16%;padding-left: 10px;text-align:left;">在用压力kPa</td>
+                                    <td style="width: 9%;text-align: center">--</td>
+                                    <td style="width: 16%;text-align:center;">丙烷 %</td>
+                                    <td style="width: 9%;text-align: center">--</td>
+                                    <td style="width: 16%;text-align:center;">新戊烷 %</td>
+                                    <td style="width: 9%;text-align: center">--</td>
+                                    <td style="width: 16%;text-align:center;">癸烷 %</td>
+                                    <td style="width: 9%;text-align: center">--</td>
+                                </tr>
+                                <tr class="lie">
+                                    <td style="width: 16%;padding-left: 10px; text-align: left;">氮气 %</td>
+                                    <td style="width: 9%;text-align: center">--</td>
+                                    <td style="width: 16%;text-align:center;">正丁烷 %</td>
+                                    <td style="width: 9%;text-align: center">--</td>
+                                    <td style="width: 16%;text-align:center;">己烷 %</td>
+                                    <td style="width: 9%;text-align: center">--</td>
+                                    <td style="width: 16%;text-align:center;">庚烷 %</td>
+                                    <td style="width: 9%;text-align: center">--</td>
+                                </tr>
+
+                                <tr class="lie" style="background:#337aa6">
+                                    <td style="width: 16%;padding-left: 10px;text-align:left;">二氧化碳 %</td>
+                                    <td style="width: 9%;text-align: center">--</td>
+                                    <td style="width: 16%;text-align:center;">异丁烷 %</td>
+                                    <td style="width: 9%;text-align: center">--</td>
+                                    <td style="width: 16%"></td>
+                                    <td style="width: 9%"></td>
+                                    <td style="width: 16%"></td>
+                                    <td style="width: 9%"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="check2">
+                <div class="check_from2">
+                    <div class="check_form_2">
+                        <table class="toop" border="1" style="width: 100%;height:27.353vh;">
+                            <thead>
+                                <tr style="text-align:left;">
+                                    <th colspan="4" style="padding-left: 10px;font-size: 18px;height: 45px;">
+                                        核查结论(正常值＜0.2%)
+                                    </th>
+                                </tr>
+                                <tr class="TableHeader">
+                                    <th style="width: 40%;padding-left: 10px;text-align:left;">核查信息</th>
+                                    <th style="width: 25%">FC计算值</th>
+                                    <th style="width: 20%">程序计算值</th>
+                                    <th style="width: 15%">偏差</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="lie" style="background:#337aa6">
+                                    <td style="width: 40%;padding-left: 10px;text-align:left;">工况流量 m3/h</td>
+                                    <td style="width: 25%;text-align: center">--</td>
+                                    <td style="width: 20%;text-align: center">--</td>
+                                    <td style="width: 15%;text-align: center">--</td>
+                                </tr>
+                                <tr class="lie">
+                                    <td style="width: 40%;padding-left: 10px;text-align:left;">标准流量 NKm3/h</td>
+                                    <td style="width: 25%;text-align: center">--</td>
+                                    <td style="width: 20%;text-align: center">--</td>
+                                    <td style="width: 15%;text-align: center">--</td>
+                                </tr>
+                                <tr class="lie" style="background:#337aa6">
+                                    <td style="width: 40%;padding-left: 10px;text-align:left;">质量流量 t/h</td>
+                                    <td style="width: 25%;text-align: center">--</td>
+                                    <td style="width: 20%;text-align: center">--</td>
+                                    <td style="width: 15%;text-align: center">--</td>
+                                </tr>
+                                <tr class="lie">
+                                    <td style="width: 40%;padding-left: 10px;text-align:left;">能量流量 MJ/h</td>
+                                    <td style="width: 25%;text-align: center">--</td>
+                                    <td style="width: 20%;text-align: center">--</td>
+                                    <td style="width: 15%;text-align: center">--</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="check_but" v-if="this.FRcheckDataStatus == '正常'">
+                <el-button type="info"><i class="OpenFRReport"></i> 打开报告</el-button>
+            </div>
+            <div class="check_but" v-else>
+                <el-button type="info" disabled>打开报告</el-button>
+            </div>
+        </div>
+        <div class="floe_fots" v-else>
+            <div class="checks">
+             
+                <div class="check_froms">
+                    <div class="check_froms_1">
+                        <table class="toops" border="1" style="width: 100%;height:31.998vh;">
+                            <thead>
+                                <tr style="text-align:left;">
+                                    <th colspan="8" style="padding-left: 10px;font-size: 18px;height: 45px;">核查数据</th>
+                                </tr>
+                                <tr class="TableHeaders">
+                                    <th style="width: 16%;padding-left: 10px;text-align:left;">参数</th>
+                                    <th style="width: 9%">在用值</th>
+                                    <th style="width: 16%">参数</th>
+                                    <th style="width: 9%">在用值</th>
+                                    <th style="width: 16%">参数</th>
+                                    <th style="width: 9%">在用值</th>
+                                    <th style="width: 16%">参数</th>
+                                    <th style="width: 9%">在用值</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="lies" style="background:#337aa6">
+                                    <td style="width: 16%;padding-left: 10px;text-align:left;">在用流速 m/s</td>
+                                    <td style="width: 9%;text-align:center;">
+                                        {{PathsVOGAverage}}
+                                    </td>
+                                    <td style="width: 16%;text-align:center;">甲烷 %</td>
+                                    <td style="width: 9%;text-align:center;">{{C1}}</td>
+                                    <td style="width: 16%;text-align:center;">正戊烷 %</td>
+                                    <td style="width: 9%;text-align:center;">{{iC4}}</td>
+                                    <td style="width: 16%;text-align:center;">申烷 %</td>
+                                    <td style="width: 9%;text-align:center;">0.0000</td>
+                                </tr>
+                                <tr class="lies">
+                                    <td style="width: 16%;padding-left: 10px;text-align:left;">在用温度 °C</td>
+                                    <td style="width: 9%;text-align:center;">
+                                        {{Temperature}}
+                                    </td>
+                                    <td style="width: 16%;text-align:center;">乙烷 %</td>
+                                    <td style="width: 9%;text-align:center;">{{C2}}</td>
+                                    <td style="width: 16%;text-align:center;">异戊烷 %</td>
+                                    <td style="width: 9%;text-align:center;">{{iC5}}</td>
+                                    <td style="width: 16%;text-align:center;">壬烷 %</td>
+                                    <td style="width: 9%;text-align:center;">0.0000</td>
+                                </tr>
+                                <tr class="lies" style="background:#337aa6">
+                                    <td style="width: 16%;padding-left: 10px;text-align:left;">在用压力kPa</td>
+                                    <td style="width: 9%;text-align:center;">
+                                        {{Pressure}}
+                                    </td>
+                                    <td style="width: 16%;text-align:center;">丙烷 %</td>
+                                    <td style="width: 9%;text-align:center;">{{C3}}</td>
+                                    <td style="width: 16%;text-align:center;">新戊烷 %</td>
+                                    <td style="width: 9%;text-align:center;">
+                                        {{NeoC5}}
+                                    </td>
+                                    <td style="width: 16%;text-align:center;">癸烷 %</td>
+                                    <td style="width: 9%;text-align:center;">0.0000</td>
+                                </tr>
+                                <tr class="lies">
+                                    <td style="width: 16%;padding-left: 10px;text-align:left;">氮气 %</td>
+                                    <td style="width: 9%;text-align:center;">{{N2}}</td>
+                                    <td style="width: 16%;text-align:center;">正丁烷 %</td>
+                                    <td style="width: 9%;text-align:center;">{{nC4}}</td>
+                                    <td style="width: 16%;text-align:center;">己烷 %</td>
+                                    <td style="width: 9%;text-align:center;">{{C6}}</td>
+                                    <td style="width: 16%;text-align:center;">庚烷 %</td>
+                                    <td style="width: 9%;text-align:center;">0.0000</td>
+                                </tr>
+                                <tr class="lies" style="background:#337aa6">
+                                    <td style="width: 16%;padding-left: 10px;text-align:left;">二氧化碳 %</td>
+                                    <td style="width: 9%;text-align:center;">{{CO2}}</td>
+                                    <td style="width: 16%;text-align:center;">异丁烷 %</td>
+                                    <td style="width: 9%;text-align:center;">{{iC4}}</td>
+                                    <td style="width: 16%"></td>
+                                    <td style="width: 9%"></td>
+                                    <td style="width: 16%"></td>
+                                    <td style="width: 9%"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="checks2">
+               
+                <div class="check_froms2">
+                    <div class="check_forms_2">
+                        <table class="toops" border="1" style="width: 100%;height:27.353vh;">
+                            <thead>
+                                <tr style="text-align:left;">
+                                    <th colspan="4" style="padding-left:10px;font-size:18px;height:45px;">
+                                        核查结论(正常值＜0.2%)
+                                    </th>
+                                </tr>
+                                <tr class="TableHeader">
+                                    <th style="width: 40%;padding-left: 10px;text-align:left;">核查信息</th>
+                                    <th style="width: 25%">FC计算值</th>
+                                    <th style="width: 20%">程序计算值</th>
+                                    <th style="width: 15%">偏差</th>
+                                </tr>
+                            </thead>
+                            <tbody v-if="this.FRcheckDataStatus !== '正常'">
+                                <tr class="lie" style="background:#337aa6">
+                                    <td style="width: 40%;padding-left: 10px;text-align:left;">工况流量 m3/h</td>
+                                    <td style="width: 25%;text-align: center">--</td>
+                                    <td style="width: 20%;text-align: center">--</td>
+                                    <td style="width: 15%;text-align: center">--</td>
+                                </tr>
+                                <tr class="lie">
+                                    <td style="width: 40%;padding-left: 10px;text-align:left;">标准流量 NKm3/h</td>
+                                    <td style="width: 25%;text-align: center">--</td>
+                                    <td style="width: 20%;text-align: center">--</td>
+                                    <td style="width: 15%;text-align: center">--</td>
+                                </tr>
+                                <tr class="lie" style="background:#337aa6">
+                                    <td style="width: 40%;padding-left: 10px;text-align:left;">质量流量 t/h</td>
+                                    <td style="width: 25%;text-align: center">--</td>
+                                    <td style="width: 20%;text-align: center">--</td>
+                                    <td style="width: 15%;text-align: center">--</td>
+                                </tr>
+                                <tr class="lie">
+                                    <td style="width: 40%;padding-left: 10px;text-align:left;">能量流量 MJ/h</td>
+                                    <td style="width: 25%;text-align: center">--</td>
+                                    <td style="width: 20%;text-align: center">--</td>
+                                    <td style="width: 15%;text-align: center">--</td>
+                                </tr>
+                            </tbody>
+                            <tbody v-else>
+                                <tr class="lies" style="background:#337aa6">
+                                    <td style="width: 40%;padding-left: 10px;text-align:left;">工况流量 m3/h</td>
+                                    <td style="width: 25%;text-align:center;">
+                                        {{GrossFlowrate}}
+                                    </td>
+                                    <td style="width: 20%;text-align:center;">
+                                        {{CalculatedGrossFlowrate}}
+                                    </td>
+                                    <td style="width: 15%;text-align:center;">
+                                        {{GrossFlowrateDeviationRate}}
+                                    </td>
+                                </tr>
+                                <tr class="lies">
+                                    <td style="width: 40%;padding-left: 10px;text-align:left;">标准流量 NKm3/h</td>
+                                    <td style="width: 25%;text-align:center;">
+                                        {{StandardFlowrate}}
+                                    </td>
+                                    <td style="width: 20%;text-align:center;">
+                                        {{CalculatedStandardFlowrate}}
+                                    </td>
+                                    <td style="width: 15%;text-align:center;">
+                                        {{
+                       StandardFlowrateDeviationRate
+                                        }}
+                                    </td>
+                                </tr>
+                                <tr class="lies" style="background:#337aa6">
+                                    <td style="width: 40%;padding-left: 10px;text-align:left;">质量流量 t/h</td>
+                                    <td style="width: 25%;text-align:center;">
+                                        {{MassFlowrate}}
+                                    </td>
+                                    <td style="width: 20%;text-align:center;">
+                                        {{CalculatedMassFlowrate}}
+                                    </td>
+                                    <td style="width: 15%;text-align:center;">
+                                        {{MassFlowrateDeviationRate}}
+                                    </td>
+                                </tr>
+                                <tr class="lies">
+                                    <td style="width: 40%;padding-left: 10px;text-align:left;">能量流量 MJ/h</td>
+                                    <td style="width: 25%;text-align:center;">
+                                        {{EnergyFlowrate}}
+                                    </td>
+                                    <td style="width: 20%;text-align:center;">
+                                        {{CalculatedEnergyFlowrate}}
+                                    </td>
+                                    <td style="width: 15%;text-align:center;">
+                                        {{EnergyFlowrateDeviationRate}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="check_buts" v-if="this.FRcheckDataStatus == '正常'">
+                <el-button type="info" @@click="OpenReport('FR')"><i class=""></i> 打开报告</el-button>
+            </div>
+            <div class="check_buts" v-else>
+                <el-button type="info" disabled>打开报告</el-button>
+            </div>
+        </div>
+
+        <div class="warning" v-if="this.FRcheckDataStatus == '正常'">
+            <h1 class="correct">
+                <i class="el-icon-circle-check"></i>{{ this.FRcheckDataStatus }}
+            </h1>
+        </div>
+        <div class="warning" v-else-if="this.FRcheckDataStatus == ''">
+            <h1></h1>
+        </div>
+        <div class="warning" v-else>
+            <h1 class="fail">
+                <i class="el-icon-circle-close"></i> {{ this.FRcheckDataStatus }}
+            </h1>
+        </div>
+    </div>
+    <div class="sound">
+        <span>声速核查</span>
+        <div class="report">
+            <div class="process">
+                <div id="Ready" class="process_radius" style="margin-left:20px">
+                    <div class="prot">
+                        <span>准备</span>
+                        <span><i class="el-icon-video-play"></i></span>
+                    </div>
+                    <div class="prof">
+                        <span><i id="Readycheckicon" class="el-icon-loading"></i></span>
+                        <i class="el-icon-refresh"><span id="Readydetal">等待中</span></i>
+                    </div>
+                </div>
+                <div class="proccess_img">
+                    <img src="/image/Right.png" alt="" />
+                </div>
+                <div id="Communication" class="process_radius">
+                    <div class="prot">
+                        <span>通讯</span>
+                        <span><i class="el-icon-phone-outline"></i></span>
+                    </div>
+                    <div class="prof">
+                        <span><i id="Communicationcheckicon" class="el-icon-loading"></i></span>
+                        <i class="el-icon-refresh"><span id="Communicationdetal">等待中</span></i>
+                    </div>
+                </div>
+                <div class="proccess_img">
+                    <img src="/image/Right.png" alt="" />
+                </div>
+                <div id="VelocityFlow" class="process_radius">
+                    <div class="prot">
+                        <span>流速</span>
+                        <span><i class="el-icon-right"></i></span>
+                    </div>
+                    <div class="prof">
+                        <span><i id="VelocityFlowcheckicon" class="el-icon-loading"></i></span>
+                        <i class="el-icon-refresh"><span id="VelocityFlowdetal">等待中</span></i>
+                    </div>
+                </div>
+                <div class="proccess_img">
+                    <img src="/image/Right.png" alt="" />
+                </div>
+                <div id="Temperature" class="process_radius">
+                    <div class="prot">
+                        <span>温度</span>
+                        <span><i class="el-icon-cloudy"></i></span>
+                    </div>
+                    <div class="prof">
+                        <span><i id="Temperaturecheckicon" class="el-icon-loading"></i></span>
+                        <i class="el-icon-refresh"><span id="Temperaturedetal">等待中</span></i>
+                    </div>
+                </div>
+                <div class="proccess_img">
+                    <img src="/image/Right.png" alt="" />
+                </div>
+                <div id="Pressure" class="process_radius">
+                    <div class="prot">
+                        <span>压力</span>
+                        <span><i class="el-icon-money"></i></span>
+                    </div>
+                    <div class="prof">
+                        <span><i id="Pressurecheckicon" class="el-icon-loading"></i></span>
+                        <i class="el-icon-refresh"><span id="Pressuredetal">等待中</span></i>
+                    </div>
+                </div>
+                <div class="proccess_img">
+                    <img src="/image/Right.png" alt="" />
+                </div>
+                <div id="Components" class="process_radius">
+                    <div class="prot">
+                        <span>组分</span>
+                        <span><i class="el-icon-s-management"></i></span>
+                    </div>
+                    <div class="prof">
+                        <span><i id="Componentscheckicon" class="el-icon-loading"></i></span>
+                        <i class="el-icon-refresh"><span id="Componentsdetal">等待中</span></i>
+
+                    </div>
+                </div>
+                <div class="proccess_img">
+                    <img src="/image/Right.png" alt="" />
+                </div>
+                <div id="Stable" class="process_radius">
+                    <div class="prot">
+                        <span>稳定性</span>
+                        <span><i class="el-icon-dish"></i></span>
+                    </div>
+                    <div class="prof">
+                        <span><i id="Stablecheckicon" class="el-icon-loading"></i></span>
+                        <i class="el-icon-refresh"><span id="Stabledetal">等待中</span></i>
+                    </div>
+                </div>
+                <div class="proccess_img">
+                    <img src="/image/Right.png" alt="" />
+                </div>
+                <div id="WaitStable" class="process_radius">
+                    <div class="prot">
+                        <span>等待稳定</span>
+                        <span><i class="el-icon-dish-1"></i></span>
+                    </div>
+                    <div class="prof">
+                        <span><i id="WaitStablecheckicon" class="el-icon-loading"></i></span>
+                        <i class="el-icon-refresh"><span id="WaitStabledetal">等待中</span></i>
+                    </div>
+                </div>
+                <div class="proccess_img">
+                    <img src="/image/Right.png" alt="" />
+                </div>
+                <div id="RreateReport" class="process_radius">
+                    <div class="prot">
+                        <span>生成报告</span>
+                        <span><i class="fa fa-file"></i></span>
+                    </div>
+                    <div class="prof">
+                        <span><i id="RreateReportcheckicon" class="el-icon-loading"></i></span>
+                        <i class="el-icon-refresh"><span id="RreateReportdetal">等待中</span></i>
+                    </div>
+                </div>
+            </div>
+            <div class="Generatereport">
+                <el-button id="VOSBtn" disabled type="info" @@click="OpenReport('VOS')">打开报告</el-button>
+            </div>
+
+            <el-dialog id="Report" :title="reportType"
+                       :visible.sync="ReportDialog"
+                       width="48%">
+                <div id="Loading" v-loading="dialogloading"
+                     element-loading-text="正在加载报告,请稍等!"
+                     element-loading-spinner="el-icon-loading"
+                     element-loading-custom-class="loading_color"
+                     element-loading-background="rgba(0, 0, 0, 0.5)"
+                     style="width:45.861vw;height:88.769vh;display:none;background-color:white">
+
+                </div>
+                <div id="div_iframe" style="width: 45.861vw;height: 88.769vh;display: none">
+                    <iframe id="report" height="100%" width="100%" onload="iframeOnload()" src=""></iframe>
+                </div>
+                <span slot="footer" class="dialog-footer">
+                    <el-button type="primary" @@click="ReportDialog = false">确 定</el-button>
+                </span>
+            </el-dialog>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+       var area =@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Area))
+      var isArea = '@ViewBag.IsArea';
+    var company =@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Company));
+      var reportServerIpAndPort ='@ViewBag.ReportServerIpAndPort';
+    function iframeOnload() {
+        $("#Loading").css("display", "none")
+        $("#div_iframe").css("display", "block")
+    }
+    $("#menu_ManualCheck").addClass("active")
+</script>

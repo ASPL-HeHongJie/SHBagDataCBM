@@ -1,0 +1,150 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<script src="~/js/ViewHistoricalTread/historicaltread.js" type="module"></script>
+<script src="~/js/Echarts/echarts.min.js" type="text/javascript"></script>
+<link href="~/css/ViewTread/tread.css" rel="stylesheet" />
+<style>
+    [v-cloak] {
+        display: none;
+    }
+</style>
+
+<div class="content" id="HistoricalTread" v-cloak v-loading="loading"
+     element-loading-text="拼命加载中"
+     element-loading-spinner="el-icon-loading"
+     element-loading-custom-class="loading_color"
+     element-loading-background="rgba(0, 0, 0, 0.8)">
+    <div class="header_title">
+        <span>@ViewBag.Title</span>
+    </div>
+    <div class="Drop-downbox">
+        <div class="Drop-downbox_input">
+            <div v-if="isAreaType == 'false'">
+                <span>公司:</span>
+                <el-select v-model="companyName"
+                           placeholder="请选择"
+                           style="width: 7.817vw">
+                    <el-option v-for="item in datas"
+                               :key="item.value"
+                               :label="item.Name"
+                               :value="item.AbbrName">
+                    </el-option>
+                </el-select>
+            </div>
+            <div v-else-if="isAreaType == 'true'">
+                <span>作业区:</span>
+                <el-select v-model="areaName"
+                           placeholder="请选择"
+                           style="width: 7.817vw">
+                    <el-option v-for="item in OperationAreas"
+                               :key="item.value"
+                               :label="item.Name"
+                               :value="item.AbbrName">
+                    </el-option>
+                </el-select>
+            </div>
+            <div>
+                <span>场站:</span>
+                <el-select v-model="StationName"
+                           placeholder="请选择"
+                           style="width: 6.253vw"
+                           @@change="onSelectedDrug($event)">
+                    <el-option v-for="item in Stations"
+                               :key="item.ID"
+                               :label="item.Name"
+                               :value="item.ID">
+                    </el-option>
+                </el-select>
+            </div>
+            <div>
+                <span>回路:</span>
+
+                <el-select v-model="LoopName"
+                           placeholder="请选择"
+                           @@change="onLoops($event)"
+                           style="width: 7.817vw">
+                    <el-option v-for="item in Loops"
+                               :key="item.ID"
+                               :label="item.Name"
+                               :value="item.ID">
+                    </el-option>
+                </el-select>
+            </div>
+            <div>
+                <span>分组类型:</span>
+                <el-select v-model="GroupingType"
+                           placeholder="请选择"
+                           @@change="ongrouping($event)"
+                           style="width: 5.211vw">
+                    <el-option v-for="item in groupingdata"
+                               :key="item.TrendGroupID"
+                               :label="item.Name"
+                               :value="item.TrendGroupID">
+                    </el-option>
+                </el-select>
+            </div>
+            <div class="param_Day">
+                <span>日期:</span>
+                <el-date-picker v-model="timeSlot"
+                                type="datetimerange"
+                                align="right"
+                                start-placeholder="开始日期"
+                                end-placeholder="结束日期"
+                                :default-time="['00:00:00', '23:59:59']"
+                                @@change="TimeSelection($event)">
+                </el-date-picker>
+            </div>
+            <div>
+                <span>采样率:</span>
+                <el-select v-model="interval"
+                           placeholder="请选择"
+                           @@change="TimeInterval($event)"
+                           style="width: 7.817vw">
+                    <el-option v-for="item in sampling"
+                               :key="item.ID"
+                               :label="item.Name"
+                               :value="item.ID">
+                    </el-option>
+            </div>
+        </div>
+        <div class="Drop-downbox_btn">
+            <el-button type="primary" icon="el-icon-search" @@click="Refresh()">刷新</el-button>
+        </div>
+    </div>
+    
+        <div id="LineChart">
+            <i v-if="tableData.length == 0" class="el-icon-refresh reduction" @@mouseover="GetInto" @@mouseout="Leave"></i>
+            <i v-else class="el-icon-refresh reduction" @@mouseover="GetInto" @@click="Refresh()" @@mouseout="Leave"></i>
+            <p class="reductionDisplay" :style="{display:reductionDis}">还原</p>
+            <div class="formview" id="chartLineBox" ref="chert" style="height:64vh"></div>
+            <div class="EchartsData">
+                <el-table :row-style="getRowClass" :header-row-style="getRowClass" :header-cell-style="getRowClass"
+                          :data="tableData"
+                          height="15.5vh"
+                          border
+                          style="width: 100%;color:#fff">
+                    <el-table-column prop="name"
+                                     label="时间">
+                    </el-table-column>
+                    <el-table-column prop="seriesName"
+                                     label="名称">
+                        <template scope="scope">
+                            <span :style="'color:'+scope.row.color">{{scope.row.seriesName}}</span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="value"
+                                     label="数值">
+                    </el-table-column>
+                </el-table>
+            </div>
+        </div>
+</div>
+<script>
+       var area =@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Area))
+      var isArea = '@ViewBag.IsArea';
+    var company =@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Company));
+    $("#menu_HistoricalTread").addClass("active")
+</script>

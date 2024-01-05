@@ -1,0 +1,162 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<style>
+    [v-cloak] {
+        display: none;
+    }
+</style>
+
+<script src="~/js/ViewhisCheckDataAlarm/hisCheckDataAlarm.js" type="module"></script>
+<link rel="stylesheet" href="~/css/ViewhisCheckDataAlarm/hischeckdataalarm.css" />
+
+<div class="content" id="hisCheckDataAlarm" v-cloak v-loading="loading"
+     element-loading-text="拼命加载中"
+     element-loading-spinner="el-icon-loading"
+     element-loading-custom-class="loading_color"
+     element-loading-background="rgba(0, 0, 0, 0.8)">
+    <div class="header_title">
+        <span>@ViewBag.Title</span>
+    </div>
+    <div class="Drop-downbox">
+        <div class="Drop-downbox_input">
+            <div v-if="isAreaType == 'false'">
+                <span>公司:</span>
+                <el-select v-model="companyName"
+                           placeholder="请选择"
+                           style="width: 7.817vw">
+                    <el-option v-for="item in datas"
+                               :key="item.value"
+                               :label="item.Name"
+                               :value="item.AbbrName">
+                    </el-option>
+                </el-select>
+            </div>
+            <div v-else-if="isAreaType == 'true'">
+                <span>作业区:</span>
+                <el-select v-model="areaName"
+                           placeholder="请选择"
+                           style="width: 7.817vw">
+                    <el-option v-for="item in OperationAreas"
+                               :key="item.value"
+                               :label="item.Name"
+                               :value="item.AbbrName">
+                    </el-option>
+                </el-select>
+            </div>
+            <div>
+                <span>场站:</span>
+                <el-select v-model="StationName"
+                           placeholder="请选择"
+                           style="width: 7.817vw"
+                           @@change="onSelectedDrug($event)">
+                    <el-option v-for="item in StationData"
+                               :key="item.ID"
+                               :label="item.Name"
+                               :value="item.ID">
+                    </el-option>
+                </el-select>
+            </div>
+            <div>
+                <span>回路:</span>
+                <el-select v-model="LoopAnalyzerName"
+                           placeholder="请选择"
+                           style="width: 13.423vw"
+                           multiple
+                           collapse-tags
+                           @@change="OnLoopEvents($event)">
+                    <el-option v-for="item in Loops"
+                               :key="item.ID"
+                               :label="item.Name"
+                               :value="item.ID">
+                    </el-option>
+                </el-select>
+            </div>
+            <div class="block">
+                <span>日期:</span>
+                <el-date-picker v-model="timeSlot"
+                                type="datetimerange"
+                                align="right"
+                                start-placeholder="开始日期"
+                                end-placeholder="结束日期"
+                                :default-time="['00:00:00', '23:59:59']"
+                                style="width: 18.761vw"
+                                @@change="TimeSelection($event)"
+                                :plain="true">
+                </el-date-picker>
+            </div>
+        </div>
+        <div class="Drop-downbox_btn">
+            <el-button type="primary" icon="el-icon-search" @@click="Refresh">刷新</el-button>
+        </div>
+    </div>
+    <div class="formview">
+        <el-table :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)" :stripe="true"
+                  height="75.867vh" border style="width: 98%; margin-left: 1%; margin-top: 10px;text-align: center;" :row-class-name="tableRowClassName">
+            <el-table-column prop="startTime" label="时间" :formatter="dateFormat"  width="190"></el-table-column>
+            <el-table-column prop="value" label="报警值" width="230"></el-table-column>
+            <el-table-column prop="description" label="描述"></el-table-column>
+            <el-table-column prop="currentValue" label="当前值" width="130"> </el-table-column>
+            <el-table-column prop="priority" label="优先级" width="130"> </el-table-column>
+            <el-table-column prop="" label="知识库" width="180">
+                <template slot-scope="scope">
+                    <el-button @@click="openKnowledgeBaseClick(scope.row)" type="text" size="small"><i class="fa fa-file">  知识库</i></el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+        <el-pagination style="width:50%;margin-left:1%;margin-top:5px;"
+                       @@size-change="handleSizeChange"
+                       @@current-change="handleCurrentChange"
+                       :current-page="currentPage"
+                       :page-sizes="[25, 10, 30, 40, 50]"
+                       :page-size="pagesize"
+                       :total="tableData.length"
+                       layout="total, sizes, prev, pager, next, jumper">
+        </el-pagination>
+    </div>
+    <el-dialog title="专家意见" :visible.sync="knowledgeBaseVisible" width="32%" class="textDialog">
+        <div class="alarmInfo">
+            <div class="alarmItem">
+                <div class="alarmL">
+                    <i class="el-icon-document"></i>
+                    报警描述
+                </div>
+                <div class="alarmR">
+                    {{AlarmDesc}}
+                </div>
+            </div>
+            <div class="alarmItem">
+                <div class="alarmL">
+                    <i class="el-icon-bell"></i>
+                    报警等级
+                </div>
+                <div class="alarmR">
+                    {{AlarmPriority}}
+                </div>
+            </div>
+            <div class="alarmItem">
+                <div class="alarmL">
+                    <i class="el-icon-help"></i>
+                    解决方案
+                </div>
+                <div class="alarmR">
+                    <div class="programme">{{AlarmSolution}}</div>
+                </div>
+            </div>
+        </div>
+        <span slot="footer" class="dialog-footer">
+            <el-button type="primary" @@click="knowledgeBaseVisible = false">确 定</el-button>
+        </span>
+    </el-dialog>
+</div>
+<script>
+    var areas = [];
+    var area = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Area))
+    areas.push(area);
+    var isArea = '@ViewBag.IsArea';
+    var companys = [];
+    var company = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Company));
+    companys.push(company);
+    $("#menu_HisCheckDataAlarm").addClass("active")
+</script>

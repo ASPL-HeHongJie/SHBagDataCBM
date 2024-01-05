@@ -1,0 +1,189 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<style>
+    [v-cloak] {
+        display: none;
+    }
+</style>
+<script src="~/js/ViewRealUncertain/realtimeuncertain.js" type="module"></script>
+<script src="~/js/Echarts/echarts.min.js" type="text/javascript"></script>
+<link href="~/css/ViewRealtimeUncertain/realtimeuncertain.css" rel="stylesheet" />
+
+<div class="content" id="RedltimeUncertain" v-cloak>
+    <div class="header_title">
+        <span>实时不确定度</span>
+    </div>
+    <div class="Drop-downbox">
+        <div class="Drop-downbox_input">
+            <div v-if="isAreaType == 'false'">
+                <span>公司:</span>
+                <el-select placeholder="请选择" style="width: 8.338vw" v-model="companyName">
+                    <el-option v-for="item in datas" :key="item.id" :value="item.ID" :label="item.Name"></el-option>
+                </el-select>
+            </div>
+            <div v-else-if="isAreaType == 'true'">
+                <span>工作区:</span>
+                <el-select placeholder="请选择" style="width: 8.338vw" v-model="areaName">
+                    <el-option v-for="item in OperationAreas" :key="item.id" :value="item.ID" :label="item.Name"></el-option>
+                </el-select>
+            </div>
+            <div>
+                <span>场站:</span>
+                <el-select placeholder="请选择" style="width: 8.338vw" v-model="stationName" @@change="handleStationChange($event)">
+                    <el-option v-for="item in stationsList" :key="item.ID" :value="item.ID" :label="item.Name">
+                    </el-option>
+                </el-select>
+            </div>
+            <div>
+                <span>回路:</span>
+                <el-select placeholder="请选择" style="width: 8.338vw" v-model="loopName">
+                    <el-option v-for="item in loops" :key="item.ID" :value="item.ID" :label="item.Name+'(回路)'" selected=""></el-option>
+                </el-select>
+            </div>
+        </div>
+        <div class="Drop-downbox_btn">
+            <el-button type="primary" icon="el-icon-search" @@click="Refresh">刷新</el-button>
+        </div>
+    </div>
+    <div class="formview">
+        <div class="FirstTable">
+            <table class="toop" border="1" style="width: 10.8%" bordercolor="#fff">
+                <thead>
+                    <tr class="TableHeader">
+                        <th colspan="2" style="text-align:left;box-sizing:border-box;padding-left:6%;color:#fff">数据</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="TableContent">
+                        <td style="width: 50% ;box-sizing:border-box;padding-left:6%">周期</td>
+                        <td style="width: 50%">5分钟</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="SecondTable">
+            <table class="toop" border="1" style="width: 48.5%" bordercolor="#fff">
+                <thead>
+                    <tr style="color:#fff" class="TableHeader">
+                        <th style="width:20%"></th>
+                        <th colspan="2" style="width:23.5%">质量流量</th>
+                        <th colspan="2" style="width:23.5%">标况流量</th>
+                        @*<th colspan="2" style="width:23.5%">能量流量</th>*@
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="color:#fff" class="TableHeader">
+                        <td style="width:20%">执行状态</td>
+                        <td style="width:11.75%">t/h</td>
+                        <td style="width:11.75%">(%)</td>
+                        <td style="width:11.75%">NKm3/h</td>
+                        <td style="width:11.75%">(%)</td>
+                        @*<td style="width:11.75%">MJ/h</td>
+                        <td style="width:11.75%">(%)</td>*@
+                    </tr>
+                    <tr class="TableContent" v-if="!isRefresh">
+                        <td style="width:20%">{{detailsData.checkDataStatus}}</td>
+                        <td style="width:11.75%" >-</td>
+                        <td style="width:11.75%" >-</td>
+                        <td style="width:11.75%">-</td>
+                        <td style="width:11.75%">-</td>
+                        @*<td style="width:11.75%">-</td>
+                        <td style="width:11.75%">-</td>*@
+                    </tr>
+                    <tr class="TableContent" v-if="isRefresh">
+                        <td style="width:20%">{{detailsData.checkDataStatus}}</td>
+                        <td style="width:11.75%">{{detailsData.massFlowrateAverage}}</td>
+                        <td style="width:11.75%;color:#fa2a2a;font-weight:bold;" v-if="detailsData.massFlowrateUncertain > 1 || detailsData.massFlowrateUncertain == 1">{{detailsData.massFlowrateUncertain}}</td>
+                        <td style="width:11.75%" v-else>{{detailsData.massFlowrateUncertain}}</td>
+                        <td style="width:11.75%">{{detailsData.standardFlowrateAverage}}</td>
+                        <td style="width:11.75%;color:#fa2a2a;font-weight:bold;" v-if="detailsData.standardFlowrateUncertain > 1 || detailsData.standardFlowrateUncertain == 1">{{detailsData.standardFlowrateUncertain}}</td>
+                        <td style="width:11.75%" v-else>{{detailsData.standardFlowrateUncertain}}</td>  
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="ThirdTable">
+            <table class="toop" border="1" style="width: 74%" bordercolor="#fff">
+                <thead>
+                    <tr style="color:#fff" class="TableHeader">
+                        <th style="width:10%"></th>
+                        <th style="width:11.75%" colspan="2">压力</th>
+                        <th style="width:11.75%" colspan="2">温度</th>
+                        <th style="width:11.75%" colspan="2">在线密度/相对密度</th>
+                        <th style="width:11.75%" colspan="2">标况密度</th>
+                        <th style="width:11.75%" colspan="2">在用高热值</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="color:#fff" class="TableHeader">
+                        <td style="width:10%">执行状态</td>
+                        <td style="width:6%">kPa</td>
+                        <td style="width:6%">(%)</td>
+                        <td style="width:6%">℃</td>
+                        <td style="width:6%">(%)</td>
+                        <td style="width:6%">kg/m3</td>
+                        <td style="width:6%">(%)</td>
+                        <td style="width:6%">kg/Sm3</td>
+                        <td style="width:6%">(%)</td>
+                        <td style="width:6%">MJ/Nm3</td>
+                        <td style="width:6%">(%)</td>
+                    </tr>
+                    <tr class="TableContent" v-if="!isRefresh">
+                        <td style="width:10%">{{detailsData.checkDataStatus}}</td>
+                        <td style="width:6%">-</td>
+                        <td style="width:6%">-</td>
+                        <td style="width:6%">-</td>
+                        <td style="width:6%">-</td>
+                        <td style="width:6%">-</td>
+                        <td style="width:6%">-</td>
+                        <td style="width:6%">-</td>
+                        <td style="width:6%">-</td>
+                        <td style="width:6%">-</td>
+                        <td style="width:6%">-</td>
+                    </tr>
+                    <tr class="TableContent" v-if="isRefresh">
+                        <td style="width:10%">{{detailsData.checkDataStatus}}</td>
+                        @*压力*@
+                        <td style="width:6%">{{detailsData.pressureAverage }}</td>
+                        <td style="width:6%;color:#fa2a2a;font-weight:bold;" v-if="detailsData.pressureUncertain > 1 || detailsData.pressureUncertain == 1">{{detailsData.pressureUncertain}}</td>
+                        <td style="width:6%" v-else>{{detailsData.pressureUncertain}}</td>
+                        @*温度*@
+                        <td style="width:6%">{{detailsData.temperatureAverage}}</td>
+                        <td style="width:6%;color:#fa2a2a;font-weight:bold;" v-if="detailsData.temperatureUncertain > 1 || detailsData.temperatureUncertain == 1">{{detailsData.temperatureUncertain}}</td>
+                        <td style="width:6%" v-else>{{detailsData.temperatureUncertain}}</td>
+                        @*在线密度*@
+                        <td style="width:6%">{{detailsData.densityAverage }}</td>
+                        <td style="width:6%;color:#fa2a2a;font-weight:bold;" v-if="detailsData.densityUncertain > 1 || detailsData.densityUncertain == 1">{{detailsData.densityUncertain}}</td>
+                        <td style="width:6%" v-else>{{detailsData.densityUncertain}}</td>
+                        @*标况密度*@
+                        <td style="width:6%">{{detailsData.standardDensityAverage}}</td>
+                        <td style="width:6%;color:#fa2a2a;font-weight:bold;" v-if="detailsData.standardDensityUncertain > 1 || detailsData.standardDensityUncertain == 1">{{detailsData.standardDensityUncertain}}</td>
+                        <td style="width:6%" v-else>{{detailsData.standardDensityUncertain}}</td>
+                        @*再用高热值*@
+                        <td style="width:6%">{{detailsData.calorificValueAverage }}</td>
+                        <td style="width:6%;color:#fa2a2a;font-weight:bold;" v-if="detailsData.calorificValueUncertain > 1 || detailsData.calorificValueUncertain == 1">{{detailsData.calorificValueUncertain}}</td>
+                        <td style="width:6%" v-else>{{detailsData.calorificValueUncertain}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="FourthChart">
+            <div class="TimeTitle">评估</div>
+            <div class="chart" id="chart" ref="chart"></div>
+        </div>
+    </div>
+</div>
+<script>
+        var areas = [];
+    var area =@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Area))
+        areas.push(area);
+    var isArea = '@ViewBag.IsArea';
+    var companys = [];
+    var company =@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Company));
+    companys.push(company);
+    $("#menu_RealtimeUncertain").addClass("active")
+</script>
+

@@ -1,0 +1,389 @@
+﻿<!DOCTYPE html>
+@{
+    Company company = ViewBag.Company as Company;
+    Area m_area = ViewBag.Area as Area;
+    User user = ViewData["User"] as User;
+}
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/js/vue.js" type="text/javascript"></script>
+    <script src="~/js/element-ui.js" type="text/javascript"></script>
+    <script src="~/js/common.js" type="module"></script>
+    <script src="~/js/jquery.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="~/css/element-ui.css" />
+    <link rel="stylesheet" href="~/css/Common/common.css" />
+    <link rel="stylesheet" href="~/css/font/css/font-awesome.css" />
+    <script src="~/js/Axios/axios.min.js" type="text/javascript"></script>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+    <title>@ViewBag.Title</title>
+    @using Models
+</head>
+<body>
+    <div class="home" id="home">
+        <div class="header">
+            <div class="logo">
+                <img src="~/image/LogoZSY.png" />
+                <span>@ViewBag.CompanyName</span>
+            </div>
+            <div></div>
+            <div class="logo_rig">
+                @{
+                    if (user.RoleName == "系统管理员" || user.RoleName == "管理处管理员")
+                    {
+                        <a href="" style="display: none; color: #fff; padding: 10px"><span><i class="fa fa-group fa-lg"></i>用户管理</span></a>
+                    }
+                }
+                <a href="" style="color:#fff;padding:10px"><span><i class="el-icon-user-solid"></i>@user.PersonName</span></a>
+                <a href="/Login/Logout" style="color: #fff;padding: 10px"><span><i class="fa fa-sign-out fa-lg"></i>退出</span></a>
+            </div>
+        </div>
+        <div class="trunk">
+            <div class="sec_Left" id="app" v-cloak>
+                @{
+                    if (ViewBag.IsArea == "true")
+                    {
+                        <ul id="menu">
+                            <li>
+                                <a href="/Main/Overview">
+                                    <div class="title">
+                                        <span class="el-icon-menu"></span>
+                                        <p>总览</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <div class="title" id="menu_station" @@click="showSecondNav(@m_area.ID)">
+                                    <span class="el-icon-s-home"></span>
+                                    <p>@m_area.Name</p>
+                                    <span class="fa fa-sort-desc" style="float: right; margin-right: 10%;" v-if="navId!=@m_area.ID"></span>
+                                    <span class="fa fa-sort-asc" style="float: right; margin-right: 10%;" v-if="navId==@m_area.ID"></span>
+                                </div>
+                                <transition name="slide-fade">
+                                    <ul class="secondLevel_@m_area.ID SecondLevel" v-show="navId==@m_area.ID">
+                                        @{
+
+                                            foreach (Station station in m_area.Stations)
+                                            {
+                                                <li class="item">
+                                                    <a href="/Main/Station/@station.AbbrName">
+                                                        <div class="title">
+                                                            <p>@station.Name</p>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            }
+                                        }
+                                    </ul>
+                                </transition>
+                            </li>
+                            <li>
+                                <a href="/Main/RealtimeAlarm/@m_area.AbbrName">
+                                    <div class="title" id="menu_RealtimeAlarm">
+                                        <span class="el-icon-message-solid"></span>
+                                        <p>实时报警</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Main/HistoricalAlarm/@m_area.AbbrName">
+                                    <div class="title" id="menu_HistoricalAlarm">
+                                        <span class="el-icon-message-solid"></span>
+                                        <p>历史报警</p>
+                                    </div>
+                                </a>
+                            </li>
+                            @*<li>
+                                    <a href="/Main/KeyParametersChangeRecord/@company.AbbrName">
+                                        <div class="title" id="menu_keyParametersChangRecord">
+                                            <span class="el-icon-s-order"></span>
+                                            <p>关键参数变更记录</p>
+                                        </div>
+                                    </a>
+                                </li>*@
+                            <li>
+                                    <a href="/Main/RealtimeTread/@m_area.AbbrName">
+                                        <div class="title" id="menu_RealtimeTread">
+                                            <span class="el-icon-s-data"></span>
+                                            <p>实时趋势</p>
+                                        </div>
+                                    </a>
+                                </li>
+                            <li>
+                                <a href="/Main/HistoricalTread/@m_area.AbbrName">
+                                    <div class="title" id="menu_HistoricalTread">
+                                        <span class="el-icon-s-data"></span>
+                                        <p>历史趋势</p>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/Main/ManualCheckReport/@m_area.AbbrName">
+                                    <div class="title" id="menu_ManualCheck">
+                                        <span class="el-icon-s-claim"></span>
+                                        <p>手动核查报告</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Main/VOSCheckKeyParameter/@m_area.AbbrName">
+                                    <div class="title" id="menu_VOSCheckKeyParameter">
+                                        <span class="el-icon-s-order"></span>
+                                        <p>声速核查重要参数</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Main/VOSCheckReport/@m_area.AbbrName">
+                                    <div class="title" id="menu_VOSCheckReport">
+                                        <span class="el-icon-s-claim"></span>
+                                        <p>声速报告</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Main/FRCheckReport/@m_area.AbbrName">
+                                    <div class="title" id="menu_FRCheckReport">
+                                        <span class="el-icon-s-claim"></span>
+                                        <p>流量报告</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Main/LoopCheckReport/@m_area.AbbrName">
+                                    <div class="title" id="menu_LoopCheckReport">
+                                        <span class="el-icon-s-claim"></span>
+                                        <p>回路报告</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Main/GCCheckReport/@m_area.AbbrName">
+                                    <div class="title" id="menu_GCCheckReport">
+                                        <span class="el-icon-s-claim"></span>
+                                        <p>色谱分析仪报告</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Main/ProductionReport/@m_area.AbbrName">
+                                    <div class="title" id="menu_ProductionReport">
+                                        <span class="el-icon-s-claim"></span>
+                                        <p>能量报告</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Main/ExpertKnowledgeBase/@m_area.AbbrName">
+                                    <div class="title" id="menu_ExpertKnowledgeBase">
+                                        <span class="el-icon-s-claim"></span>
+                                        <p>专家知识库</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Main/RealtimeUncertain/@m_area.AbbrName">
+                                    <div class="title" id="menu_RealtimeUncertain">
+                                        <span class="el-icon-s-marketing"></span>
+                                        <p>实时不确定度</p>
+                                    </div>
+                                </a>
+                            </li>
+                            @{
+                                if (user.RoleName == "系统管理员" || user.RoleName == "管理处管理员")
+                                {
+                                    <li>
+                                        <a href="/Main/UserLogRecord/@company.AbbrName">
+                                            <div class="title" id="menu_UserLogRecord">
+                                                <span class="el-icon-s-marketing"></span>
+                                                <p>操作日志</p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <ul id="menu">
+                            <li>
+                                <a href="/Main/Overview">
+                                    <div class="title">
+                                        <span class="el-icon-menu"></span>
+                                        <p>总览</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <div class="title" id="menu_station" @@click="showSecondNav(@company.ID)">
+                                    <span class="el-icon-s-home"></span>
+                                    <p>@company.Name</p>
+                                    <span class="fa fa-sort-desc" style="float: right; margin-right: 10%;" v-if="navId!=@company.ID"></span>
+                                    <span class="fa fa-sort-asc" style="float: right; margin-right: 10%;" v-if="navId==@company.ID"></span>
+                                </div>
+                                <transition name="slide-fade">
+                                    <ul class="secondLevel_@company.ID SecondLevel" v-show="navId==@company.ID">
+                                        @{
+                                            foreach (Area area in company.Areas)
+                                            {
+                                                foreach (Station station in area.Stations)
+                                                {
+                                                    <li class="item">
+                                                        <a href="/Main/Station/@station.AbbrName">
+                                                            <div class="title">
+                                                                <p>@station.Name</p>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                }
+                                            }
+                                        }
+                                    </ul>
+                                </transition>
+                            </li>
+                            <li>
+                                <a href="/Main/RealtimeAlarm/@company.AbbrName">
+                                    <div class="title" id="menu_RealtimeAlarm">
+                                        <span class="el-icon-message-solid"></span>
+                                        <p>实时报警</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Main/HistoricalAlarm/@company.AbbrName">
+                                    <div class="title" id="menu_HistoricalAlarm">
+                                        <span class="el-icon-message-solid"></span>
+                                        <p>历史报警</p>
+                                    </div>
+                                </a>
+                            </li>
+                            @*<li>
+                                    <a href="/Main/KeyParametersChangeRecord/@company.AbbrName">
+                                        <div class="title" id="menu_keyParametersChangRecord">
+                                            <span class="el-icon-s-order"></span>
+                                            <p>关键参数变更记录</p>
+                                        </div>
+                                    </a>
+                                </li>*@
+                            <li>
+                                    <a href="/Main/RealtimeTread/@company.AbbrName">
+                                        <div class="title" id="menu_RealtimeTread">
+                                            <span class="el-icon-s-data"></span>
+                                            <p>实时趋势</p>
+                                        </div>
+                                    </a>
+                                </li>
+                            <li>
+                                <a href="/Main/HistoricalTread/@company.AbbrName">
+                                    <div class="title" id="menu_HistoricalTread">
+                                        <span class="el-icon-s-data"></span>
+                                        <p>历史趋势</p>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/Main/ManualCheckReport/@company.AbbrName">
+                                    <div class="title" id="menu_ManualCheck">
+                                        <span class="el-icon-s-claim"></span>
+                                        <p>手动核查报告</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Main/VOSCheckKeyParameter/@company.AbbrName">
+                                    <div class="title" id="menu_VOSCheckKeyParameter">
+                                        <span class="el-icon-s-order"></span>
+                                        <p>声速核查重要参数</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Main/VOSCheckReport/@company.AbbrName">
+                                    <div class="title" id="menu_VOSCheckReport">
+                                        <span class="el-icon-s-claim"></span>
+                                        <p>声速报告</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Main/FRCheckReport/@company.AbbrName">
+                                    <div class="title" id="menu_FRCheckReport">
+                                        <span class="el-icon-s-claim"></span>
+                                        <p>流量报告</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Main/LoopCheckReport/@company.AbbrName">
+                                    <div class="title" id="menu_LoopCheckReport">
+                                        <span class="el-icon-s-claim"></span>
+                                        <p>回路报告</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Main/GCCheckReport/@company.AbbrName">
+                                    <div class="title" id="menu_GCCheckReport">
+                                        <span class="el-icon-s-claim"></span>
+                                        <p>色谱分析仪报告</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Main/ProductionReport/@company.AbbrName">
+                                    <div class="title" id="menu_ProductionReport">
+                                        <span class="el-icon-s-claim"></span>
+                                        <p>能量报告</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Main/ExpertKnowledgeBase/@company.AbbrName">
+                                    <div class="title" id="menu_ExpertKnowledgeBase">
+                                        <span class="el-icon-s-claim"></span>
+                                        <p>专家知识库</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Main/RealtimeUncertain/@company.AbbrName">
+                                    <div class="title" id="menu_RealtimeUncertain">
+                                        <span class="el-icon-s-marketing"></span>
+                                        <p>实时不确定度</p>
+                                    </div>
+                                </a>
+                            </li>
+                            @{
+                                if (user.RoleName == "系统管理员" || user.RoleName == "管理处管理员")
+                                {
+                                    <li>
+                                        <a href="/Main/UserLogRecord/@company.AbbrName">
+                                            <div class="title" id="menu_UserLogRecord">
+                                                <span class="el-icon-s-marketing"></span>
+                                                <p>操作日志</p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                }
+                            }
+
+                        </ul>
+                    }
+                }
+
+            </div>
+            <div class="sec_Right">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</body>
+</html>

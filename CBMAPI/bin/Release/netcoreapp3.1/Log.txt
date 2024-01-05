@@ -1,0 +1,50 @@
+2023/3/9 15:46:08   OPC New
+2023/3/9 15:46:40   Watch Begin: status= Not Running
+2023/3/9 15:46:46   Reconnect done！
+2023/3/9 15:46:46   Watch End: status= Not Running
+2023/3/9 15:47:10   Watch Begin: status= Not Running
+2023/3/9 15:47:13   Reconnect done！
+2023/3/9 15:47:13   Watch End: status= Not Running
+2023/3/9 15:47:54   OPC New
+2023/3/9 15:48:25   Watch Begin: status= Not Running
+2023/3/9 15:48:34   Reconnect done！
+2023/3/9 15:48:34   Watch End: status= Not Running
+2023/3/9 15:49:05   OPC New
+2023/3/9 15:52:35   OPC New
+2023/3/9 16:27:01   OPC New
+2023/3/9 16:27:34   Watch Begin: status= Not Running
+2023/3/9 16:27:37   Reconnect done！
+2023/3/9 16:27:37   Watch End: status= Not Running
+2023/3/9 16:28:04   Watch Begin: status= Not Running
+2023/3/9 16:28:06   Reconnect done！
+2023/3/9 16:28:06   Watch End: status= Not Running
+2023/3/9 16:28:34   Watch Begin: status= Not Running
+2023/3/9 16:28:45   Reconnect done！
+2023/3/9 16:28:45   Watch End: status= Not Running
+2023/3/9 16:29:04   Watch Begin: status= Not Running
+2023/3/9 16:29:23   OPC New
+2023/3/9 16:29:56   Watch Begin: status= Not Running
+2023/3/9 16:30:35   OPC New
+2023/3/9 16:31:13   Watch Begin: status= Not Running
+2023/3/9 16:31:17   Reconnect done！
+2023/3/9 16:31:17   Watch End: status= Not Running
+2023/3/9 16:31:38   Watch Begin: status= Not Running
+2023/3/9 16:31:51   Reconnect done！
+2023/3/9 16:31:51   Watch End: status= Not Running
+2023/3/9 16:32:07   Watch Begin: status= Not Running
+2023/3/9 16:32:36   OPC New
+2023/3/20 10:13:18   OPC New
+2023/6/1 23:37:23   OPC New
+2023/6/1 23:37:56   Watch Begin: status= Not Running
+2023/6/1 23:38:18   OPC New
+2023/6/1 23:42:02   OPC New
+2023/6/1 23:44:46   OPC New
+2023/6/1 23:46:06   OPC New
+2023/6/1 23:52:10   OPC New
+2023/6/1 23:54:28   OPC New
+2023/6/1 23:54:53   OPC New
+2023/6/1 23:56:43   OPC New
+2023/6/1 23:59:25   OPC New
+2023/6/2 0:03:02   OPC New
+2023/6/2 0:03:36   OPC New
+2023/6/2 0:06:31   OPC New

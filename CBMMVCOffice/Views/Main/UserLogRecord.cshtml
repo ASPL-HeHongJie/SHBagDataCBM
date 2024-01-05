@@ -1,0 +1,66 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<style>
+    [v-cloak] {
+        display: none;
+    }
+</style>
+<script src="~/js/ViewUserLogRecord/userlogrecord.js" type="module"></script>
+<link rel="stylesheet" href="~/css/ViewCheckReport/checkreport.css" />
+
+<div class="content" id="UserLogRecord" v-cloak v-loading="loading"
+     element-loading-text="拼命加载中"
+     element-loading-spinner="el-icon-loading"
+     element-loading-custom-class="loading_color"
+     element-loading-background="rgba(0, 0, 0, 0.8)">
+    <div class="header_title">
+        <span>@ViewBag.Title</span>
+    </div>
+    <div class="Drop-downbox">
+        <div class="Drop-downbox_input">
+            <div class="block">
+                <span>日期:</span>
+                <el-date-picker v-model="timeSlot"
+                                type="daterange"
+                                range-separator="至"
+                                start-placeholder="开始日期"
+                                end-placeholder="结束日期"
+                                @@change="TimeSelection($event)">
+                </el-date-picker>
+            </div>
+        </div>
+        <div class="Drop-downbox_btn">
+            <el-button type="primary" icon="el-icon-search" @@click="Refresh">刷新</el-button>
+        </div>
+    </div>
+    <div class="formview">
+        <el-table :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)" height="75.867vh" border :stripe="true" style="width: 98%; margin-left: 1%; margin-top: 10px;text-align: center;" :row-class-name="tableRowClassName">
+            <el-table-column prop="userName" width="200px" label="用户名">
+            </el-table-column>
+            <el-table-column prop="dateTime" width="400px" :formatter="formatDate" label="时间">
+            </el-table-column>
+            <el-table-column prop="description" label="描述">
+            </el-table-column>
+        </el-table>
+
+        <el-pagination style="width:50%;margin-left:1%;margin-top:5px;" @@size-change="handleSizeChange"
+                       @@current-change="handleCurrentChange"
+                       :current-page="currentPage"
+                       :page-sizes="[25, 10, 30, 40, 50]"
+                       :page-size="pagesize"
+                       :total="tableData.length"
+                       layout="total, sizes, prev, pager, next, jumper">
+        </el-pagination>
+    </div>
+</div>
+<script>
+    var area =@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Area))
+    var isArea = '@ViewBag.IsArea';
+    var company =@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Company));
+    var userID = '@ViewBag.UserID';
+    $("#menu_UserLogRecord").addClass("active")
+</script>
+

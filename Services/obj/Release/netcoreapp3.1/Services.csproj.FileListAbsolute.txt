@@ -1,0 +1,143 @@
+D:\Work\SHCBM\Services\bin\Release\netcoreapp3.1\Services.deps.json
+D:\Work\SHCBM\Services\bin\Release\netcoreapp3.1\Services.dll
+D:\Work\SHCBM\Services\bin\Release\netcoreapp3.1\Services.pdb
+D:\Work\SHCBM\Services\bin\Release\netcoreapp3.1\GeFanuc.iFixToolkit.Adapter.dll
+D:\Work\SHCBM\Services\bin\Release\netcoreapp3.1\Models.dll
+D:\Work\SHCBM\Services\bin\Release\netcoreapp3.1\Respository.dll
+D:\Work\SHCBM\Services\bin\Release\netcoreapp3.1\System.Reactive.dll
+D:\Work\SHCBM\Services\bin\Release\netcoreapp3.1\Models.pdb
+D:\Work\SHCBM\Services\bin\Release\netcoreapp3.1\Respository.pdb
+D:\Work\SHCBM\Services\bin\Release\netcoreapp3.1\System.Reactive.xml
+D:\Work\SHCBM\Services\bin\Release\netcoreapp3.1\Interop.OPCAutomation.dll
+D:\Work\SHCBM\Services\obj\Release\netcoreapp3.1\Services.csproj.AssemblyReference.cache
+D:\Work\SHCBM\Services\obj\Release\netcoreapp3.1\Interop.OPCAutomation.dll
+D:\Work\SHCBM\Services\obj\Release\netcoreapp3.1\Services.csproj.ResolveComReference.cache
+D:\Work\SHCBM\Services\obj\Release\netcoreapp3.1\Services.GeneratedMSBuildEditorConfig.editorconfig
+D:\Work\SHCBM\Services\obj\Release\netcoreapp3.1\Services.AssemblyInfoInputs.cache
+D:\Work\SHCBM\Services\obj\Release\netcoreapp3.1\Services.AssemblyInfo.cs
+D:\Work\SHCBM\Services\obj\Release\netcoreapp3.1\Services.csproj.CoreCompileInputs.cache
+D:\Work\SHCBM\Services\obj\Release\netcoreapp3.1\Services.dll
+D:\Work\SHCBM\Services\obj\Release\netcoreapp3.1\Services.pdb
+D:\Work\更改Elster前。可用于未升级的上海\SHCBM\Services\bin\Release\netcoreapp3.1\Services.deps.json
+D:\Work\更改Elster前。可用于未升级的上海\SHCBM\Services\bin\Release\netcoreapp3.1\Services.dll
+D:\Work\更改Elster前。可用于未升级的上海\SHCBM\Services\bin\Release\netcoreapp3.1\Services.pdb
+D:\Work\更改Elster前。可用于未升级的上海\SHCBM\Services\bin\Release\netcoreapp3.1\GeFanuc.iFixToolkit.Adapter.dll
+D:\Work\更改Elster前。可用于未升级的上海\SHCBM\Services\bin\Release\netcoreapp3.1\Models.dll
+D:\Work\更改Elster前。可用于未升级的上海\SHCBM\Services\bin\Release\netcoreapp3.1\Respository.dll
+D:\Work\更改Elster前。可用于未升级的上海\SHCBM\Services\bin\Release\netcoreapp3.1\System.Reactive.dll
+D:\Work\更改Elster前。可用于未升级的上海\SHCBM\Services\bin\Release\netcoreapp3.1\Models.pdb
+D:\Work\更改Elster前。可用于未升级的上海\SHCBM\Services\bin\Release\netcoreapp3.1\Respository.pdb
+D:\Work\更改Elster前。可用于未升级的上海\SHCBM\Services\bin\Release\netcoreapp3.1\System.Reactive.xml
+D:\Work\更改Elster前。可用于未升级的上海\SHCBM\Services\bin\Release\netcoreapp3.1\Interop.OPCAutomation.dll
+D:\Work\更改Elster前。可用于未升级的上海\SHCBM\Services\obj\Release\netcoreapp3.1\Services.csproj.AssemblyReference.cache
+D:\Work\更改Elster前。可用于未升级的上海\SHCBM\Services\obj\Release\netcoreapp3.1\Interop.OPCAutomation.dll
+D:\Work\更改Elster前。可用于未升级的上海\SHCBM\Services\obj\Release\netcoreapp3.1\Services.csproj.ResolveComReference.cache
+D:\Work\更改Elster前。可用于未升级的上海\SHCBM\Services\obj\Release\netcoreapp3.1\Services.GeneratedMSBuildEditorConfig.editorconfig
+D:\Work\更改Elster前。可用于未升级的上海\SHCBM\Services\obj\Release\netcoreapp3.1\Services.AssemblyInfoInputs.cache
+D:\Work\更改Elster前。可用于未升级的上海\SHCBM\Services\obj\Release\netcoreapp3.1\Services.AssemblyInfo.cs
+D:\Work\更改Elster前。可用于未升级的上海\SHCBM\Services\obj\Release\netcoreapp3.1\Services.csproj.CoreCompileInputs.cache
+D:\Work\更改Elster前。可用于未升级的上海\SHCBM\Services\obj\Release\netcoreapp3.1\Services.dll
+D:\Work\更改Elster前。可用于未升级的上海\SHCBM\Services\obj\Release\netcoreapp3.1\Services.pdb
+D:\Work\更改Elster前。可用于未升级的上海\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\Services.deps.json
+D:\Work\更改Elster前。可用于未升级的上海\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\Services.dll
+D:\Work\更改Elster前。可用于未升级的上海\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\Services.pdb
+D:\Work\更改Elster前。可用于未升级的上海\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\GeFanuc.iFixToolkit.Adapter.dll
+D:\Work\更改Elster前。可用于未升级的上海\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\Models.dll
+D:\Work\更改Elster前。可用于未升级的上海\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\Respository.dll
+D:\Work\更改Elster前。可用于未升级的上海\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\System.Reactive.dll
+D:\Work\更改Elster前。可用于未升级的上海\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\Models.pdb
+D:\Work\更改Elster前。可用于未升级的上海\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\Respository.pdb
+D:\Work\更改Elster前。可用于未升级的上海\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\System.Reactive.xml
+D:\Work\更改Elster前。可用于未升级的上海\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\Interop.OPCAutomation.dll
+D:\Work\更改Elster前。可用于未升级的上海\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Services.csproj.AssemblyReference.cache
+D:\Work\更改Elster前。可用于未升级的上海\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Interop.OPCAutomation.dll
+D:\Work\更改Elster前。可用于未升级的上海\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Services.csproj.ResolveComReference.cache
+D:\Work\更改Elster前。可用于未升级的上海\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Services.GeneratedMSBuildEditorConfig.editorconfig
+D:\Work\更改Elster前。可用于未升级的上海\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Services.AssemblyInfoInputs.cache
+D:\Work\更改Elster前。可用于未升级的上海\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Services.AssemblyInfo.cs
+D:\Work\更改Elster前。可用于未升级的上海\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Services.csproj.CoreCompileInputs.cache
+D:\Work\更改Elster前。可用于未升级的上海\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Services.dll
+D:\Work\更改Elster前。可用于未升级的上海\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Services.pdb
+C:\Users\Administrator\Source\Repos\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\Services.deps.json
+C:\Users\Administrator\Source\Repos\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\Services.dll
+C:\Users\Administrator\Source\Repos\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\Services.pdb
+C:\Users\Administrator\Source\Repos\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\GeFanuc.iFixToolkit.Adapter.dll
+C:\Users\Administrator\Source\Repos\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\Models.dll
+C:\Users\Administrator\Source\Repos\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\Respository.dll
+C:\Users\Administrator\Source\Repos\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\System.Reactive.dll
+C:\Users\Administrator\Source\Repos\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\Models.pdb
+C:\Users\Administrator\Source\Repos\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\Respository.pdb
+C:\Users\Administrator\Source\Repos\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\System.Reactive.xml
+C:\Users\Administrator\Source\Repos\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\Interop.OPCAutomation.dll
+C:\Users\Administrator\Source\Repos\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Services.csproj.AssemblyReference.cache
+C:\Users\Administrator\Source\Repos\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Interop.OPCAutomation.dll
+C:\Users\Administrator\Source\Repos\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Services.csproj.ResolveComReference.cache
+C:\Users\Administrator\Source\Repos\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Administrator\Source\Repos\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Services.AssemblyInfoInputs.cache
+C:\Users\Administrator\Source\Repos\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Services.AssemblyInfo.cs
+C:\Users\Administrator\Source\Repos\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Services.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Source\Repos\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Services.csproj.CopyComplete
+C:\Users\Administrator\Source\Repos\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Services.dll
+C:\Users\Administrator\Source\Repos\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Services.pdb
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\Services.deps.json
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\Services.dll
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\Services.pdb
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\GeFanuc.iFixToolkit.Adapter.dll
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\Models.dll
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\Respository.dll
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\System.Reactive.dll
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\Models.pdb
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\Respository.pdb
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\System.Reactive.xml
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\Interop.OPCAutomation.dll
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Services.csproj.AssemblyReference.cache
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Interop.OPCAutomation.dll
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Services.csproj.ResolveComReference.cache
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Services.GeneratedMSBuildEditorConfig.editorconfig
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Services.AssemblyInfoInputs.cache
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Services.AssemblyInfo.cs
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Services.csproj.CoreCompileInputs.cache
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Services.dll
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Services.pdb
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\Services.deps.json
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\Services.dll
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\Services.pdb
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\GeFanuc.iFixToolkit.Adapter.dll
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\Models.dll
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\Respository.dll
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\System.Reactive.dll
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\Models.pdb
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\Respository.pdb
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\System.Reactive.xml
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\Services\bin\Release\netcoreapp3.1\Interop.OPCAutomation.dll
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Services.csproj.AssemblyReference.cache
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Interop.OPCAutomation.dll
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Services.csproj.ResolveComReference.cache
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Services.GeneratedMSBuildEditorConfig.editorconfig
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Services.AssemblyInfoInputs.cache
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Services.AssemblyInfo.cs
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Services.csproj.CoreCompileInputs.cache
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Services.dll
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Services.pdb
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM\Services\obj\Release\netcoreapp3.1\Services.csproj.CopyComplete
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM - 副本\Services\bin\Release\netcoreapp3.1\Services.deps.json
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM - 副本\Services\bin\Release\netcoreapp3.1\Services.dll
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM - 副本\Services\bin\Release\netcoreapp3.1\Services.pdb
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM - 副本\Services\bin\Release\netcoreapp3.1\GeFanuc.iFixToolkit.Adapter.dll
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM - 副本\Services\bin\Release\netcoreapp3.1\Models.dll
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM - 副本\Services\bin\Release\netcoreapp3.1\Respository.dll
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM - 副本\Services\bin\Release\netcoreapp3.1\System.Reactive.dll
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM - 副本\Services\bin\Release\netcoreapp3.1\Models.pdb
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM - 副本\Services\bin\Release\netcoreapp3.1\Respository.pdb
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM - 副本\Services\bin\Release\netcoreapp3.1\System.Reactive.xml
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM - 副本\Services\bin\Release\netcoreapp3.1\Interop.OPCAutomation.dll
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM - 副本\Services\obj\Release\netcoreapp3.1\Services.csproj.AssemblyReference.cache
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM - 副本\Services\obj\Release\netcoreapp3.1\Interop.OPCAutomation.dll
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM - 副本\Services\obj\Release\netcoreapp3.1\Services.csproj.ResolveComReference.cache
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM - 副本\Services\obj\Release\netcoreapp3.1\Services.GeneratedMSBuildEditorConfig.editorconfig
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM - 副本\Services\obj\Release\netcoreapp3.1\Services.AssemblyInfoInputs.cache
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM - 副本\Services\obj\Release\netcoreapp3.1\Services.AssemblyInfo.cs
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM - 副本\Services\obj\Release\netcoreapp3.1\Services.csproj.CoreCompileInputs.cache
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM - 副本\Services\obj\Release\netcoreapp3.1\Services.csproj.CopyComplete
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM - 副本\Services\obj\Release\netcoreapp3.1\Services.dll
+D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM - 副本\Services\obj\Release\netcoreapp3.1\Services.pdb

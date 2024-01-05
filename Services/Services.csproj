@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Trend\IInfluxDBTrendService.cs" />
+    <Compile Remove="Trend\InfluxDBTrendService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <COMReference Include="OPCAutomation.dll">
+      <Guid>28e68f91-8d75-11d1-8dc3-3c302a000000</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>false</Isolated>
+    </COMReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EPPlus" Version="5.6.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.12" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Models\Models.csproj" />
+    <ProjectReference Include="..\Respository\Respository.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="GeFanuc.iFixToolkit.Adapter">
+      <HintPath>..\Source\GeFanuc.iFixToolkit.Adapter.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

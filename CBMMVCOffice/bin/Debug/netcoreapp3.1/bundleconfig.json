@@ -1,0 +1,88 @@
+[
+  {
+    "outputFileName": "wwwroot/js/jquery.js",
+    "inputFiles": [
+      "wwwroot/js/jquery/jquery-3.1.1.js"
+    ],
+    "minify": { "enabled": false }
+  },
+  {
+    "outputFileName": "wwwroot/js/bootstrap.js",
+    "inputFiles": [
+      "wwwroot/js/bootstrap/bootstrap.min.js"
+    ],
+    "minify": { "enabled": false }
+  },
+  {
+    "outputFileName": "wwwroot/js/element-ui.js",
+    "inputFiles": [
+      "wwwroot/js/ElementUI/element-ui.js"
+    ],
+    "minify": { "enabled": false }
+  },
+  {
+    "outputFileName": "wwwroot/js/vue.js",
+    "inputFiles": [
+      "wwwroot/js/vue/vue.js"
+    ],
+    "minify": { "enabled": false }
+  },
+  {
+    "outputFileName": "wwwroot/js/echarts.js",
+    "inputFiles": [
+      "wwwroot/js/Echarts/echarts.min.js"
+    ],
+    "minify": { "enabled": false }
+  },
+  {
+    "outputFileName": "wwwroot/js/bootstrap.js",
+    "inputFiles": [
+      "wwwroot/js/Bootstrap/bootstrap.min.js"
+    ],
+    "minify": { "enabled": false }
+  },
+  {
+    "outputFileName": "wwwroot/js/realtimealarm.js",
+    "inputFiles": [
+      "wwwroot/js/RealtimeAlarm/realtimealarm.js"
+    ],
+    "minify": { "enabled": false }
+  },
+  //css
+  {
+    "outputFileName": "wwwroot/css/element-ui.css",
+    "inputFiles": [
+      "wwwroot/css/ElementUI/element-ui.css"
+    ],
+    "minify": { "enabled": false }
+  },
+  {
+    "outputFileName": "wwwroot/css/bootstrap.css",
+    "inputFiles": [
+      "wwwroot/css/Bootstrap/bootstrap.css"
+    ],
+    "minify": { "enabled": false }
+  },
+  {
+    "outputFileName": "wwwroot/css/common.css",
+    "inputFiles": [
+      "wwwroot/css/Common/common.css"
+    ],
+    "minify": { "enabled": false }
+  },
+  {
+    "outputFileName": "wwwroot/css/login.css",
+    "inputFiles": [
+      "wwwroot/css/ViewLogin/style.css",
+      "wwwroot/css/ViewLogin/form-elements.css"
+    ],
+    "minify": { "enabled": false }
+  },
+  {
+    "outputFileName": "wwwroot/css/realtimealarm.css",
+    "inputFiles": [
+      "wwwroot/css/RealtimeAlarm/realtimealarm.css"
+    ],
+    "minify": { "enabled": false }
+  }
+]

@@ -1,0 +1,2368 @@
+﻿
+/*.sec_Left {
+    width: 250px;
+    height: 907px;
+    background-color: #0B1F33;
+    overflow: auto;
+}
+*/
+.homes {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-image: url('/image/map_bg.png');
+    background-size: 100% 100%;
+}
+
+ul li {
+    list-style: none;
+}
+
+.home_title {
+    width: 100%;
+    height: 5.342vh;
+    display: flex;
+    justify-content: center;
+    color: #fff;
+}
+
+    .home_title > span {
+        line-height: 5.342vh;
+        font-size: 2.67vh;
+        padding: 0 1.8vw;
+    }
+
+    .home_title > i > img {
+        height: 5vh;
+        margin-top: 0.4vh;
+    }
+
+.t_line_box {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+    .t_line_box i {
+        background-color: #4788fb;
+        box-shadow: 0px 0px 10px #4788fb;
+        position: absolute;
+    }
+
+.t_l_line {
+    height: 0.641vh;
+    width: 1.98vw;
+    left: -0.1563vw;
+    top: -0.32vh;
+}
+
+.l_t_line {
+    width: 0.313vw;
+    height: 4.06vh;
+    left: -0.1563vw;
+    top: -0.32vh;
+}
+
+.t_r_line {
+    height: 0.641vh;
+    width: 1.98vw;
+    right: -0.1563vw;
+    top: -0.32vh;
+}
+
+.r_t_line {
+    width: 0.313vw;
+    height: 4.06vh;
+    right: -0.1563vw;
+    top: -0.32vh;
+}
+
+.l_b_line {
+    width: 0.313vw;
+    height: 4.06vh;
+    left: -0.1563vw;
+    bottom: -0.32vh;
+}
+
+.b_l_line {
+    height: 0.641vh;
+    width: 1.98vw;
+    left: -0.1563vw;
+    bottom: -0.32vh;
+}
+
+.r_b_line {
+    width: 0.313vw;
+    height: 4.06vh;
+    right: -0.1563vw;
+    bottom: -0.32vh;
+}
+
+.b_r_line {
+    height: 0.641vh;
+    width: 1.98vw;
+    right: -0.1563vw;
+    bottom: -0.32vh;
+}
+
+.station {
+    width: 49%;
+    height: 40.625vh;
+    box-sizing: border-box;
+    border: 1px solid #2c58a6;
+    position: relative;
+    box-shadow: 0 0 10px #2c58a6;
+    margin: 0;
+    margin-bottom: 2.9vh;
+    color: #fff;
+}
+
+.EquipmentsInformation {
+    height: 20.3vh !important;
+}
+
+.Turbo1Information {
+    height: 11.3vh !important;
+}
+
+.EquipmentsFlow {
+    height: 8.5vh !important;
+}
+
+.Turbo1Flow {
+    height: 18.5vh !important;
+}
+
+.Turbo1midArea {
+    width: 54% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    margin-left: 13% !important;
+}
+
+.station:nth-child(2n) {
+    margin-left: 1.8%;
+}
+
+.station:hover {
+    box-shadow: 0 0 300px 20px inset #254f96;
+}
+
+.station ul {
+    padding: 0;
+}
+
+    .station ul li span {
+        font-size: .729vw;
+    }
+
+    .station ul li .little-title {
+        font-size: .938vw;
+    }
+
+.leftArea {
+    width: 22%;
+    height: 100%;
+    float: left;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    z-index: 9;
+}
+
+    .leftArea > li {
+        width: 100%;
+        height: 6.41vh;
+        line-height: 6.41vh;
+    }
+
+        .leftArea > li:nth-child(1) {
+            margin-top: 2.139vh;
+            font-size: 1.042vw;
+        }
+
+        .leftArea > li:nth-child(2) {
+            width: 50%;
+            height: 8.547vh;
+            margin: auto;
+            overflow: hidden;
+        }
+
+            .leftArea > li:nth-child(2) > img {
+                display: block;
+                width: 100%;
+                height: 7.547vh;
+            }
+
+        .leftArea > li:nth-child(3) {
+            height: 1.923vh;
+            *line-height: 5vh;
+            margin: auto;
+            font-size: .825vw;
+        }
+
+        .leftArea > li:nth-child(4) {
+            height: 1.923vh;
+            line-height: 7vh;
+            margin: auto;
+            font-size: .825vw;
+        }
+        .leftArea > li:nth-child(5) {
+            height: 1.923vh;
+            line-height: 9vh;
+            margin: auto;
+            font-size: .825vw;
+        }
+        .leftArea > li:nth-child(6) {
+            height: 1.923vh;
+            line-height: 11vh;
+            margin: auto;
+            font-size: .825vw;
+        }
+
+.el-button {
+    color: #fff;
+}
+
+.leftArea > li:last-child {
+    width: 52%;
+    height: 3.739vh;
+    margin: auto;
+    line-height: 3.739vh;
+    background-image: url("/image/bnt.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin-top: 6.41vh;
+}
+
+.midArea,
+.rightArea {
+    width: 35%;
+    height: 100%;
+    float: left;
+    position: relative;
+    z-index: 9;
+    margin-left: 3%;
+}
+
+    .midArea ul,
+    .rightArea ul {
+        margin-top: 3%;
+    }
+
+    .midArea > ul > li > span,
+    .rightArea > ul > li > span {
+        display: block;
+        float: left;
+        width: 50%;
+        height: 100%;
+        text-align: left;
+    }
+
+        .midArea > ul > li > span:nth-child(2),
+        .rightArea > ul > li > span:nth-child(2) {
+            text-align: right;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+            .midArea > ul > li > span:nth-child(2) > img,
+            .rightArea > ul > li > span:nth-child(2) > img {
+                width: 17%;
+            }
+
+    .midArea > ul:nth-child(1),
+    .rightArea > ul:nth-child(1) {
+        width: 100%;
+        height: 21.369vh;
+    }
+
+    .midArea > ul:nth-child(2),
+    .rightArea > ul:nth-child(2) {
+        width: 100%;
+        height: 17.095vh;
+    }
+
+    .midArea > ul > li,
+    .rightArea > ul > li {
+        width: 100%;
+        height: 3.419vh;
+        line-height: 3.419vh;
+    }
+
+.scl {
+    width: 100%;
+    color: #333;
+    text-align: center;
+    line-height: 17.095vh;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 1%;
+    box-sizing: border-box;
+}
+
+.el-dialog {
+    height: 96.164vh;
+    margin-top: 1% !important;
+    margin-bottom: 0;
+    background-image: url('/image/bg.jpg');
+    background-size: 100% 100%;
+}
+
+.Manydialog {
+    height: 82vh;
+    background-image: none;
+    margin-top: 4% !important;
+}
+
+    .Manydialog > .el-dialog__footer, .Manydialog > .el-dialog__header {
+        display: block;
+        width: 100%;
+        height: 6vh;
+        line-height: 6vh;
+    }
+
+    .Manydialog > .el-dialog__body, .Manydialog > .Details {
+        height: auto;
+    }
+
+    .Manydialog > .el-dialog__body {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .Manydialog > .el-dialog__header > .el-dialog__title {
+        margin-left: 1vw;
+    }
+
+.Lessdialog {
+    height: 82vh;
+    background-image: none;
+    margin-top: 4% !important;
+}
+
+    .Lessdialog > .el-dialog__footer, .Lessdialog > .el-dialog__header {
+        display: block;
+        width: 100%;
+        height: 6vh;
+        line-height: 6vh;
+    }
+
+    .Lessdialog > .el-dialog__body, .Lessdialog > .Details {
+        height: auto;
+    }
+
+    .Lessdialog > .el-dialog__body {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .Lessdialog > .el-dialog__header > .el-dialog__title {
+        margin-left: 1vw;
+    }
+
+.el-dialog__body {
+    width: auto;
+    height: 83.98vh;
+    color: #fff;
+}
+
+.dialog_header_title {
+    width: 100%;
+    height: 5.342vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+.title_Nam {
+    font-size: 1.77vw;
+    margin-left: 6.775vw;
+    margin-top: -1.068vh;
+}
+
+.title_NamElster {
+    font-size: 1.77vw;
+    margin-left: 6.775vw;
+    margin-top: -3.5vh;
+}
+
+.header_return {
+    font-size: 1.042vw;
+    width: 4.169vw;
+    height: 4.273vh;
+    text-align: center;
+    line-height: 4.273vh;
+    background-image: url('/image/bnt.png');
+    background-size: 100% 100%;
+    margin-right: .99vw;
+    cursor: pointer;
+}
+
+    .header_return:hover {
+        color: #409EFF;
+    }
+
+.el-dialog__footer, .el-dialog__header {
+    width: 0;
+    height: 0;
+    padding: 0;
+    display: none;
+}
+
+.LoopInformationleader {
+    text-align: center;
+    margin-top: .534vh;
+}
+
+.Details {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.Details_Chart {
+    width: 48%;
+    height: 98%;
+    display: flex;
+    flex-direction: column;
+    background-image: url('/image/hdbj.png');
+    background-size: 100% 100%;
+    margin: 1% 1% 0 1%;
+    font-size: .7vw;
+}
+
+.Histogram {
+    display: flex;
+    flex-direction: row;
+    width: 98%;
+    margin-left: 1%;
+    margin-top: 6.945vh;
+}
+
+.Sick1Histogram {
+    margin-top: 5.876vh;
+}
+
+.soundVelocity_echarts, .CurrentSpeed_echarts, .performance_echarts {
+    width: 32%;
+    height: 22.438vh;
+    margin-left: 1%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    background-image: url('/image/bbox2.png');
+    background-size: 100% 100%;
+}
+
+    .soundVelocity_echarts > span, .CurrentSpeed_echarts > span, .performance_echarts > span {
+        height: 2.671vh;
+        margin-top: .534vh;
+    }
+
+.soundVelocity, .CurrentSpeed, .performance {
+    background-image: url('/image/time.png');
+    background-size: 100% 100%;
+}
+
+.deviation {
+    width: 98%;
+    margin-left: 1%;
+    margin-top: 1.602vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.soundVelocity_deviation, .CurrentSpeed_deviation, .pulse_deviation {
+    width: 32%;
+    margin-left: 1%;
+    display: flex;
+    flex-direction: column;
+    background-image: url('/image/bbox2.png');
+    background-size: 100% 100%;
+}
+
+.Sick1soundVelocity_deviation, .Sick1CurrentSpeed_deviation {
+    width: 48%;
+}
+
+.soundVelocity_deviation > span, .CurrentSpeed_deviation > span, .pulse_deviation > span {
+    text-align: center;
+}
+
+.soundVelocity_content, .CurrentSpeed_content, .pulse_content {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    background-image: url('/image/time.png');
+    background-size: 100% 100%;
+}
+
+.soundVelocity_content_left, .soundVelocity_content_right, .CurrentSpeed_content_left, .CurrentSpeed_content_right, .pulse_content_left, .pulse_content_right {
+    width: 30%;
+    padding-left: 8%;
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+    .soundVelocity_content_left > span, .soundVelocity_content_right > span, .CurrentSpeed_content_left > span, .CurrentSpeed_content_right > span, .pulse_content_left > span, .pulse_content_right > span {
+        padding: .641vh 0;
+    }
+
+.FlowComputer {
+    width: 98%;
+    margin-left: 1%;
+    margin-top: 1.602vh;
+    display: flex;
+    flex-direction: column;
+    background-image: url('/image/amiddboxtbott2.png');
+    background-size: 100% 100%;
+}
+
+    .FlowComputer > span {
+        text-align: center;
+    }
+
+.FlowComputer_information {
+    width: 100%;
+    margin-top: 1.068vh;
+    display: flex;
+    flex-direction: row;
+    background-image: url('/image/time.png');
+    background-size: 100% 100%;
+}
+
+.FlowComputer_information_left, .FlowComputer_information_right {
+    width: 49%;
+    margin-left: 1%;
+    display: flex;
+    flex-direction: row;
+}
+
+.callThePolice_left_Box, .callThePolice_right_Box {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.callThePolice_left_Box {
+    text-align: left;
+}
+
+.information_right_Box {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+.information_left_Box {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+    .information_left_Box > span, .information_right_Box > span, .callThePolice_left_Box > span, .callThePolice_right_Box > span {
+        padding: 1.175vh 0;
+    }
+
+    .information_left_Box > span {
+        margin-left: 50%;
+    }
+
+.callThePolice_right_Box > span > img {
+    margin-top: 1px;
+}
+
+.Weise1information_left_Box > span, .Weise1information_right_Box > span, .Weise1callThePolice_left_Box > span, .Weise1callThePolice_right_Box > span {
+    padding: 2vh 0;
+}
+
+.Weise1callThePolice_right_Box {
+    text-align: right !important;
+}
+
+    .Weise1callThePolice_right_Box > span {
+        margin-right: 5vw;
+    }
+
+.Sick1Information, .Sick1Information_Val {
+    padding: 1vh 0 !important;
+}
+
+    .Sick1Information > span, .Sick1Information_Val > span {
+        padding: 1.3vh 0 !important;
+    }
+
+.Sick1Information {
+    width: 48% !important;
+}
+
+.Sick1Information_Val {
+    width: 42% !important;
+}
+
+.Sick1right_Nam > span, .Sick1right_Val > span {
+    padding: 1vh 0 !important;
+}
+
+.Sick1right_Nam {
+    width: 48% !important;
+}
+
+.Sick1right_Val {
+    text-align: right !important;
+    width: 42% !important;
+}
+
+.CurrentSpeed {
+    display: flex;
+    flex-direction: column;
+}
+
+.progressBar {
+    width: 90%;
+    height: 3.205vh;
+    margin-left: 5%;
+    margin-top: .534vh;
+    line-height: 2.884vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.progressBar_Name {
+    width: 2.918vw;
+}
+
+.progressBar_Outside {
+    width: 60%;
+    height: 1.068vh;
+    background-color: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    margin: .8547vh 3% 0 3%;
+}
+
+.progressBar_within {
+    height: 100%;
+    background-color: rgb(84,112,198);
+}
+
+.Details_from {
+    width: 28%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-image: url('/image/hdbjr.png');
+    background-size: 100% 100%;
+    margin-left: 2%;
+}
+
+.gain, .SignalNoise, .DayBefore, .Details_from_metering > .total, .Details_from_volume, .Details_from_energy, .Details_from_Components, .Details_graphical_temperature, .Details_graphical_pressure, .Details_graphical_ultrasonic {
+    background-image: url('/image/leftb1.png');
+    background-size: 100% 100%;
+}
+
+.Elster_ComponentData {
+    width: 100% !important;
+    margin-left: 0 !important;
+}
+
+.RMG_ComponentData {
+    width: 100% !important;
+    margin-left: 0 !important;
+}
+
+.gain > span, .SignalNoise > span, .DayBefore > span, .Details_from_metering > .total > span, .Details_from_volume > span, .Details_from_energy > span, .Details_from_Components > span, .Details_graphical_temperature > span, .Details_graphical_pressure > span, .Details_graphical_ultrasonic > span {
+    text-align: center;
+    font-size: .677vw;
+}
+
+.Details_from_information, .Details_from_metering {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+    .gain, .SignalNoise, .DayBefore, .Details_from_metering > .total {
+        width: 45%;
+        display: flex;
+        flex-direction: column;
+        margin-top: 2.136vh;
+        margin-left: 2%;
+    }
+
+    .SignalNoise, .Details_from_metering > .total {
+        margin-left: 5%;
+    }
+
+.Details_from_Loop, .Details_from_volume, .Details_from_energy, .Details_from_Components, .Details_graphical_temperature, .Details_graphical_pressure, .Details_graphical_ultrasonic {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.068vh;
+    width: 95%;
+    margin-left: 2%;
+}
+
+
+
+/*.Details_from_Loop > span,
+    .Details_from_volume > span,
+    .Details_from_energy > span,
+    .Details_from_Components > span,
+    .Details_graphical_temperature > span,
+    .Details_graphical_pressure > span,
+    .Details_graphical_ultrasonic > span,
+    .gain > span, .SignalNoise > span, .DayBefore > span, .total > span {
+        margin-left: 1.602vh;
+    }*/
+
+.Loop_information, .volumeMetering, .energyMetering, .ComponentsData, .TemperatureInUse, .PressureTransmitter, .UltrasonicFlowmeter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.DayBefore_left, .total_right {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    background-image: url('/image/time.png');
+    background-size: 100% 100%;
+}
+
+.gain_left, .SignalNoise_right {
+    width: 96%;
+    margin-left: 2%;
+    display: flex;
+    flex-direction: row;
+    background-image: url('/image/time.png');
+    background-size: 100% 100%;
+    font-size: .521vw;
+}
+
+.gain_left_box, .SignalNoise_left_box {
+    width: 93%;
+    display: flex;
+    flex-direction: row;
+    margin-left: 7%;
+}
+
+.left_box_left, .left_box_right {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+}
+
+.left_Val, .right_Val {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+.rmg_left_Val, .rmg_right_Val {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+.left_Nam, .right_Nam {
+    width: 40%;
+    margin-left: 15%;
+    display: flex;
+    flex-direction: column;
+}
+
+    .left_Nam > span, .left_Val > span, .right_Nam > span, .right_Val > span {
+        padding: 0.7vh 0;
+    }
+
+.rmg_left_Nam, .rmg_right_Nam {
+    width: 40%;
+    margin-left: 15%;
+    display: flex;
+    flex-direction: column;
+}
+
+    .rmg_left_Nam > span, .rmg_left_Val > span, .rmg_right_Nam > span, .rmg_right_Val > span {
+        padding: 0.5vh 0;
+    }
+
+.volumeMetering, .energyMetering, .ComponentsData, .TemperatureInUse, .PressureTransmitter, .UltrasonicFlowmeter {
+    background-image: url('/image/time.png');
+    background-size: 100% 100%;
+}
+
+.ComponentsData_left, .ComponentsData_middle, .ComponentsData_right {
+    display: flex;
+    flex-direction: row;
+    width: 47%;
+}
+
+.volumeMetering_left, .volumeMetering_right,
+.energyMetering_left, .energyMetering_right {
+    display: flex;
+    flex-direction: row;
+    width: 47%;
+}
+
+.volume_left_Nam, .volume_right_Nam, .energy_left_Nam, .energy_right_Nam {
+    display: flex;
+    flex-direction: column;
+    width: 41%;
+}
+
+.volume_left_Val, .volume_right_Val, .energy_left_Val, .energy_right_Val {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    text-align: right;
+}
+
+.category_left, .category_right {
+    display: flex;
+    flex-direction: row;
+    width: 47%;
+    background-image: url('/image/time.png');
+    background-size: 100% 100%;
+}
+
+.TemperatureInUse_right,
+.PressureTransmitter_right,
+.UltrasonicFlowmeter_right {
+    display: flex;
+    flex-direction: row;
+    width: 57%;
+}
+
+.category_right,
+.ComponentsData_middle, .ComponentsData_right,
+.TemperatureInUse_right,
+.PressureTransmitter_right,
+.UltrasonicFlowmeter_right {
+    margin-left: 2%;
+}
+
+.category_left_Nam, .category_right_Nam,
+.ComponentsData_left_Nam, .ComponentsData_middle_Nam, .ComponentsData_right_Nam,
+.TemperatureInUse_right_Nam,
+.PressureTransmitter_right_Nam,
+.PUltrasonicFlowmeter_right_Nam {
+    display: flex;
+    flex-direction: column;
+    width: 41%;
+}
+
+.Weise1PressureTransmitter_right_Nam {
+    width: 50%
+}
+
+.Weise1PressureTransmitter_right_Val {
+    width: 41%;
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+.DayBefore_Nam,
+.total_Nam {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+}
+
+.DayBefore_Val, .total_Val {
+    display: flex;
+    flex-direction: column;
+    width: 56%;
+    text-align: right;
+}
+
+.category_left_Val, .category_right_Val, .ComponentsData_left_Val, .ComponentsData_middle_Val, .ComponentsData_right_Val, .TemperatureInUse_right_Val, .PressureTransmitter_right_Val {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    text-align: right;
+}
+
+.UltrasonicFlowmeter_right_Val {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    text-align: center;
+}
+
+.PUltrasonicFlowmeter_right_Nam {
+    width: 10.944vw;
+}
+
+    .category_left_Nam > span, .category_left_Val > span, .category_right_Nam > span, .category_right_Val > span,
+    .gain_Nam > span, .gain_Val > span, .SignalNoise_Nam > span, .SignalNoise_Val > span,
+    .DayBefore_Nam > span, .DayBefore_Val > span, .total_Nam > span, .total_Val > span,
+    .volume_left_Nam > span, .volume_left_Val > span, .volume_right_Nam > span, .volume_right_Val > span,
+    .energy_left_Nam > span, .energy_left_Val > span, .energy_right_Nam > span, .energy_right_Val > span,
+    .TemperatureInUse_right_Nam > span, .TemperatureInUse_right_Val > span,
+    .PressureTransmitter_right_Nam > span, .PressureTransmitter_right_Val > span,
+    .PUltrasonicFlowmeter_right_Nam > span, .UltrasonicFlowmeter_right_Val > span,
+    .ComponentsData_left_Nam > span, .ComponentsData_left_Val > span, .ComponentsData_middle_Nam > span, .ComponentsData_middle_Val > span, .ComponentsData_right_Nam > span, .ComponentsData_right_Val > span {
+        padding: .641vh 0;
+        font-size: .601vw;
+        margin-left: .781vw;
+    }
+
+.Sick1Distance > span {
+    height: 1.4vh;
+    padding: .7vh 0;
+}
+
+.ComponentsData_left_Nam > span, .ComponentsData_left_Val > span, .PUltrasonicFlowmeter_right_Nam > span, .UltrasonicFlowmeter_right_Val > span {
+    height: 1.4vh;
+    padding: 1.282vh 0;
+}
+
+.elsterComponentsData_left_Nam > span, .elsterComponentsData_left_Val > span {
+    padding: 1.282vh 0 !important;
+    height: 2vh !important;
+}
+
+    .elsterComponentsData_left_Nam > span:nth-child(1) {
+        padding-top: 5vh !important;
+    }
+
+    .elsterComponentsData_left_Val > span:nth-child(1) {
+        padding-top: 5vh !important;
+    }
+
+.Weise1PUltrasonicFlowmeter_right_Nam > span, .Weise1UltrasonicFlowmeter_right_Val > span {
+    padding: .641vh 0;
+}
+
+.UltrasonicFlowmeter_right_Val > span {
+    height: 1.709vh;
+}
+
+.category_left_Val > span, .category_right_Val > span,
+.gain_Val > span, .SignalNoise_Val > span,
+.DayBefore_Val > span, .total_Val > span,
+.volume_left_Val > span, .volume_right_Val > span,
+.energy_left_Val > span, .energy_right_Val > span,
+.TemperatureInUse_right_Val > span,
+.PressureTransmitter_right_Val > span,
+.UltrasonicFlowmeter_right_Val > span,
+.ComponentsData_left_Val > span, .ComponentsData_middle_Val > span, .ComponentsData_right_Val > span, .ComponentsData_middle_Nam > span {
+    margin-left: .421vw;
+}
+
+.ComponentsData_middle_Val > span, .ComponentsData_right_Val > span, .ComponentsData_right_Nam > span, .ComponentsData_left_Val > span {
+    margin-left: 0;
+}
+
+.weiseComponentsData_left_Val > span {
+    font-size: 12px !important;
+}
+
+.ComponentsData_middle_Val > span, .ComponentsData_right_Val > span, .ComponentsData_right_Nam > span, .ComponentsData_middle_Nam > span {
+    padding: .4273vh 0;
+}
+
+.elsterComponentsData_middle_Val > span, .elsterComponentsData_right_Val > span, .elsterComponentsData_right_Nam > span, .elsterComponentsData_middle_Nam > span {
+    padding: 1.2vh 0 !important;
+}
+
+.rmgComponentsData_middle_Val > span, .rmgComponentsData_right_Val > span, .rmgComponentsData_right_Nam > span, .rmgComponentsData_middle_Nam > span {
+    padding: 0.9vh 0.4vh !important;
+}
+
+.Details_graphical {
+    width: 19%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-right: 1%;
+}
+
+.Details_graphical_from {
+    width: 96%;
+    margin-left: 2%;
+    margin-top: 1.282vh;
+    font-size: .80vw
+}
+
+.graphical_from {
+    width: 98%;
+    margin-left: 1%;
+}
+
+.police_from > thead, .police_from > tbody {
+    width: 21.628vw;
+}
+
+    .police_from > thead > tr {
+        background-color: #2C4A82;
+    }
+
+    .police_from > thead > tr, .police_from > tbody > tr {
+        width: 21.628vw;
+    }
+
+        .police_from > thead > tr > th, .police_from > tbody > tr > th {
+            width: 2.605vw;
+        }
+
+        .police_from > tbody > tr > td {
+            border-right: 1px solid #0e94ea;
+        }
+
+        .police_from > thead > tr > th:nth-child(1) {
+            width: 11.204vw;
+        }
+
+        .police_from > tbody > tr > td:nth-child(1) {
+            width: 11.204vw;
+            text-align: left;
+            padding-left: .521vw;
+        }
+
+.Sick1tbody > tr {
+    padding: .5vh 0 !important;
+}
+
+.police_from > tbody > tr {
+    height: 2.136vh;
+    text-align: center;
+    line-height: 2.136vh;
+    border-top: 1px solid #0e94ea;
+    background-color: #2C4A82;
+}
+
+
+
+
+/*郭达*/
+
+.bgc,
+.bgc2, .bgc3 {
+    width: 98%;
+    margin: auto;
+    overflow: hidden;
+    background-image: url("/image/time.png");
+    background-size: 100% 100%;
+}
+
+.bgc {
+    font-size: .65vw;
+}
+
+.bgc2 {
+    width: 98%;
+    height: 90%;
+}
+
+.bgc3 {
+    width: 98%;
+    height: 90%;
+}
+/* Turbo1左边部分 */
+.everyTitle {
+    width: 100%;
+    height: 2vh;
+    margin-top: 0.8vh;
+    text-align: center;
+}
+
+.FlowMeter, .ComponentData, .InsFlow {
+    width: 100%;
+    height: 30vh;
+    overflow: hidden;
+    box-sizing: border-box;
+    background-image: url(/img/amiddboxtbott2.5e2c70d1.png);
+    background-size: 100% 100%;
+    margin-top: 4vh;
+}
+
+.ComponentData {
+    height: 60vh;
+    margin-bottom: 2vh;
+}
+
+.FlowMeterCon, .ComponentDataCon, .ComponentDataConTop, .ComponentDataConBottom, .InsFlowCon {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.ComponentDataCon {
+    display: block;
+}
+
+.FlowMeterCon > span {
+    box-sizing: border-box;
+    padding-top: 6%;
+    padding-left: 12%;
+    width: 50%;
+    text-align: left;
+}
+
+    .FlowMeterCon > span:nth-child(2n), .ComponentDataConTop > span:nth-child(2n), .ComponentDataConBottom > span:nth-child(2n), .InsFlowCon > span:nth-child(2n) {
+        text-align: right;
+        padding-right: 12%;
+        padding-left: 0;
+    }
+
+.ComponentDataConTop {
+    height: 10%;
+    margin-top: 4%;
+}
+
+.ComponentDataConBottom {
+    height: 85%;
+}
+
+    .ComponentDataConTop > span, .ComponentDataConBottom > span, .InsFlowCon > span {
+        width: 50%;
+        text-align: left;
+        padding-left: 12%;
+        box-sizing: border-box;
+    }
+/* Turbo1中间部分 */
+
+/* 数据可视化部分 */
+.fa-circle {
+    font-size: 0.9vw;
+}
+
+.Elster1dialogVisible > .el-dialog {
+    height: 850px;
+    margin-top: 1% !important;
+    margin-bottom: 0;
+}
+
+.Elster1dialogVisible > .el-dialog__body {
+    width: 98%;
+    height: 850px;
+    color: #fff;
+    position: relative;
+    background-image: url("/image/bg.jpg");
+    background-size: 100% 100%;
+    overflow: hidden;
+    line-height: 128%;
+}
+
+.Elster1dialogVisible > .dialog_header_title {
+    width: 100%;
+    height: 5.342vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    line-height: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.Elster1dialogVisible > .title_Nam {
+    font-size: 34px;
+    margin-top: 2%;
+    color: #fff;
+}
+
+.Elster1dialogVisible > .header_return {
+    position: absolute;
+    top: 60%;
+    right: 1%;
+    font-size: 20px;
+    width: 80px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    background-image: url("/image/bnt.png");
+    background-size: 100% 100%;
+    margin-right: 19px;
+    cursor: pointer;
+}
+
+.el-dialog__footer,
+.el-dialog__header {
+    width: 0;
+    height: 0;
+    padding: 0;
+    display: none;
+}
+
+.DetailsElster {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    text-align: center;
+    flex-direction: row;
+    color: #fff;
+}
+
+/* 左边部分 */
+.Details_from1,
+.DetailsLeft {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    background-image: url("/image/hdbjr.png");
+    background-size: 100% 100%;
+    margin-left: 2%;
+    padding: 0 1.5%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.DetailsLeft {
+    height: 92%;
+}
+
+.loopCheckTitle {
+    width: 100%;
+    text-align: center;
+    margin-top: 1.2%;
+}
+
+.loopCheckFirst {
+    /* width: 98%; */
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 2%;
+}
+
+    .loopCheckFirst > div {
+        width: 48%;
+        padding: 2%;
+        box-sizing: border-box;
+        background-image: url("/image/leftb1.png");
+        background-size: 100% 100%;
+    }
+
+        .loopCheckFirst > div > .bgc {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            width: 100%;
+            height: 100%;
+        }
+
+    .loopCheckFirst .bgc > span {
+        width: 50%;
+        height: 100%;
+        text-align: center;
+        box-sizing: border-box;
+        padding: 4%;
+    }
+
+.loopCheckGain,
+.loopCheckVolume,
+.loopCheckEnergy,
+.loopCheckComponent {
+    width: 100%;
+    text-align: center;
+    margin-top: 2%;
+    background-image: url("/image/leftb1.png");
+    background-size: 100% 100%;
+    /* border-radius: 12%; */
+}
+
+.dialogcontent {
+    width: 50%;
+    float: left;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-left: 4%;
+    box-sizing: border-box;
+}
+
+.content2 {
+    width: 41%;
+}
+
+    .content2 > span {
+        width: 40% !important;
+        text-align: right !important;
+    }
+
+.loopCheckGain .content3 {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    padding-top: 1.5%;
+}
+
+.content3 {
+    width: 84% !important;
+    padding-left: 0 !important;
+}
+
+    .content3 > span {
+        text-align: right !important;
+    }
+
+.loopCheckGain .content3 > span {
+    width: 25%;
+    margin-top: 0;
+    text-align: left;
+    box-sizing: border-box;
+    padding-left: 2%;
+}
+
+.content3 > span {
+    padding: 1% 0 !important;
+}
+
+.dialogcontent > span {
+    width: 50%;
+    padding: 4% 0;
+    text-align: left;
+    /* box-sizing: border-box;
+  padding-left: 8%; */
+}
+
+.loopCheckEnergy span:nth-child(2n-1),
+.loopCheckVolume span:nth-child(2n-1) {
+    width: 40%;
+}
+
+.loopCheckEnergy span:nth-child(2n),
+.loopCheckVolume span:nth-child(2n) {
+    width: 55%;
+    text-align: right;
+    box-sizing: border-box;
+    padding-right: 5%;
+}
+
+.contentLeft {
+    width: 32%;
+    padding: 5% 0 5% 4%;
+    box-sizing: border-box;
+}
+
+.contentRight {
+    width: 68%;
+    padding-left: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.contentLeft > span {
+    margin-top: 19%;
+    text-align: left;
+}
+
+    .contentLeft > span:nth-child(2n-1) {
+        width: 45%;
+    }
+
+    .contentLeft > span:nth-child(2n) {
+        width: 55%;
+    }
+
+.contentRight > div {
+    width: 32.5%;
+    float: left;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+
+.contentRight > .left > .leftTitle,
+.contentRight > .middle > .leftTitle,
+.contentRight > .right > .leftTitle {
+    width: 47%;
+    text-align: left;
+}
+
+    .contentRight > .left > .leftTitle > span,
+    .contentRight > .middle > .leftTitle > span,
+    .contentRight > .right > .leftTitle > span {
+        width: 100%;
+        display: block;
+        padding: 40% 0;
+        text-align: left;
+    }
+
+.contentRight > .left > .rightCo,
+.contentRight > .middle > .rightCo,
+.contentRight > .right > .rightCo {
+    width: 49%;
+}
+
+    .contentRight > .left > .rightCo > span,
+    .contentRight > .middle > .rightCo > span,
+    .contentRight > .right > .rightCo > span {
+        width: 100%;
+        display: block;
+        padding: 38% 0;
+        text-align: left;
+    }
+
+.Elster2leftTitle > span {
+    padding: 23% 0 !important;
+}
+
+.Elster2rightCo > span {
+    padding: 22% 0 !important;
+}
+/* // 中间部分 */
+.Details_Chart1,
+.DetailsMiddle {
+    width: 45%;
+    overflow: hidden;
+    background-image: url("/image/hdbj.png");
+    background-size: 100% 100%;
+    margin: 0 1% 0 1%;
+    padding: 0 1%;
+    box-sizing: border-box;
+}
+
+.DetailsMiddle {
+    height: 92%;
+}
+
+.threeCharts {
+    width: 32%;
+    height: 100%;
+    text-align: center;
+    background-image: url("/image/bbox2.png");
+    background-size: 100% 100%;
+}
+
+.chartsTitle {
+    margin-top: 3%;
+}
+
+.topCharts {
+    width: 100%;
+    height: 26%;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    margin-top: 6%;
+}
+
+.middleInformation {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2%;
+}
+
+    .middleInformation > div {
+        width: 47%;
+        background-image: url("/image/bbox2.png");
+        background-size: 100% 100%;
+    }
+
+.infoContent {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+    .infoContent > span {
+        width: 50%;
+        text-align: right;
+        padding: 1.5% 0;
+    }
+
+        .infoContent > span:nth-child(2n-1) {
+            text-align: left;
+            box-sizing: border-box;
+            padding-left: 22%;
+        }
+
+        .infoContent > span:nth-child(2n) {
+            box-sizing: border-box;
+            padding-right: 22%;
+        }
+
+.rmg_infoContent {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+    .rmg_infoContent > span {
+        width: 50%;
+        text-align: right;
+        padding: 1.5% 0;
+    }
+
+    .rmg_infoContent > span {
+        width: 50%;
+        text-align: right;
+        padding: 1.5% 0;
+    }
+
+        .rmg_infoContent > span:nth-child(2n-1) {
+            text-align: left;
+            box-sizing: border-box;
+            padding-left: 15%;
+        }
+
+        .rmg_infoContent > span:nth-child(2n) {
+            box-sizing: border-box;
+            padding-right: 15%;
+        }
+
+.rmg_infovogDevReteContent {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+    .rmg_infovogDevReteContent > span {
+        width: 50%;
+        text-align: right;
+        padding: 1.5% 0;
+    }
+
+    .rmg_infovogDevReteContent > span {
+        width: 50%;
+        text-align: right;
+        padding: 6.5% 0;
+    }
+
+        .rmg_infovogDevReteContent > span:nth-child(2n-1) {
+            text-align: left;
+            box-sizing: border-box;
+            padding-left: 15%;
+        }
+
+        .rmg_infovogDevReteContent > span:nth-child(2n) {
+            box-sizing: border-box;
+            padding-right: 15%;
+        }
+
+.flowComputerInfoCon > div > span {
+    width: 50%;
+    text-align: left;
+    padding: 3.5% 0 6.5% 4%;
+    box-sizing: border-box;
+}
+
+.flowComputerInfoCon > div > div > span {
+    width: 50%;
+    text-align: left;
+    padding: 6.5% 0 6.5% 4%;
+    box-sizing: border-box;
+}
+
+.flowComputerInfoCon > div > span:nth-child(2n) {
+    text-align: right;
+    box-sizing: border-box;
+    padding-right: 18%;
+    padding-left: 0;
+}
+
+.flowComputerInfoCon > div .infoTitle {
+    margin-top: 3%;
+}
+
+.infoTitle {
+    text-align: center;
+}
+
+.flowComputerInfo {
+    background-image: url("/image/amiddboxtbott2.png");
+    background-size: 100% 100%;
+    overflow: hidden;
+    margin-top: 2%;
+}
+
+.fclTitle {
+    width: 100%;
+    height: 5%;
+    text-align: center;
+    margin-top: 1%;
+}
+
+.flowComputerInfoCon {
+    display: flex;
+    justify-content: space-between;
+}
+
+    .flowComputerInfoCon > div {
+        width: 49.5%;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        box-sizing: border-box;
+        padding-left: 1%;
+        padding-top: 1%;
+    }
+
+.flowComputerInfo > div > span {
+    margin-top: 4%;
+}
+
+.flowComputerInfoCon > .two {
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding-top: 1%;
+}
+
+.two > .flowComputerInfoConTitle,
+.two > .flowComputerInfoConCon {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 45%;
+}
+
+.two > .flowComputerInfoConCon {
+    width: 55%;
+}
+
+    .two > .flowComputerInfoConCon > span,
+    .two > .flowComputerInfoConTitle > span {
+        width: 100%;
+        display: block;
+        text-align: left;
+    }
+
+    .two > .flowComputerInfoConCon > span {
+        text-align: right;
+        padding-right: 40%;
+    }
+/* // 右边部分 */
+.Details_graphical1,
+.DetailsRight {
+    width: 19%;
+    display: flex;
+    flex-direction: column;
+    margin-right: 1%;
+    padding: 0 0 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.yesterday,
+.tempInfo,
+.pressureInfo,
+.flowMeter {
+    width: 100%;
+    height: 20%;
+    background-image: url("/image/leftb1.png");
+    background-size: 100% 100%;
+}
+
+.total {
+    width: 100%;
+    background-image: url("/image/leftb1.png");
+    background-size: 100% 100%;
+}
+
+.yesTitle {
+    margin-top: 1%;
+    text-align: center;
+}
+
+.yesCon,
+.tempInfoCon,
+.tempInfoC,
+.rmg_tempInfoC,
+.pressureInfoCon,
+.flowMeterCon {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+
+    .yesCon > span {
+        width: 50%;
+        margin-top: 3%;
+        margin-bottom: 0.5%;
+        text-align: left;
+        box-sizing: border-box;
+        padding-left: 5%;
+    }
+
+        .yesCon > span:nth-child(2n) {
+            text-align: right;
+            padding-right: 4%;
+            padding-left: 0;
+        }
+
+.total,
+.yesterday,
+.pressureInfo,
+.flowMeter {
+    margin-top: 3%;
+}
+
+.rmg_tempInfoC {
+    width: 50%;
+    overflow: hidden;
+}
+
+    .rmg_tempInfoC > span {
+        width: 44%;
+        text-align: left;
+        margin-top: 13%;
+    }
+
+.tempInfoC {
+    width: 50%;
+    overflow: hidden;
+}
+
+    .tempInfoC > span {
+        width: 44%;
+        text-align: left;
+        margin-top: 4%;
+    }
+
+        .tempInfoC > span:nth-child(2n) {
+            width: 56%;
+            text-align: right;
+            box-sizing: border-box;
+            padding-right: 8%;
+        }
+
+.tempInfoC3 > span {
+    width: 44%;
+    text-align: left;
+    margin-top: 0;
+    box-sizing: border-box;
+    padding-top: 1%;
+}
+
+    .tempInfoC3 > span:nth-child(2n) {
+        width: 56%;
+        text-align: right;
+        box-sizing: border-box;
+        padding-right: 8%;
+    }
+
+/* Turbo1、2、4部分 */
+.TurboDialog .el-dialog__body {
+    width: 98%;
+    height: 93%;
+    color: #fff;
+    position: relative;
+    background-image: url(/img/bg.17f66cf4.jpg);
+    background-size: 100% 100%;
+    overflow: hidden;
+    line-height: 128%;
+}
+
+.TurboDialog .el-dialog {
+    height: 90%;
+    position: absolute;
+    top: 3%;
+    left: 10%;
+}
+
+.ComponentDataBgc {
+    width: 98%;
+    height: 92%;
+}
+
+.everyTitle {
+    width: 100%;
+    height: 7%;
+    margin-top: 1%;
+    text-align: center;
+}
+
+.EnergyTitle, .ComponentTitle {
+    box-sizing: border-box;
+    padding-top: 1.5%;
+}
+
+.ComponentTitle {
+    padding-top: 3%;
+}
+
+.FlowMeter, .ComponentData, .InsFlow, .EnergyMeter, .TotalFlow, .TempChart {
+    width: 100%;
+    height: 30%;
+    overflow: hidden;
+    box-sizing: border-box;
+    background-image: url('/image/amiddboxtbott2.png');
+    background-size: 100% 100%;
+    margin-top: 8%;
+}
+
+.TotalFlow {
+    height: 35%;
+    margin-top: 6%;
+}
+
+.TempChart {
+    height: 26%;
+    margin-top: 0;
+}
+
+.PressChart {
+    margin-top: 6%;
+}
+
+.ComponentData {
+    height: 60%;
+    margin-top: 6%;
+}
+
+.EnergyMeter {
+    height: 58%;
+    margin-top: 4%;
+}
+
+.FlowMeterCon, .ComponentDataCon, .ComponentDataConTop, .ComponentDataConBottom, .InsFlowCon, .EnergyMeterCon, .TotalFlowCon {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+
+.ComponentDataCon {
+    display: block;
+}
+
+.FlowMeterCon > span {
+    box-sizing: border-box;
+    padding-top: 6%;
+    padding-left: 12%;
+    width: 50%;
+    text-align: left;
+}
+
+.TotalTired > span:nth-child(1n) {
+    width: 35% !important;
+    padding-left: 10% !important;
+}
+
+.TotalTired > span:nth-child(2n) {
+    width: 65% !important;
+    padding-right: 10% !important;
+    padding-left: 0% !important;
+}
+
+.FlowMeterCon > span:nth-child(2n), .ComponentDataConTop > span:nth-child(2n), .ComponentDataConBottom > span:nth-child(2n), .InsFlowCon > span:nth-child(2n), .EnergyMeterCon > span:nth-child(2n), .TotalFlowCon > span:nth-child(2n) {
+    text-align: right;
+    padding-right: 12%;
+    padding-left: 0;
+}
+
+.ComponentDataConTop {
+    height: 10%;
+    margin-top: 4%;
+}
+
+.ComponentDataConBottom {
+    height: 85%;
+}
+
+    .ComponentDataConTop > span, .ComponentDataConBottom > span, .InsFlowCon > span, .EnergyMeterCon > span, .TotalFlowCon > span {
+        width: 50%;
+        text-align: left;
+        padding-left: 12%;
+        box-sizing: border-box;
+        padding-top: 3%;
+    }
+
+.TotalFlowCon > span {
+    padding-top: 8%;
+}
+/* Turbo1、2、4数据可视化开始 */
+.TempChartBgc {
+    width: 98%;
+    height: 90%;
+    margin-top: 0;
+}
+
+.TempChartTitle {
+    margin-top: 0;
+}
+/* Turbo1、2、4数据可视化结束 */
+/*Turbo1、2、4结束  */
+/* Turbo3部分开始 */
+.Turbo3FlowMeter {
+    height: 38%;
+}
+
+.Turbo3TotalFlow {
+    height: 50%;
+}
+
+.Turbo3TempChart {
+    height: 47%;
+}
+
+
+.EquipmentsABB1dialog {
+    width: 60%;
+    height: 70%;
+    margin-top: 6.6% !important;
+}
+
+    .EquipmentsABB1dialog > .el-dialog__body > .dialog_header_title > .title_Nam {
+        margin-top: -3.068vh !important;
+    }
+
+    .EquipmentsABB1dialog > .el-dialog__body > .Details {
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        font-size: .7vw;
+    }
+
+.EquipmentUpper {
+    display: flex;
+    flex-direction: row;
+}
+
+.EquipmentUpper_left {
+    width: 45%;
+    height: 100%;
+    margin: 0 0 0 5%;
+    display: flex;
+    flex-direction: column;
+    background-image: url('/image/amiddboxtbott2.png');
+    background-size: 100% 100%;
+}
+
+    .EquipmentUpper_left > span {
+        text-align: center;
+        margin-top: .5vh;
+    }
+
+.EquipmentUpper_right {
+    width: 50%;
+    margin-left: 0;
+    margin: 0 5%;
+    display: flex;
+    flex-direction: column;
+    background-image: url('/image/amiddboxtbott2.png');
+    background-size: 100% 100%;
+}
+
+    .EquipmentUpper_right > span {
+        text-align: center;
+        margin-top: .5vh;
+    }
+
+.Upper {
+    width: 95%;
+    height: 85%;
+    font-size: .6vw;
+    display: flex;
+    flex-direction: row;
+    margin: 1% 2.5% 0 2.5%;
+    background-image: url('/image/time.png');
+    background-size: 100% 100%;
+}
+
+.InUse {
+    width: 95%;
+    margin: 1% 2.5% 0 2.5%;
+    display: flex;
+    flex-direction: row;
+    background-image: url('/image/time.png');
+    background-size: 100% 100%;
+}
+
+.Upper_left {
+    width: 50%;
+}
+
+.Upper_left, .Upper_right, .InUse_left, .InUse_right {
+    width: 48%;
+    display: flex;
+    flex-direction: row;
+}
+
+.Upper_left_Nam, .InUse_left_Nam {
+    margin-left: 7%;
+}
+
+.Upper_right_Nam {
+    width: 30%;
+}
+
+.Upper_right_Val {
+    width: 58%;
+}
+
+.Upper_left_Nam, .Upper_left_Val, .Upper_right_Nam, .Upper_right_Val, .InUse_right_Val, .InUse_left_Val {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    padding: 0 2%;
+}
+
+.Upper_left_Nam, .Upper_right_Nam {
+    width: 43%;
+}
+
+.Upper_right_Nam {
+    margin-left: 10%;
+}
+
+.InUse_right_Nam, .InUse_left_Nam {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    padding: 0 4%;
+}
+
+.Upper_left_Nam, .Upper_right_Nam, .InUse_right_Nam, .InUse_left_Nam {
+    text-align: left;
+}
+
+.ABB1Upper_right_Nam {
+    width: 25% !important;
+}
+
+.ABB1Upper_right_Val {
+    width: 60% !important;
+}
+
+    .ABB1Upper_right_Val > span {
+        height: 15px !important;
+        line-height: 15px !important;
+    }
+
+.Upper_left_Val, .Upper_right_Val, .InUse_right_Val, .InUse_left_Val {
+    text-align: right;
+}
+
+    .Upper_left_Nam > span, .Upper_left_Val > span, .Upper_right_Nam > span, .Upper_right_Val > span {
+        padding: 1.5vh 0;
+    }
+
+    .InUse_right_Val > span, .InUse_left_Val > span, .InUse_right_Nam > span, .InUse_left_Nam > span {
+        padding: 1vh 0;
+    }
+
+.EquipmentLower {
+    width: 91%;
+    margin: 1.5% 4.5%;
+    display: flex;
+    flex-direction: column;
+    background-image: url('/image/puleftmidd.png');
+    background-size: 100% 100%;
+}
+
+    .EquipmentLower > span {
+        text-align: center;
+        margin-top: 1.2vh;
+    }
+
+.Lower {
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    margin: 1% 2.5% 1% 2.5%;
+    background-image: url('/image/time.png');
+    background-size: 100% 100%;
+}
+
+.Lower_left, .Lower_middle, .Lower_right {
+    display: flex;
+    flex-direction: row;
+    width: 30%;
+    margin: 0 3%;
+}
+
+.Lower_left {
+    margin-left: 8%;
+}
+
+.Lower_left_Nam, .Lower_left_Val, .Lower_middle_Nam, .Lower_middle_Val, .Lower_right_Nam, .Lower_right_Val {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.Lower_left_Nam, .Lower_middle_Nam, .Lower_right_Nam {
+    text-align: left;
+}
+
+.Lower_left_Val, .Lower_middle_Val, .Lower_right_Val {
+    text-align: center;
+}
+
+    .Lower_left_Nam > span, .Lower_left_Val > span, .Lower_middle_Nam > span, .Lower_middle_Val > span, .Lower_right_Nam > span, .Lower_right_Val > span {
+        padding: 1vh 0;
+    }
+/* Gc部分开始*/
+.EquipmentsDaniel1dialog {
+    height: 70%;
+    margin-top: 6.6% !important;
+}
+
+.EquipmentsElster1dialog {
+    height: 55%;
+    margin-top: 9.6% !important;
+}
+
+    .EquipmentsElster1dialog > .el-dialog__body {
+        height: 85% !important;
+    }
+
+.EquipmentsDaniel1dialog > .el-dialog__body {
+    height: 100% !important;
+    padding: 0.8vw 1.042vw;
+}
+
+.EquipmentsDaniel1dialog .dialog_header_title {
+    height: 4.342vh;
+}
+
+.EquipmentsDaniel1dialog > .el-dialog__body > .Details {
+    height: 87%;
+    -webkit-box-orient: vertical;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    font-size: .7vw;
+    content: "viewport-units-buggyfill; font-size: .7vw";
+}
+
+.EquipmentsDaniel1dialog > .el-dialog__body > .GcElster {
+    height: 100% !important;
+}
+
+.GcDetails {
+    width: 100%;
+    /* height: 100%; */
+    display: flex;
+    flex-wrap: wrap;
+    color: #fff;
+}
+
+.GcTop, .GcButtom {
+    box-sizing: border-box;
+    padding: 0 2%;
+    padding-top: 1%;
+}
+
+.GcTop {
+    width: 100%;
+    height: 35%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.GcElsterTop {
+    height: 50% !important;
+}
+
+.GcTopLeft, .GcTopRight {
+    width: 46%;
+    height: 100%;
+    background-image: url("/image/leftb1.png");
+    background-size: 100% 100%;
+}
+
+.GcTopRight {
+    width: 50%;
+    height: 100%;
+}
+
+.GcTopRightCon, .GcTopLeftCon, .GcButtomBoxCon {
+    width: 98%;
+    height: 90%;
+    margin: auto;
+    overflow: hidden;
+    background-image: url("/image/time.png");
+    background-size: 100% 100%;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    padding: 0 2%;
+    padding-top: 1%;
+}
+
+    .GcTopLeftCon > span {
+        width: 25%;
+        box-sizing: border-box;
+        padding: 3% 1% 3% 1%;
+    }
+
+    .GcTopRightCon > span {
+        width: 25%;
+        box-sizing: border-box;
+        padding: 1%;
+    }
+
+    .GcButtomBoxCon > span {
+        width: 25%;
+        box-sizing: border-box;
+    }
+
+.BoxName {
+    padding: 1%;
+    padding-left: 3%;
+}
+
+.BoxVal {
+    padding: 1%;
+    text-align: center;
+}
+
+.MessageName, .BoxName {
+    text-align: left;
+}
+
+.ComponentName {
+    text-align: left;
+    padding-left: 10% !important;
+}
+
+.MessageName {
+    padding-right: 5% !important;
+}
+
+.MessageVal, .ComponentVal {
+    text-align: right;
+}
+
+.ComponentVal {
+    padding-right: 6% !important;
+}
+
+.GcButtom {
+    width: 100%;
+    height: 65%;
+}
+
+.GcElsterButtom {
+    height: 40%;
+}
+
+.GcButtomBox {
+    width: 100%;
+    height: 100%;
+    background-image: url("/image/leftb1.png");
+    background-size: 100% 100%;
+}
+
+.GcTitle {
+    width: 100%;
+    height: 10%;
+    text-align: center;
+    box-sizing: border-box;
+    padding-top: 0.5%;
+}
+
+.GcElsterTitle {
+    padding-top: 0.3%
+}
+
+.el-table__header {
+    width: 914px !important;
+}
+
+.TemperatureInUse_right_Val > span, .PressureTransmitter_right_Val > span, .UltrasonicFlowmeter_right_Val > span, .Sick1Information_Val > span {
+    height: 15px;
+}
+
+
+
+
+.mapBox {
+    width: 100%;
+    height: 700px;
+}
+
+.chartBox {
+    display: flex;
+    width: 100%;
+    height: 700px;
+    position: relative;
+    margin-top: 40px;
+}
+
+.backBtn {
+    /* width: 91px;
+		height: 35px; */
+    color: #FFF;
+    background-color: #2C58A6;
+    border: 0px solid #0263ff;
+    box-shadow: 0 -2px 0 rgb(0 0 0 / 20%) inset !important;
+    /* text-align: center;
+		line-height: 35px; */
+    cursor: pointer;
+    position: absolute;
+    top: -50px;
+    right: 0px;
+    z-index: 9999;
+    /* background-image: url(../assets/bnt.png); */
+}
+
+.leftBtn {
+    color: #FFF;
+    background-color: #2C58A6;
+    border: 0px solid #0263ff;
+    box-shadow: 0 -2px 0 rgb(0 0 0 / 20%) inset !important;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-right: 5px;
+}
+
+.cBoxL {
+    width: 15%;
+    color: #FFF;
+    box-sizing: border-box;
+    padding: 0px 10px;
+    text-align: center;
+    /* border-right: 1px solid #FFF; */
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: space-between;
+}
+
+.cBoxLItem {
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+.cBoxR {
+    width: 85%;
+    height: 700px;
+}
+
+.item9 {
+    padding-top: 10px;
+    background: linear-gradient(to left, #2CD5FF, #2CD5FF) left top no-repeat, linear-gradient(to bottom, #2CD5FF, #2CD5FF) left top no-repeat, linear-gradient(to left, #2CD5FF, #2CD5FF) right top no-repeat, linear-gradient(to bottom, #2CD5FF, #2CD5FF) right top no-repeat, linear-gradient(to left, #2CD5FF, #2CD5FF) left bottom no-repeat, linear-gradient(to bottom, #2CD5FF, #2CD5FF) left bottom no-repeat, linear-gradient(to left, #2CD5FF, #2CD5FF) right bottom no-repeat, linear-gradient(to left, #2CD5FF, #2CD5FF) right bottom no-repeat;
+    background-size: 4px 20px, 20px 4px, 4px 20px, 20px 4px;
+    border: 1px solid #073F97;
+    position: relative;
+}
+
+    .item9 span {
+        box-sizing: border-box;
+        display: inline-block;
+        width: 35%;
+        background: #2C58A6;
+        font-size: 14px;
+        position: absolute;
+        top: -13px;
+        left: 32%;
+        padding: 4px 0px;
+        color: #19E8FE;
+        border-radius: 2px;
+        text-align: center;
+    }

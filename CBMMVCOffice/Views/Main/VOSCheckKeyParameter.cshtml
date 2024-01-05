@@ -1,0 +1,284 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<style>
+    [v-cloak] {
+        display: none;
+    }
+
+    .el-table .el-table__fixed {
+        height: auto !important;
+         /* // 此处的important表示优先于element.style 
+        // 改为自动高度后，设置与父容器的底部距离，则高度会动态改变*/
+        bottom: 10px;
+    }
+    .el-table__fixed-body-wrapper {
+        height: 63.61vh !important;
+    }
+    .el-table__empty-block {
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+        padding-right: 100%;
+    }
+
+    .el-table th.gutter {
+        display: table-cell !important;
+        width: 10px !important;
+    }
+    .el-table--border th.gutter:last-of-type {
+        display: block !important;
+        width: 8px !important;
+    }
+</style>
+<script src="~/js/ViewVOSCheckKeyParameter/voscheckkeyparameter.js" type="module"></script>
+<script src="~/js/Echarts/echarts.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="~/css/ViewVOSCheckKeyParameter/voscheckkeyparameter.css" />
+
+<div class="content" id="VOSCheckKeyParameter" v-cloak v-loading="loading"
+     element-loading-text="拼命加载中"
+     element-loading-spinner="el-icon-loading"
+     element-loading-custom-class="loading_color"
+     element-loading-background="rgba(0, 0, 0, 0.8)">
+    <div class="header_title">
+        <span>@ViewBag.Title</span>
+    </div>
+    <div class="Drop-downbox">
+        <div class="Drop-downbox_input">
+            <div v-if="isAreaType == 'false'">
+                <span>公司:</span>
+                <el-select v-model="companyName"
+                           placeholder="请选择"
+                           style="width: 8.588vw">
+                    <el-option v-for="item in datas"
+                               :key="item.value"
+                               :label="item.Name"
+                               :value="item.AbbrName">
+                    </el-option>
+                </el-select>
+            </div>
+            <div v-else-if="isAreaType == 'true'">
+                <span>作业区:</span>
+                <el-select v-model="areaName"
+                           placeholder="请选择"
+                           style="width: 8.588vw">
+                    <el-option v-for="item in OperationAreas"
+                               :key="item.value"
+                               :label="item.Name"
+                               :value="item.AbbrName">
+                    </el-option>
+                </el-select>
+            </div>
+            <div>
+                <span>场站:</span>
+                <el-select v-model="StationName"
+                           placeholder="请选择"
+                           style="width: 6.817vw"
+                           @@change="onSelectedDrug($event)">
+                    <el-option v-for="item in Stations"
+                               :key="item.ID"
+                               :label="item.Name"
+                               :value="item.ID">
+                    </el-option>
+                </el-select>
+            </div>
+            <div>
+                <span>回路:</span>
+                <el-select v-model="LoopName"
+                           placeholder="请选择"
+                           style="width: 10vw"
+                           multiple
+                           collapse-tags
+                           @@change="onLoops($event)">
+                    <el-option v-for="item in Loops"
+                               :key="'a'+ item.ID"
+                               :label="item.Name"
+                               :value="item.ID">
+                    </el-option>
+                </el-select>
+            </div>
+            
+            <div class="block">
+                <span>日期:</span>
+                <el-date-picker v-model="timeSlot"
+                                type="datetimerange"
+                                style="width: 20.423vw"
+                                range-separator="至"
+                                start-placeholder="开始日期"
+                                end-placeholder="结束日期"
+                                :default-time="['00:00:00', '23:59:59']"
+                                @@change="TimeSelection($event)">
+                </el-date-picker>
+            </div>
+        </div>
+        <div class="Drop-downbox_btn">
+            <el-button type="primary" icon="el-icon-s-data" @@click="Trend">趋势</el-button>
+            <el-button type="primary" @@click="Export" icon="el-icon-upload">导出</el-button>
+            <el-button type="primary" icon="el-icon-search" @@click="Refresh">刷新</el-button>
+        </div>
+        <el-dialog title="趋势" :visible.sync="Trenddialog" @@opened="openTrenddialog()">
+            <div>
+                <el-form :inline="true" class="demo-form-inline">
+                    <el-form-item label="趋势组:">
+                        <el-select v-model="trendGroupName" multiple collapse-tags
+                                   @@change="onTrendGroup($event)">
+                            <el-option v-for="item in TrendGroups"
+                                       :key="item.value"
+                                       :label="item.label"
+                                       :value="item.value">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item class="butc">
+                        <el-button type="primary" @@click="onSubmit">刷新</el-button>
+                    </el-form-item>
+                </el-form>
+            </div>
+            <div class="EchartsDiv">
+                <div class="reductionDiv">
+                    <i class="el-icon-refresh reduction" @@mouseover="GetInto" @@click="onSubmit" @@mouseout="Leave"></i>
+                    <p class="reductionDisplay" :style="{display:reductionDis}">还原</p>
+                </div>
+                <div id="Trendchert" style="width:99%;height:61vh;">
+                </div>
+            </div>
+            <span slot="footer" class="dialog-footer">
+                <el-button type="primary" @@click="Trenddialog = false">关闭</el-button>
+            </span>
+        </el-dialog>
+    </div>
+    <div class="Drop-downbox">
+        <div class="Drop-downbox_input">
+            <div>
+                <span>核查状态:</span>
+                <el-select v-model="CheckName"
+                           placeholder="请选择"
+                           style="width: 17vw">
+                    <el-option v-for="item in Check"
+                               :key="'a'+ item.ID"
+                               :label="item.Name"
+                               :value="item.ID">
+                    </el-option>
+                </el-select>
+            </div>
+            <div>
+                <span>诊断结果:</span>
+                <el-select v-model="DiagnosisName"
+                           placeholder="请选择"
+                           style="width: 8.25vw">
+                    <el-option v-for="item in Diagnosis"
+                               :key="'a'+ item.ID"
+                               :label="item.Name"
+                               :value="item.ID">
+                    </el-option>
+                </el-select>
+            </div>
+        </div>
+    </div>
+    <div class="formview">
+        <el-table :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)" height="69.867vh" border :stripe="true" style="width: 86.209vw; margin-left: 1%; margin-top: 10px;text-align: center;" :row-class-name="tableRowClassName">
+            @*<el-table-column fixed width="140" prop="companyName" label="公司名称" align="center"></el-table-column>*@
+            <el-table-column fixed width="90" prop="stationName" label="场站名称" align="center"></el-table-column>
+            <el-table-column fixed width="90" prop="loopName" label="回路名称" align="center"></el-table-column>
+            <el-table-column fixed width="160" prop="datetime" label="时间" align="center"></el-table-column>
+            <el-table-column fixed width="90" prop="brandName" label="品牌" align="center"></el-table-column>
+            <el-table-column width="100" prop="customer" label="用户" align="center"> </el-table-column>
+            <el-table-column width="100" prop="caliber" label="口径" align="center"> </el-table-column>
+            <el-table-column width="100" prop="grossFlowRate" label="工况流量" align="center"></el-table-column>
+            <el-table-column width="90" prop="temperature" label="温度" align="center"></el-table-column>
+            <el-table-column width="90" prop="pressure" label="压力" align="center"></el-table-column>
+            <el-table-column width="110" prop="path1VOS" label="A/1声道声速" align="center"></el-table-column>
+            <el-table-column width="110" prop="path2VOS" label="B/2声道声速" align="center"></el-table-column>
+            <el-table-column width="110" prop="path3VOS" label="C/3声道声速" align="center"></el-table-column>
+            <el-table-column width="110" prop="path4VOS" label="D/4声道声速" align="center"></el-table-column>
+            <el-table-column width="100" prop="vosAverage" label="测量声速" align="center"></el-table-column>
+            <el-table-column width="100" prop="fcCalculateVOS" label="理论声速" align="center"></el-table-column>
+            <el-table-column width="130" prop="" label="声速偏差(%)" align="center">
+                <template slot-scope="scope">
+                    <span v-if="scope.row.vosCheckRateStatus == 0 || scope.row.vosCheckRateStatus == 'N/A' ">{{scope.row.vosCheckRate}}</span>
+                    <span v-else style="color: red;font-weight: 600;">{{scope.row.vosCheckRate}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column width="150" prop="pathsVOSMaxDeviationReferenceVOSAverage" label="声道声速偏差(m/s)" align="center"></el-table-column>
+            <el-table-column width="100" prop="" label="剖面系数" align="center">
+                <template slot-scope="scope">
+                    <span v-if="scope.row.profileFactorStatus == 0 || scope.row.profileFactorStatus == 'N/A' ">{{scope.row.profileFactor}}</span>
+                    <span v-else style="color: red;font-weight: 600;">{{scope.row.profileFactor}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column width="100" prop="" label="上行增益" align="center">
+                <template slot-scope="scope">
+                    <span v-if="scope.row.gainUpStatus == 0 || scope.row.gainUpStatus == 'N/A' ">{{scope.row.gainUp}}</span>
+                    <span v-else style="color: red;font-weight: 600;">{{scope.row.gainUp}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column width="100" prop="" label="下行增益" align="center">
+                <template slot-scope="scope">
+                    <span v-if="scope.row.gainDownStatus == 0 || scope.row.gainDownStatus == 'N/A' ">{{scope.row.gainDown}}</span>
+                    <span v-else style="color: red;font-weight: 600;">{{scope.row.gainDown}}</span>
+                </template>
+
+            </el-table-column>
+            <el-table-column width="100" prop="" label="上行信噪比" align="center">
+                <template slot-scope="scope">
+                    <span v-if="scope.row.snrUpStatus == 0 || scope.row.snrUpStatus == 'N/A' ">{{scope.row.snrUp}}</span>
+                    <span v-else style="color: red;font-weight: 600;">{{scope.row.snrUp}}</span>
+                </template>
+
+            </el-table-column>
+            <el-table-column width="100" prop="" label="下行信噪比" align="center">
+                <template slot-scope="scope">
+                    <span v-if="scope.row.snrDownStatus == 0 || scope.row.snrDownStatus == 'N/A' ">{{scope.row.snrDown}}</span>
+                    <span v-else style="color: red;font-weight: 600;">{{scope.row.snrDown}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column width="100" prop="" label="接受率" align="center">
+                <template slot-scope="scope">
+                    <span v-if="scope.row.performanceStatus == 0 || scope.row.performanceStatus == 'N/A' ">{{scope.row.performance}}</span>
+                    <span v-else style="color: red;font-weight: 600;">{{scope.row.performance}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column width="100" prop="" label="漩涡角" align="center">
+                <template slot-scope="scope">
+                    <span v-if="scope.row.swirlAngle1Status == 0 || scope.row.swirlAngle1Status == 'N/A' ">{{scope.row.swirlAngle1}}</span>
+                    <span v-else style="color: red;font-weight: 600;">{{scope.row.swirlAngle1}}</span>
+                </template>
+            </el-table-column>
+            @*<el-table-column width="150" prop="" label="漩涡角2" align="center">
+                    <template slot-scope="scope">
+                        <span v-if="scope.row.swirlAngle2Status != 0" style="color: red;font-weight: 600;">{{scope.row.swirlAngle2}}</span>
+                        <span v-else>{{scope.row.swirlAngle2}}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column width="150" prop="" label="漩涡角3" align="center">
+                    <template slot-scope="scope">
+                        <span v-if="scope.row.swirlAngle3Status != 0" style="color: red;font-weight: 600;">{{scope.row.swirlAngle3}}</span>
+                        <span v-else>{{scope.row.swirlAngle3}}</span>
+                    </template>
+                </el-table-column>*@
+            <el-table-column fixed width="100" prop="result" label="诊断结果" align="center"></el-table-column>
+            <el-table-column fixed width="100" prop="checkDataStatus" label="核查状态" align="center"></el-table-column>
+        </el-table>
+        <el-pagination style="width:50%;margin-left:1%;margin-top:5px;" @@size-change="handleSizeChange"
+                       @@current-change="handleCurrentChange"
+                       :current-page="currentPage"
+                       :page-sizes="[25, 10, 30, 40, 50]"
+                       :page-size="pagesize"
+                       :total="tableData.length"
+                       layout="total, sizes, prev, pager, next, jumper">
+        </el-pagination>
+    </div>
+</div>
+
+
+<script>
+        var areas = [];
+    var area =@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Area))
+        areas.push(area);
+    var isArea = '@ViewBag.IsArea';
+    var companys = [];
+    var company =@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Company));
+    companys.push(company);
+    $("#menu_VOSCheckKeyParameter").addClass("active")
+</script>

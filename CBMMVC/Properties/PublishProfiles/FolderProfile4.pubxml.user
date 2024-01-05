@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>D:\Web\CBMMVC</_PublishTargetUrl>
+    <History>True|2023-10-31T07:20:21.8696193Z;True|2023-07-23T13:46:59.0504767+08:00;True|2023-07-23T13:45:23.7936854+08:00;True|2023-07-22T18:51:38.5250899+08:00;True|2023-07-22T12:27:13.1255882+08:00;True|2023-07-19T14:04:06.5636275+08:00;True|2023-07-19T14:03:40.6300897+08:00;</History>
+  </PropertyGroup>
+</Project>

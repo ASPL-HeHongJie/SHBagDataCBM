@@ -1,0 +1,24 @@
+﻿.disech {
+    width: 44.298vw;
+    height: 30.966vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.echt {
+    width: 15.634vw;
+    height: 30.966vh;
+    margin-left: 1.042vw;
+}
+
+    .echt > div > canvas {
+        margin: 0 0 0 2.6057vw !important;
+    }
+
+.el-dialog {
+    background: #5192C1;
+}
+
+.el-dialog__header {
+    background: #fff;
+}

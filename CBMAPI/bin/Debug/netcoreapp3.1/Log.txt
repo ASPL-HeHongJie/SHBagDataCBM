@@ -1,0 +1,709 @@
+2022/4/1 11:04:33   OPC New
+2023/2/14 9:31:56   OPC New
+2023/2/14 9:32:45   OPC New
+2023/2/14 9:39:57   OPC New
+2023/2/14 9:40:41   Watch Begin: status= Not Running
+2023/2/14 9:40:51   Reconnect done！
+2023/2/14 9:40:51   Watch End: status= Not Running
+2023/2/14 9:41:10   Watch Begin: status= Not Running
+2023/2/14 9:42:41   OPC New
+2023/2/14 9:47:34   OPC New
+2023/2/16 14:36:49   OPC New
+2023/2/16 14:41:05   OPC New
+2023/2/17 10:41:23   OPC New
+2023/2/17 10:44:22   OPC New
+2023/2/17 11:21:04   OPC New
+2023/2/17 16:36:07   OPC New
+2023/2/17 16:41:09   OPC New
+2023/2/17 16:45:46   OPC New
+2023/2/17 16:47:08   OPC New
+2023/2/17 16:48:04   OPC New
+2023/2/17 16:59:41   OPC New
+2023/2/17 17:06:50   OPC New
+2023/2/17 17:48:31   OPC New
+2023/2/20 9:14:57   OPC New
+2023/2/20 9:46:42   OPC New
+2023/2/21 17:24:36   OPC New
+2023/6/2 0:07:20   OPC New
+2023/6/2 0:07:58   OPC New
+2023/6/2 0:09:38   OPC New
+2023/6/2 0:10:55   OPC New
+2023/6/2 0:11:55   OPC New
+2023/6/2 0:14:05   OPC New
+2023/6/2 0:26:18   OPC New
+2023/6/2 0:27:40   OPC New
+2023/6/2 15:31:50   OPC New
+2023/6/2 15:35:02   OPC New
+2023/6/2 15:35:57   OPC New
+2023/6/2 15:36:19   OPC Connect OK!
+2023/6/2 15:36:36   OPC add group OK!
+2023/6/2 15:37:08   Tag loss:SHCBM01.BAI_3201_P_PRESS-KEYPAD.F_CV
+2023/6/2 15:37:08   Tag loss:SHCBM01.BAI_3201_P_PRESS-MEASURE.F_CV
+2023/6/2 15:37:08   Tag loss:SHCBM01.BAI_3201_F_RLT-DENS.F_CV
+2023/6/2 15:37:08   Tag loss:SHCBM01.BAI_3201_T_TEMP-KEYPAD.F_CV
+2023/6/2 15:37:08   Tag loss:SHCBM01.BAI_3201_T_TEMP-MEASURE.F_CV
+2023/6/2 15:38:04   OPC New
+2023/6/2 15:38:43   OPC Connect OK!
+2023/6/2 15:38:43   OPC add group OK!
+2023/6/2 15:40:15   Tag loss:SHCBM01.BAI_3201_P_PRESS-KEYPAD.F_CV
+2023/6/2 15:40:15   Tag loss:SHCBM01.BAI_3201_P_PRESS-MEASURE.F_CV
+2023/6/2 15:40:15   Tag loss:SHCBM01.BAI_3201_F_RLT-DENS.F_CV
+2023/6/2 15:40:15   Tag loss:SHCBM01.BAI_3201_T_TEMP-KEYPAD.F_CV
+2023/6/2 15:40:15   Tag loss:SHCBM01.BAI_3201_T_TEMP-MEASURE.F_CV
+2023/6/2 15:41:45   OPC New
+2023/6/2 15:41:58   OPC Connect OK!
+2023/6/2 15:41:58   OPC add group OK!
+2023/6/2 16:42:54   OPC New
+2023/6/2 16:43:23   OPC Connect OK!
+2023/6/2 16:43:23   OPC add group OK!
+2023/6/2 16:43:53   Watch Begin: status= Running
+2023/6/2 16:43:53   Watch End: status= Running
+2023/6/2 16:44:23   Watch Begin: status= Running
+2023/6/2 16:44:23   Watch End: status= Running
+2023/6/2 16:44:53   Watch Begin: status= Running
+2023/6/2 16:44:53   Watch End: status= Running
+2023/6/2 16:45:23   Watch Begin: status= Running
+2023/6/2 16:45:23   Watch End: status= Running
+2023/6/2 16:45:53   Watch Begin: status= Running
+2023/6/2 16:45:53   Watch End: status= Running
+2023/6/2 16:46:23   Watch Begin: status= Running
+2023/6/2 16:46:23   Watch End: status= Running
+2023/6/2 16:46:53   Watch Begin: status= Running
+2023/6/2 16:46:53   Watch End: status= Running
+2023/6/2 16:47:23   Watch Begin: status= Running
+2023/6/2 16:47:23   Watch End: status= Running
+2023/6/2 16:47:53   Watch Begin: status= Running
+2023/6/2 16:47:53   Watch End: status= Running
+2023/6/2 16:48:23   Watch Begin: status= Running
+2023/6/2 16:48:23   Watch End: status= Running
+2023/6/2 16:48:53   Watch Begin: status= Running
+2023/6/2 16:48:53   Watch End: status= Running
+2023/6/2 16:49:23   Watch Begin: status= Running
+2023/6/2 16:49:23   Watch End: status= Running
+2023/6/2 16:49:53   Watch Begin: status= Running
+2023/6/2 16:49:53   Watch End: status= Running
+2023/6/2 16:50:23   Watch Begin: status= Running
+2023/6/2 16:50:23   Reconnect done！
+2023/6/2 16:50:23   Watch End: status= Not Running
+2023/6/3 10:58:01   OPC New
+2023/6/3 11:00:24   OPC New
+2023/6/3 11:00:41   OPC Connect OK!
+2023/6/3 11:00:46   OPC add group OK!
+2023/6/3 11:01:27   Watch Begin: status= Running
+2023/6/3 11:01:27   Watch End: status= Running
+2023/6/3 11:02:41   OPC New
+2023/6/3 11:02:54   OPC Connect OK!
+2023/6/3 11:02:55   OPC add group OK!
+2023/6/3 11:04:04   Watch Begin: status= Running
+2023/6/3 11:04:05   Watch Begin: status= Running
+2023/6/3 11:04:07   Watch End: status= Running
+2023/6/3 11:04:12   Watch End: status= Running
+2023/6/3 11:04:34   Watch Begin: status= Running
+2023/6/3 11:04:35   Watch End: status= Running
+2023/6/3 11:05:04   Watch Begin: status= Running
+2023/6/3 11:05:05   Watch End: status= Running
+2023/6/3 11:05:34   Watch Begin: status= Running
+2023/6/3 11:05:34   Watch End: status= Running
+2023/6/3 11:18:52   OPC New
+2023/6/3 11:19:04   OPC Connect OK!
+2023/6/3 11:19:05   OPC add group OK!
+2023/6/3 11:19:37   Watch Begin: status= Running
+2023/6/3 11:19:37   Watch End: status= Running
+2023/6/3 11:20:08   Watch Begin: status= Running
+2023/6/3 11:20:08   Watch End: status= Running
+2023/6/3 11:20:38   Watch Begin: status= Running
+2023/6/3 11:20:38   Watch End: status= Running
+2023/6/3 11:21:07   Watch Begin: status= Running
+2023/6/3 11:21:07   Watch End: status= Running
+2023/6/3 11:21:38   Watch Begin: status= Running
+2023/6/3 11:21:39   Watch End: status= Running
+2023/6/3 11:22:07   Watch Begin: status= Running
+2023/6/3 11:22:08   Watch End: status= Running
+2023/6/3 11:22:37   Watch Begin: status= Running
+2023/6/3 11:22:37   Watch End: status= Running
+2023/6/3 11:23:07   Watch Begin: status= Running
+2023/6/3 11:23:07   Watch End: status= Running
+2023/6/3 11:23:37   Watch Begin: status= Running
+2023/6/3 11:23:37   Watch End: status= Running
+2023/6/3 11:24:07   Watch Begin: status= Running
+2023/6/3 11:24:07   Watch End: status= Running
+2023/6/3 11:24:37   Watch Begin: status= Running
+2023/6/3 11:24:37   Watch End: status= Running
+2023/6/3 11:25:07   Watch Begin: status= Running
+2023/6/3 11:25:07   Watch End: status= Running
+2023/6/3 11:25:37   Watch Begin: status= Running
+2023/6/3 11:25:37   Watch End: status= Running
+2023/6/3 11:26:07   Watch Begin: status= Running
+2023/6/3 11:26:07   Watch End: status= Running
+2023/6/3 11:26:37   Watch Begin: status= Running
+2023/6/3 11:26:37   Watch End: status= Running
+2023/6/3 11:27:07   Watch Begin: status= Running
+2023/6/3 11:27:07   Watch End: status= Running
+2023/6/3 11:27:56   Watch Begin: status= Running
+2023/6/3 11:27:57   Watch End: status= Running
+2023/6/3 11:28:45   OPC New
+2023/6/3 11:28:49   OPC Connect OK!
+2023/6/3 11:28:49   OPC add group OK!
+2023/6/3 11:40:08   OPC New
+2023/6/3 11:40:17   OPC Connect OK!
+2023/6/3 11:40:17   OPC add group OK!
+2023/6/3 11:41:57   OPC New
+2023/6/3 11:42:01   OPC Connect OK!
+2023/6/3 11:42:01   OPC add group OK!
+2023/6/3 11:42:32   Watch Begin: status= Running
+2023/6/3 11:42:32   Watch End: status= Running
+2023/6/3 11:43:02   Watch Begin: status= Running
+2023/6/3 11:43:02   Watch End: status= Running
+2023/6/3 11:43:32   Watch Begin: status= Running
+2023/6/3 11:43:32   Watch End: status= Running
+2023/6/3 11:44:02   Watch Begin: status= Running
+2023/6/3 11:44:02   Watch End: status= Running
+2023/6/3 11:44:32   Watch Begin: status= Running
+2023/6/3 11:44:32   Watch End: status= Running
+2023/6/3 11:45:02   Watch Begin: status= Running
+2023/6/3 11:45:03   Watch End: status= Running
+2023/6/3 11:45:32   Watch Begin: status= Running
+2023/6/3 11:45:32   Watch End: status= Running
+2023/6/3 11:46:02   Watch Begin: status= Running
+2023/6/3 11:46:02   Watch End: status= Running
+2023/6/3 11:46:32   Watch Begin: status= Running
+2023/6/3 11:46:32   Watch End: status= Running
+2023/6/3 11:47:02   Watch Begin: status= Running
+2023/6/3 11:47:02   Watch End: status= Running
+2023/6/3 11:53:00   OPC New
+2023/6/3 11:53:10   OPC Connect OK!
+2023/6/3 11:53:11   OPC add group OK!
+2023/6/3 12:03:58   OPC New
+2023/6/3 12:04:10   OPC Connect OK!
+2023/6/3 12:04:10   OPC add group OK!
+2023/6/3 12:45:45   OPC New
+2023/6/3 12:46:05   OPC Connect OK!
+2023/6/3 12:46:06   OPC add group OK!
+2023/6/3 12:46:45   OPC New
+2023/6/3 12:46:51   OPC Connect OK!
+2023/6/3 12:46:51   OPC add group OK!
+2023/6/3 12:47:27   Watch Begin: status= Running
+2023/6/3 12:47:27   Watch End: status= Running
+2023/6/3 12:48:07   Watch Begin: status= Running
+2023/6/3 13:08:12   OPC New
+2023/6/3 13:08:27   OPC Connect OK!
+2023/6/3 13:08:28   OPC add group OK!
+2023/6/3 13:22:49   OPC New
+2023/6/3 13:22:57   OPC Connect OK!
+2023/6/3 13:22:57   OPC add group OK!
+2023/6/3 13:29:45   OPC New
+2023/6/3 13:29:54   OPC Connect OK!
+2023/6/3 13:29:54   OPC add group OK!
+2023/6/3 13:38:21   OPC New
+2023/6/3 13:38:32   OPC Connect OK!
+2023/6/3 13:38:32   OPC add group OK!
+2023/6/3 13:39:04   Watch Begin: status= Running
+2023/6/3 13:39:04   Watch End: status= Running
+2023/6/3 13:39:34   Watch Begin: status= Running
+2023/6/3 13:39:34   Watch End: status= Running
+2023/6/3 13:40:04   Watch Begin: status= Running
+2023/6/3 13:40:04   Watch End: status= Running
+2023/6/3 13:40:34   Watch Begin: status= Running
+2023/6/3 13:40:34   Watch End: status= Running
+2023/6/3 13:41:04   Watch Begin: status= Running
+2023/6/3 13:41:04   Watch End: status= Running
+2023/6/3 13:41:34   Watch Begin: status= Running
+2023/6/3 13:41:34   Watch End: status= Running
+2023/6/3 13:42:04   Watch Begin: status= Running
+2023/6/3 13:42:04   Watch End: status= Running
+2023/6/3 13:42:34   Watch Begin: status= Running
+2023/6/3 13:42:34   Watch End: status= Running
+2023/6/3 13:43:04   Watch Begin: status= Running
+2023/6/3 13:43:04   Watch End: status= Running
+2023/6/3 13:43:34   Watch Begin: status= Running
+2023/6/3 13:43:34   Watch End: status= Running
+2023/6/3 13:44:04   Watch Begin: status= Running
+2023/6/3 13:44:05   Watch End: status= Running
+2023/6/3 13:56:55   OPC New
+2023/6/3 13:57:03   OPC Connect OK!
+2023/6/3 13:57:04   OPC add group OK!
+2023/6/3 13:57:35   Watch Begin: status= Running
+2023/6/3 13:57:35   Watch End: status= Running
+2023/6/3 14:00:05   OPC New
+2023/6/3 14:00:16   OPC Connect OK!
+2023/6/3 14:00:16   OPC add group OK!
+2023/6/3 14:00:52   Watch Begin: status= Running
+2023/6/3 14:00:55   Watch End: status= Running
+2023/6/3 14:01:18   Watch Begin: status= Running
+2023/6/3 14:01:18   Watch End: status= Running
+2023/6/3 14:01:46   Watch Begin: status= Running
+2023/6/3 14:01:46   Watch End: status= Running
+2023/6/3 14:02:16   Watch Begin: status= Running
+2023/6/3 14:02:16   Watch End: status= Running
+2023/6/3 14:02:46   Watch Begin: status= Running
+2023/6/3 14:02:46   Watch End: status= Running
+2023/6/3 14:03:16   Watch Begin: status= Running
+2023/6/3 14:03:16   Watch End: status= Running
+2023/6/3 14:03:46   Watch Begin: status= Running
+2023/6/3 14:03:46   Watch End: status= Running
+2023/6/3 14:04:16   Watch Begin: status= Running
+2023/6/3 14:04:16   Watch End: status= Running
+2023/6/3 14:04:46   Watch Begin: status= Running
+2023/6/3 14:04:46   Watch End: status= Running
+2023/6/3 14:05:16   Watch Begin: status= Running
+2023/6/3 14:05:16   Watch End: status= Running
+2023/6/3 14:05:46   Watch Begin: status= Running
+2023/6/3 14:05:46   Watch End: status= Running
+2023/6/3 14:13:15   OPC New
+2023/6/3 14:13:37   OPC Connect OK!
+2023/6/3 14:13:37   OPC add group OK!
+2023/6/3 14:14:10   Watch Begin: status= Running
+2023/6/3 14:14:10   Watch End: status= Running
+2023/6/3 14:14:40   Watch Begin: status= Running
+2023/6/3 14:14:40   Watch End: status= Running
+2023/6/3 14:15:10   Watch Begin: status= Running
+2023/6/3 14:15:10   Watch End: status= Running
+2023/6/3 14:57:05   OPC New
+2023/6/3 14:57:17   OPC Connect OK!
+2023/6/3 14:57:17   OPC add group OK!
+2023/6/3 14:58:04   Watch Begin: status= Running
+2023/6/3 14:58:06   Watch End: status= Running
+2023/6/3 14:58:54   Watch Begin: status= Running
+2023/6/3 14:59:00   Watch End: status= Running
+2023/6/3 14:59:00   Watch End: status= Running
+2023/6/3 15:01:13   OPC New
+2023/6/3 15:01:20   OPC Connect OK!
+2023/6/3 15:01:21   OPC add group OK!
+2023/6/3 15:01:51   Watch Begin: status= Running
+2023/6/3 15:01:52   Watch End: status= Running
+2023/6/3 15:02:23   Watch Begin: status= Running
+2023/6/3 15:02:24   Watch End: status= Running
+2023/6/3 15:03:39   OPC New
+2023/6/3 15:03:45   OPC Connect OK!
+2023/6/3 15:03:46   OPC add group OK!
+2023/6/3 15:04:18   Watch Begin: status= Running
+2023/6/3 15:04:21   Watch End: status= Running
+2023/6/3 15:04:46   Watch Begin: status= Running
+2023/6/3 15:04:46   Watch End: status= Running
+2023/6/3 15:05:16   Watch Begin: status= Running
+2023/6/3 15:05:16   Watch End: status= Running
+2023/6/3 15:05:46   Watch Begin: status= Running
+2023/6/3 15:05:46   Watch End: status= Running
+2023/6/3 15:06:54   OPC New
+2023/6/3 15:07:01   OPC Connect OK!
+2023/6/3 15:07:01   OPC add group OK!
+2023/6/3 15:07:33   Watch Begin: status= Running
+2023/6/3 15:07:33   Watch End: status= Running
+2023/6/3 15:09:05   OPC New
+2023/6/3 15:09:11   OPC Connect OK!
+2023/6/3 15:09:11   OPC add group OK!
+2023/6/3 15:12:14   OPC New
+2023/6/3 15:12:22   OPC Connect OK!
+2023/6/3 15:12:22   OPC add group OK!
+2023/6/3 15:12:52   Watch Begin: status= Running
+2023/6/3 15:12:52   Watch End: status= Running
+2023/6/3 15:13:22   Watch Begin: status= Running
+2023/6/3 15:13:22   Watch End: status= Running
+2023/6/3 15:13:52   Watch Begin: status= Running
+2023/6/3 15:13:52   Watch End: status= Running
+2023/6/3 15:14:22   Watch Begin: status= Running
+2023/6/3 15:14:22   Watch End: status= Running
+2023/6/3 15:14:52   Watch Begin: status= Running
+2023/6/3 15:14:52   Watch End: status= Running
+2023/6/3 15:15:22   Watch Begin: status= Running
+2023/6/3 15:15:22   Watch End: status= Running
+2023/6/3 15:15:53   Watch Begin: status= Running
+2023/6/3 15:15:53   Watch End: status= Running
+2023/6/3 15:16:22   Watch Begin: status= Running
+2023/6/3 15:16:22   Watch End: status= Running
+2023/6/3 15:18:54   OPC New
+2023/6/3 15:19:21   OPC Connect OK!
+2023/6/3 15:19:22   OPC add group OK!
+2023/6/3 15:19:55   Watch Begin: status= Running
+2023/6/3 15:19:56   Watch End: status= Running
+2023/6/3 15:21:10   OPC New
+2023/6/3 15:25:33   OPC New
+2023/6/3 15:25:39   OPC Connect OK!
+2023/6/3 15:25:39   OPC add group OK!
+2023/6/3 15:26:10   Watch Begin: status= Running
+2023/6/3 15:26:10   Watch End: status= Running
+2023/6/3 15:33:50   OPC New
+2023/6/3 15:33:59   OPC Connect OK!
+2023/6/3 15:33:59   OPC add group OK!
+2023/6/3 15:34:29   Watch Begin: status= Running
+2023/6/3 15:34:29   Watch End: status= Running
+2023/6/3 15:34:59   Watch Begin: status= Running
+2023/6/3 15:34:59   Watch End: status= Running
+2023/6/3 15:35:29   Watch Begin: status= Running
+2023/6/3 15:35:30   Watch End: status= Running
+2023/6/3 15:35:59   Watch Begin: status= Running
+2023/6/3 15:35:59   Watch End: status= Running
+2023/6/3 15:36:29   Watch Begin: status= Running
+2023/6/3 15:36:29   Watch End: status= Running
+2023/6/3 15:36:59   Watch Begin: status= Running
+2023/6/3 15:36:59   Watch End: status= Running
+2023/6/3 15:37:29   Watch Begin: status= Running
+2023/6/3 15:37:29   Watch End: status= Running
+2023/6/3 15:37:59   Watch Begin: status= Running
+2023/6/3 15:37:59   Watch End: status= Running
+2023/6/3 15:41:16   OPC New
+2023/6/3 15:41:22   OPC Connect OK!
+2023/6/3 15:41:22   OPC add group OK!
+2023/6/3 15:41:52   Watch Begin: status= Running
+2023/6/3 15:41:52   Watch End: status= Running
+2023/6/3 15:42:22   Watch Begin: status= Running
+2023/6/3 15:42:22   Watch End: status= Running
+2023/6/3 15:42:52   Watch Begin: status= Running
+2023/6/3 15:42:52   Watch End: status= Running
+2023/6/3 15:43:24   Watch Begin: status= Running
+2023/6/3 15:43:25   Watch End: status= Running
+2023/6/3 15:44:15   Watch Begin: status= Running
+2023/6/3 15:47:00   OPC New
+2023/6/3 15:47:05   OPC Connect OK!
+2023/6/3 15:47:05   OPC add group OK!
+2023/6/3 15:47:35   Watch Begin: status= Running
+2023/6/3 15:47:35   Watch End: status= Running
+2023/6/3 15:52:01   Watch Begin: status= Running
+2023/6/3 15:52:01   Watch End: status= Running
+2023/6/3 15:52:04   Watch Begin: status= Running
+2023/6/3 15:52:04   Watch End: status= Running
+2023/6/3 15:52:31   Watch Begin: status= Running
+2023/6/3 15:52:31   Watch End: status= Running
+2023/6/3 15:53:01   Watch Begin: status= Running
+2023/6/3 15:53:01   Watch End: status= Running
+2023/6/3 15:53:31   Watch Begin: status= Running
+2023/6/3 15:53:31   Watch End: status= Running
+2023/6/3 15:54:01   Watch Begin: status= Running
+2023/6/3 15:54:01   Watch End: status= Running
+2023/6/3 15:54:31   Watch Begin: status= Running
+2023/6/3 15:54:31   Watch End: status= Running
+2023/6/3 15:55:01   Watch Begin: status= Running
+2023/6/3 15:55:01   Watch End: status= Running
+2023/6/3 15:55:31   Watch Begin: status= Running
+2023/6/3 15:55:31   Watch End: status= Running
+2023/6/3 15:56:01   Watch Begin: status= Running
+2023/6/3 15:56:01   Watch End: status= Running
+2023/6/3 15:56:31   Watch Begin: status= Running
+2023/6/3 15:56:31   Watch End: status= Running
+2023/6/3 15:57:01   Watch Begin: status= Running
+2023/6/3 15:57:01   Watch End: status= Running
+2023/6/3 15:57:31   Watch Begin: status= Running
+2023/6/3 15:57:31   Watch End: status= Running
+2023/6/3 15:58:01   Watch Begin: status= Running
+2023/6/3 15:58:01   Watch End: status= Running
+2023/6/3 15:58:31   Watch Begin: status= Running
+2023/6/3 15:58:31   Watch End: status= Running
+2023/6/3 15:59:01   Watch Begin: status= Running
+2023/6/3 15:59:01   Watch End: status= Running
+2023/6/3 15:59:31   Watch Begin: status= Running
+2023/6/3 15:59:31   Watch End: status= Running
+2023/6/3 16:00:01   Watch Begin: status= Running
+2023/6/3 16:00:01   Watch End: status= Running
+2023/6/3 16:00:31   Watch Begin: status= Running
+2023/6/3 16:00:31   Watch End: status= Running
+2023/6/3 16:01:01   Watch Begin: status= Running
+2023/6/3 16:01:01   Watch End: status= Running
+2023/6/3 16:01:31   Watch Begin: status= Running
+2023/6/3 16:01:31   Watch End: status= Running
+2023/6/3 16:02:01   Watch Begin: status= Running
+2023/6/3 16:02:01   Watch End: status= Running
+2023/6/3 16:02:31   Watch Begin: status= Running
+2023/6/3 16:02:31   Watch End: status= Running
+2023/6/3 16:03:01   Watch Begin: status= Running
+2023/6/3 16:03:01   Watch End: status= Running
+2023/6/3 16:03:31   Watch Begin: status= Running
+2023/6/3 16:03:31   Watch End: status= Running
+2023/6/3 16:04:01   Watch Begin: status= Running
+2023/6/3 16:04:01   Watch End: status= Running
+2023/6/3 16:04:31   Watch Begin: status= Running
+2023/6/3 16:04:31   Watch End: status= Running
+2023/6/3 16:05:01   Watch Begin: status= Running
+2023/6/3 16:05:01   Watch End: status= Running
+2023/6/3 16:05:31   Watch Begin: status= Running
+2023/6/3 16:05:31   Watch End: status= Running
+2023/6/3 16:06:01   Watch Begin: status= Running
+2023/6/3 16:06:01   Watch End: status= Running
+2023/6/3 16:06:31   Watch Begin: status= Running
+2023/6/3 16:06:31   Watch End: status= Running
+2023/6/3 16:07:01   Watch Begin: status= Running
+2023/6/3 16:07:01   Watch End: status= Running
+2023/6/3 16:07:31   Watch Begin: status= Running
+2023/6/3 16:07:31   Watch End: status= Running
+2023/6/3 16:08:01   Watch Begin: status= Running
+2023/6/3 16:08:01   Watch End: status= Running
+2023/6/3 16:08:31   Watch Begin: status= Running
+2023/6/3 16:08:31   Watch End: status= Running
+2023/6/3 16:09:01   Watch Begin: status= Running
+2023/6/3 16:09:01   Watch End: status= Running
+2023/6/3 16:09:31   Watch Begin: status= Running
+2023/6/3 16:09:31   Watch End: status= Running
+2023/6/3 16:10:01   Watch Begin: status= Running
+2023/6/3 16:10:01   Watch End: status= Running
+2023/6/3 16:10:31   Watch Begin: status= Running
+2023/6/3 16:10:31   Watch End: status= Running
+2023/6/3 16:11:01   Watch Begin: status= Running
+2023/6/3 16:11:01   Watch End: status= Running
+2023/6/3 16:11:31   Watch Begin: status= Running
+2023/6/3 16:11:31   Watch End: status= Running
+2023/6/3 16:12:01   Watch Begin: status= Running
+2023/6/3 16:12:01   Watch End: status= Running
+2023/6/3 16:12:31   Watch Begin: status= Running
+2023/6/3 16:12:31   Watch End: status= Running
+2023/6/3 16:13:01   Watch Begin: status= Running
+2023/6/3 16:13:01   Watch End: status= Running
+2023/6/3 16:13:31   Watch Begin: status= Running
+2023/6/3 16:13:31   Watch End: status= Running
+2023/6/3 16:14:01   Watch Begin: status= Running
+2023/6/3 16:14:01   Watch End: status= Running
+2023/6/3 16:14:32   Watch Begin: status= Running
+2023/6/3 16:14:32   Watch End: status= Running
+2023/6/3 16:15:01   Watch Begin: status= Running
+2023/6/3 16:15:01   Watch End: status= Running
+2023/6/3 16:15:31   Watch Begin: status= Running
+2023/6/3 16:15:31   Watch End: status= Running
+2023/6/3 16:16:01   Watch Begin: status= Running
+2023/6/3 16:16:01   Watch End: status= Running
+2023/6/3 16:16:31   Watch Begin: status= Running
+2023/6/3 16:16:31   Watch End: status= Running
+2023/6/3 16:17:01   Watch Begin: status= Running
+2023/6/3 16:17:01   Watch End: status= Running
+2023/6/3 16:17:31   Watch Begin: status= Running
+2023/6/3 16:17:31   Watch End: status= Running
+2023/6/3 16:18:01   Watch Begin: status= Running
+2023/6/3 16:18:01   Watch End: status= Running
+2023/6/3 16:18:31   Watch Begin: status= Running
+2023/6/3 16:18:31   Watch End: status= Running
+2023/6/3 16:19:01   Watch Begin: status= Running
+2023/6/3 16:19:01   Watch End: status= Running
+2023/6/3 16:19:31   Watch Begin: status= Running
+2023/6/3 16:19:31   Watch End: status= Running
+2023/6/3 16:20:01   Watch Begin: status= Running
+2023/6/3 16:20:01   Watch End: status= Running
+2023/6/3 16:20:31   Watch Begin: status= Running
+2023/6/3 16:20:31   Watch End: status= Running
+2023/6/3 16:21:01   Watch Begin: status= Running
+2023/6/3 16:21:01   Watch End: status= Running
+2023/6/3 16:21:31   Watch Begin: status= Running
+2023/6/3 16:21:31   Watch End: status= Running
+2023/6/3 16:22:01   Watch Begin: status= Running
+2023/6/3 16:22:01   Watch End: status= Running
+2023/6/3 16:22:31   Watch Begin: status= Running
+2023/6/3 16:22:31   Watch End: status= Running
+2023/6/3 16:23:01   Watch Begin: status= Running
+2023/6/3 16:23:02   Watch End: status= Running
+2023/6/3 16:23:31   Watch Begin: status= Running
+2023/6/3 16:23:32   Watch End: status= Running
+2023/6/3 17:27:06   OPC New
+2023/6/3 17:28:22   Watch Begin: status= Not Running
+2023/6/3 17:32:41   OPC New
+2023/6/3 17:32:47   OPC Connect OK!
+2023/6/3 17:32:47   OPC add group OK!
+2023/6/3 17:33:19   Watch Begin: status= Running
+2023/6/3 17:33:19   Watch End: status= Running
+2023/6/3 17:33:49   Watch Begin: status= Running
+2023/6/3 17:33:49   Watch End: status= Running
+2023/6/3 17:34:19   Watch Begin: status= Running
+2023/6/3 17:34:19   Watch End: status= Running
+2023/6/3 17:34:50   Watch Begin: status= Running
+2023/6/3 17:34:50   Watch End: status= Running
+2023/6/3 17:35:19   Watch Begin: status= Running
+2023/6/3 17:35:19   Watch End: status= Running
+2023/6/3 17:35:49   Watch Begin: status= Running
+2023/6/3 17:35:49   Watch End: status= Running
+2023/6/3 17:36:19   Watch Begin: status= Running
+2023/6/3 17:36:19   Watch End: status= Running
+2023/6/3 17:36:49   Watch Begin: status= Running
+2023/6/3 17:36:49   Watch End: status= Running
+2023/6/3 17:37:19   Watch Begin: status= Running
+2023/6/3 17:37:19   Watch End: status= Running
+2023/6/3 17:38:08   Watch Begin: status= Running
+2023/6/3 17:38:08   Watch End: status= Running
+2023/6/3 17:38:19   Watch Begin: status= Running
+2023/6/3 17:38:20   Watch End: status= Running
+2023/6/3 17:38:49   Watch Begin: status= Running
+2023/6/3 17:38:49   Watch End: status= Running
+2023/6/3 17:39:35   Watch Begin: status= Running
+2023/6/3 17:39:36   Watch End: status= Running
+2023/6/3 17:39:49   Watch Begin: status= Running
+2023/6/3 17:39:49   Watch End: status= Running
+2023/6/3 17:43:10   OPC New
+2023/6/3 17:43:24   OPC Connect OK!
+2023/6/3 17:43:25   OPC add group OK!
+2023/6/3 17:43:55   Watch Begin: status= Running
+2023/6/3 17:43:55   Watch End: status= Running
+2023/6/3 17:44:25   Watch Begin: status= Running
+2023/6/3 17:44:25   Watch End: status= Running
+2023/6/3 17:44:56   Watch Begin: status= Running
+2023/6/3 17:44:58   Watch End: status= Running
+2023/6/3 17:45:25   Watch Begin: status= Running
+2023/6/3 17:45:25   Watch End: status= Running
+2023/6/3 17:45:55   Watch Begin: status= Running
+2023/6/3 17:45:55   Watch End: status= Running
+2023/6/3 17:46:25   Watch Begin: status= Running
+2023/6/3 17:46:25   Watch End: status= Running
+2023/6/3 17:46:55   Watch Begin: status= Running
+2023/6/3 17:46:55   Watch End: status= Running
+2023/6/3 17:47:25   Watch Begin: status= Running
+2023/6/3 17:47:25   Watch End: status= Running
+2023/6/3 17:47:55   Watch Begin: status= Running
+2023/6/3 17:47:55   Watch End: status= Running
+2023/6/3 17:48:25   Watch Begin: status= Running
+2023/6/3 17:48:25   Watch End: status= Running
+2023/6/3 17:49:24   OPC New
+2023/6/3 17:49:30   OPC Connect OK!
+2023/6/3 17:49:30   OPC add group OK!
+2023/6/3 17:50:00   Watch Begin: status= Running
+2023/6/3 17:50:00   Watch End: status= Running
+2023/6/3 17:50:30   Watch Begin: status= Running
+2023/6/3 17:50:30   Watch End: status= Running
+2023/6/3 17:51:00   Watch Begin: status= Running
+2023/6/3 17:51:00   Watch End: status= Running
+2023/6/3 17:51:30   Watch Begin: status= Running
+2023/6/3 17:51:30   Watch End: status= Running
+2023/6/3 17:52:00   Watch Begin: status= Running
+2023/6/3 17:52:00   Watch End: status= Running
+2023/6/3 17:52:30   Watch Begin: status= Running
+2023/6/3 17:52:30   Watch End: status= Running
+2023/6/3 17:53:00   Watch Begin: status= Running
+2023/6/3 17:53:00   Watch End: status= Running
+2023/6/3 17:53:30   Watch Begin: status= Running
+2023/6/3 17:53:30   Watch End: status= Running
+2023/6/3 17:54:00   Watch Begin: status= Running
+2023/6/3 17:54:00   Watch End: status= Running
+2023/6/3 17:54:30   Watch Begin: status= Running
+2023/6/3 17:54:30   Watch End: status= Running
+2023/6/3 17:55:00   Watch Begin: status= Running
+2023/6/3 17:55:00   Watch End: status= Running
+2023/6/3 17:55:30   Watch Begin: status= Running
+2023/6/3 17:55:30   Watch End: status= Running
+2023/6/3 17:56:00   Watch Begin: status= Running
+2023/6/3 17:56:00   Watch End: status= Running
+2023/6/3 17:56:30   Watch Begin: status= Running
+2023/6/3 17:56:30   Watch End: status= Running
+2023/6/3 17:57:02   Watch Begin: status= Running
+2023/6/3 17:57:02   Watch End: status= Running
+2023/6/3 17:57:30   Watch Begin: status= Running
+2023/6/3 17:57:30   Watch End: status= Running
+2023/6/3 17:58:00   Watch Begin: status= Running
+2023/6/3 17:58:00   Watch End: status= Running
+2023/6/3 17:58:30   Watch Begin: status= Running
+2023/6/3 17:58:30   Watch End: status= Running
+2023/6/3 17:59:00   Watch Begin: status= Running
+2023/6/3 17:59:00   Watch End: status= Running
+2023/6/3 17:59:30   Watch Begin: status= Running
+2023/6/3 17:59:30   Watch End: status= Running
+2023/6/3 18:00:00   Watch Begin: status= Running
+2023/6/3 18:00:00   Watch End: status= Running
+2023/6/3 18:00:30   Watch Begin: status= Running
+2023/6/3 18:00:30   Watch End: status= Running
+2023/6/3 18:01:01   Watch Begin: status= Running
+2023/6/3 18:01:02   Watch End: status= Running
+2023/6/3 18:01:30   Watch Begin: status= Running
+2023/6/3 18:01:30   Watch End: status= Running
+2023/6/3 18:02:00   Watch Begin: status= Running
+2023/6/3 18:02:00   Watch End: status= Running
+2023/6/3 18:02:30   Watch Begin: status= Running
+2023/6/3 18:02:30   Watch End: status= Running
+2023/6/3 18:03:00   Watch Begin: status= Running
+2023/6/3 18:03:00   Watch End: status= Running
+2023/6/3 18:03:30   Watch Begin: status= Running
+2023/6/3 18:03:30   Watch End: status= Running
+2023/6/3 18:04:00   Watch Begin: status= Running
+2023/6/3 18:04:00   Watch End: status= Running
+2023/6/3 18:04:30   Watch Begin: status= Running
+2023/6/3 18:04:30   Watch End: status= Running
+2023/6/3 18:05:00   Watch Begin: status= Running
+2023/6/3 18:05:01   Watch End: status= Running
+2023/6/3 18:07:02   OPC New
+2023/6/3 18:07:09   OPC Connect OK!
+2023/6/3 18:07:09   OPC add group OK!
+2023/6/3 18:07:39   Watch Begin: status= Running
+2023/6/3 18:07:39   Watch End: status= Running
+2023/6/3 18:08:09   Watch Begin: status= Running
+2023/6/3 18:08:09   Watch End: status= Running
+2023/6/3 18:08:44   Watch Begin: status= Running
+2023/6/3 18:08:44   Watch End: status= Running
+2023/6/3 18:09:10   Watch Begin: status= Running
+2023/6/3 18:09:10   Watch End: status= Running
+2023/6/4 10:43:55   OPC New
+2023/6/4 10:44:03   OPC Connect OK!
+2023/6/4 10:44:03   OPC add group OK!
+2023/6/4 10:44:36   Watch Begin: status= Running
+2023/6/4 10:44:36   Watch End: status= Running
+2023/6/4 10:45:06   Watch Begin: status= Running
+2023/6/4 10:45:08   Watch End: status= Running
+2023/6/4 10:45:35   Watch Begin: status= Running
+2023/6/4 10:45:35   Watch End: status= Running
+2023/6/4 10:46:06   Watch Begin: status= Running
+2023/6/4 10:46:07   Watch End: status= Running
+2023/6/4 10:46:37   Watch Begin: status= Running
+2023/6/4 10:46:39   Watch End: status= Running
+2023/6/4 14:23:41   OPC New
+2023/6/4 14:30:34   OPC New
+2023/6/4 14:31:32   OPC Connect OK!
+2023/6/4 14:47:27   OPC New
+2023/6/19 18:00:13   OPC New
+2023/7/11 14:12:38   OPC New
+2023/7/11 14:12:41   OPC Connect OK!
+2023/7/11 14:12:41   OPC add group OK!
+2023/7/11 14:17:47   OPC New
+2023/7/11 14:17:49   OPC Connect OK!
+2023/7/11 14:17:49   OPC add group OK!
+2023/7/11 14:23:18   OPC New
+2023/7/11 14:23:20   OPC Connect OK!
+2023/7/11 14:23:21   OPC add group OK!
+2023/7/11 14:25:36   OPC New
+2023/7/11 14:25:38   OPC Connect OK!
+2023/7/11 14:25:38   OPC add group OK!
+2023/7/11 14:32:22   OPC New
+2023/7/11 14:32:24   OPC Connect OK!
+2023/7/11 14:32:24   OPC add group OK!
+2023/7/11 14:55:18   OPC New
+2023/7/11 14:55:21   OPC Connect OK!
+2023/7/11 14:55:22   OPC add group OK!
+2023/7/11 14:58:36   OPC New
+2023/7/11 14:58:38   OPC Connect OK!
+2023/7/11 14:58:38   OPC add group OK!
+2023/7/11 15:03:39   OPC New
+2023/7/11 15:03:41   OPC Connect OK!
+2023/7/11 15:03:41   OPC add group OK!
+2023/7/11 15:29:37   OPC New
+2023/7/11 15:31:28   OPC New
+2023/7/11 15:31:31   OPC Connect OK!
+2023/7/11 15:31:31   OPC add group OK!
+2023/7/11 15:32:30   OPC New
+2023/7/11 15:32:32   OPC Connect OK!
+2023/7/11 15:32:32   OPC add group OK!
+2023/7/11 15:33:42   OPC New
+2023/7/11 15:33:44   OPC Connect OK!
+2023/7/11 15:33:44   OPC add group OK!
+2023/7/11 15:42:29   OPC New
+2023/7/11 15:42:30   OPC Connect OK!
+2023/7/11 15:42:30   OPC add group OK!
+2023/7/11 15:58:57   OPC New
+2023/7/11 15:59:01   OPC Connect OK!
+2023/7/11 15:59:01   OPC add group OK!
+2023/7/11 16:10:21   OPC New
+2023/7/11 16:10:23   OPC Connect OK!
+2023/7/11 16:10:23   OPC add group OK!
+2023/7/11 16:14:49   OPC New
+2023/7/11 16:14:51   OPC Connect OK!
+2023/7/11 16:14:52   OPC add group OK!
+2023/7/11 16:22:25   OPC New
+2023/7/11 16:22:27   OPC Connect OK!
+2023/7/11 16:22:27   OPC add group OK!
+2023/7/11 16:30:29   OPC New
+2023/7/11 16:30:32   OPC Connect OK!
+2023/7/11 16:30:32   OPC add group OK!
+2023/7/11 16:46:54   OPC New
+2023/7/11 16:46:56   OPC Connect OK!
+2023/7/11 16:46:56   OPC add group OK!
+2023/7/11 17:12:40   OPC New
+2023/7/11 17:12:42   OPC Connect OK!
+2023/7/11 17:12:42   OPC add group OK!
+2023/7/11 17:14:37   OPC New
+2023/7/11 17:14:38   OPC Connect OK!
+2023/7/11 17:14:38   OPC add group OK!
+2023/7/11 17:19:40   OPC New
+2023/7/11 17:19:42   OPC Connect OK!
+2023/7/11 17:19:42   OPC add group OK!
+2023/7/13 14:29:20   OPC New
+2023/7/13 14:29:52   Watch Begin: status= Not Running
+2023/7/13 14:41:26   OPC New
+2023/7/13 14:45:20   OPC New
+2023/7/13 14:46:20   OPC New

@@ -1,0 +1,20 @@
+﻿.el-dialog__wrapper {
+    overflow: hidden;
+}
+.el-dialog {
+    margin-top: 0 !important;
+    height: 100%;
+}
+.el-dialog__body{
+    padding-top:0;
+    padding-bottom:0;
+}
+.el-icon-s-order {
+    font-size: .938vw;
+}
+.loading_color i{
+    color:#fff;
+}
+.el-loading-spinner .el-loading-text {
+    color: #fff !important;
+}

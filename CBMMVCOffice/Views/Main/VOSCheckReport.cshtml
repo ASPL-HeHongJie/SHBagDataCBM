@@ -1,0 +1,148 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<style>
+    [v-cloak] {
+        display: none;
+    }
+</style>
+<script src="~/js/ViewVOSCheckReport/voscheckreport.js" type="module"></script>
+<link rel="stylesheet" href="~/css/ViewCheckReport/checkreport.css" />
+
+<div class="content" id="VOSCheckReport" v-cloak v-loading="loading"
+     element-loading-text="拼命加载中"
+     element-loading-spinner="el-icon-loading"
+     element-loading-custom-class="loading_color"
+     element-loading-background="rgba(0, 0, 0, 0.8)">
+    <div class="header_title">
+        <span>@ViewBag.Title</span>
+    </div>
+    <div class="Drop-downbox">
+        <div class="Drop-downbox_input">
+            <div v-if="isAreaType == 'false'">
+                <span>公司:</span>
+                <el-select v-model="companyName"
+                           placeholder="请选择"
+                           style="width: 7.817vw">
+                    <el-option v-for="item in datas"
+                               :key="item.value"
+                               :label="item.Name"
+                               :value="item.AbbrName">
+                    </el-option>
+                </el-select>
+            </div>
+            <div v-else-if="isAreaType == 'true'">
+                <span>作业区:</span>
+                <el-select v-model="areaName"
+                           placeholder="请选择"
+                           style="width: 7.817vw">
+                    <el-option v-for="item in OperationAreas"
+                               :key="item.value"
+                               :label="item.Name"
+                               :value="item.AbbrName">
+                    </el-option>
+                </el-select>
+            </div>
+            <div>
+                <span>场站:</span>
+                <el-select v-model="StationName"
+                           placeholder="请选择"
+                           style="width: 7.817vw"
+                           @@change="onSelectedDrug($event)">
+                    <el-option v-for="item in Stations"
+                               :key="item.ID"
+                               :label="item.Name"
+                               :value="item.ID">
+                    </el-option>
+                </el-select>
+            </div>
+            <div>
+                <span>回路:</span>
+
+                <el-select v-model="LoopName"
+                           placeholder="请选择"
+                           @@change="onLoops($event)">
+                    <el-option v-for="item in Loops"
+                               :key="item.ID"
+                               :label="item.Name"
+                               :value="item.ID">
+                    </el-option>
+                </el-select>
+            </div>
+            <div class="block">
+                <span>日期:</span>
+                <el-date-picker v-model="timeSlot"
+                                type="daterange"
+                                range-separator="至"
+                                start-placeholder="开始日期"
+                                end-placeholder="结束日期"
+                                @@change="TimeSelection($event)">
+                </el-date-picker>
+            </div>
+        </div>
+        <div class="Drop-downbox_btn">
+            <el-button type="primary" icon="el-icon-search" @@click="Refresh">刷新</el-button>
+        </div>
+    </div>
+    <div class="formview">
+        <el-table :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)" height="75.867vh" border :stripe="true" style="width: 98%;  margin-left: 1%; margin-top: 10px;text-align: center;" :row-class-name="tableRowClassName">
+            <el-table-column prop="dateTime" label="时间">
+            </el-table-column>
+            <el-table-column prop="stationName" label="场站名称">
+            </el-table-column>
+            <el-table-column prop="loopName" label="回路名称"> </el-table-column>
+            <el-table-column prop="customer" label="最终用户"></el-table-column>
+            <el-table-column prop="lineName" label="管线"> </el-table-column>
+            <el-table-column prop="flowmeterModel" label="型号"></el-table-column>
+            <el-table-column prop="brandName" label="厂商名称">
+            </el-table-column>
+            <el-table-column prop="reportMode" label="自动/手动">
+            </el-table-column>
+            <el-table-column prop="checkDataStatus" label="状态"> </el-table-column>
+            <el-table-column prop="" label="链接" width="180">
+                <template slot-scope="scope">
+                    <el-button @@click="handleClick(scope.row)" type="text" size="small" v-if="scope.row.checkDataStatus == '正常'"><i class="fa fa-file"></i></el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+        <el-pagination style="width:50%;margin-left:1%;margin-top:5px;" @@size-change="handleSizeChange"
+                       @@current-change="handleCurrentChange"
+                       :current-page="currentPage"
+                       :page-sizes="[25, 10, 30, 40, 50]"
+                       :page-size="pagesize"
+                       :total="tableData.length"
+                       layout="total, sizes, prev, pager, next, jumper">
+        </el-pagination>
+        <el-dialog title="声速报告"
+                   :visible.sync="dialogVisible"
+                   width="48%">
+            <div id="Loading" v-loading="dialogloading"
+                 element-loading-text="正在加载报告;请稍等!"
+                 element-loading-spinner="el-icon-loading"
+                 element-loading-custom-class="loading_color"
+                 element-loading-background="rgba(0, 0, 0, 0.5)"
+                 style="width:45.861vw;height:88.769vh;display:none;background-color:white">
+
+            </div>
+            <div id="div_iframe" style="width: 45.861vw;height: 88.769vh;display: none">
+                <iframe id="report" height="100%" width="100%" onload="iframeOnload()" src=""></iframe>
+            </div>
+            <span slot="footer" class="dialog-footer">
+                <el-button type="primary" @@click="dialogVisible = false">确 定</el-button>
+            </span>
+        </el-dialog>
+    </div>
+</div>
+<script>
+    var area =@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Area))
+    var isArea = '@ViewBag.IsArea';
+    var company =@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Company));
+    var reportServerIpAndPort ='@ViewBag.ReportServerIpAndPort';
+    function iframeOnload() {
+        $("#Loading").css("display", "none")
+        $("#div_iframe").css("display", "block")
+    }
+    $("#menu_VOSCheckReport").addClass("active")
+</script>

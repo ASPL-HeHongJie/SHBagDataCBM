@@ -1,0 +1,277 @@
+﻿
+.flow {
+    width: 98%;
+    height: 43.868vh;
+    margin-left: 1%;
+    background-color: #337aa6;
+    display: flex;
+    flex-direction: column;
+    margin-top: 2.0644vh;
+    border: 1px solid #fff;
+    position: relative;
+}
+
+.flow_top {
+    width: 100%;
+    height: 4.1288vh;
+    line-height: 4.1288vh;
+    font-size: .7817vw;
+    color: #fff;
+    background-color: #0b5b7dff;
+    border-bottom: 1px solid #fff;
+}
+
+    .flow_top > span {
+        margin-left: 1.0423vw;
+        font-size: 1.0423vw;
+    }
+
+.flow_fot {
+    width: 100%;
+    height: 32.739vh;
+    display: flex;
+    flex-direction: row;
+    margin-top: 4.1288vh;
+}
+
+    .flow_fot > span {
+        width: 100%;
+        height: 4.1288vh;
+        line-height: 4.1288vh;
+        margin-left: 1.0423vw;
+    }
+
+.floe_fots {
+    width: 100%;
+    height: 32.739vh;
+    display: flex;
+    flex-direction: row;
+    margin-top: 4.748vh;
+}
+
+.flow_fots > span {
+    width: 100%;
+    height: 4.1288vh;
+    line-height: 4.1288vh;
+    margin-left: 1.0423vw;
+}
+
+.warning {
+    width: 50%;
+    position: absolute;
+    right: 0%;
+    bottom: 4%;
+}
+
+    .warning > h1 {
+        margin-top: 0;
+        margin-bottom:0;
+        font-size: 1.928vw;
+    }
+
+.check {
+    width: 47%;
+    height: 31.998vh;
+    margin-left: 1.0423vw;
+    background-color: #0b5b7dff;
+}
+
+.check_from {
+    width: 100%;
+    height: 31.998vh;
+}
+
+.check_from_1 {
+    font-size: .781vw;
+    display: flex;
+    background-color: #0b5b7dff;
+    flex-direction: row;
+}
+
+.TableHeader {
+    color: #fff;
+    font-size: .833vw;
+}
+
+.check2 {
+    width: 40%;
+    height: 23.018vh;
+    margin-left: 1.563vw;
+    background-color: #0b5b7dff;
+}
+
+.check_form_2 {
+    background-color: #0b5b7dff;
+}
+
+.check_but {
+    flex: 1;
+    box-sizing: border-box;
+    padding-right: .8vw;
+}
+.check_but>button{
+    float:right;
+}
+
+.checks {
+    width: 47%;
+    height: 31.998vh;
+    margin-left: 1.042vw;
+    background-color: #0b5b7dff;
+}
+
+.check_froms {
+    width: 100%;
+    height: 31.998vh;
+}
+
+.check_froms_1 {
+    font-size: .7817vw;
+    display: flex;
+    background-color: #0b5b7dff;
+    flex-direction: row;
+}
+
+.TableHeaders {
+    color: #fff;
+    font-size: .8338vw;
+}
+
+.checks2 {
+    width: 40%;
+    height: 23.018vh;
+    margin-left: 1.563vw;
+    background-color: #0b5b7dff;
+}
+
+.check_forms_2 {
+    background-color: #0b5b7dff;
+}
+
+.check_buts {
+    flex: 1;
+    box-sizing: border-box;
+    padding-right: .8vw;
+}
+
+    .check_buts > button {
+        float: right;
+    }
+
+.sound {
+    width: 98%;
+    height: 33vh;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #fff;
+    margin-left: 1%;
+    margin-top: 2.0644vh;
+}
+
+    .sound > span {
+        height: 4.1288vh;
+        line-height: 4.1288vh;
+        color: #fff;
+        padding-left: 1.0423vw;
+        font-size: 1.0423vw;
+        border-bottom: 1px solid #fff;
+        background-color: #0b5b7dff;
+    }
+
+.report {
+    width: 100%;
+    display: flex;
+    margin-top: 5.677vh;
+}
+
+.process {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+}
+
+.Generatereport {
+    flex: 1;
+    box-sizing: border-box;
+    padding-right: .8vw;
+}
+    .Generatereport>button{
+        float:right;
+    }
+    table {
+        border-collapse: collapse;
+        color: #fff;
+    }
+
+.process_radius {
+    width: 6.775vw;
+    height: 19.611vh;
+    border-radius: 10%;
+    background-color: #0b5b7dff;
+    border: 1px solid #fff;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.prot {
+    width: 100%;
+    height: 5.161vh;
+    border-bottom: 1px solid #fff;
+    line-height: 5.161vh;
+    font-size: 1.0423vw;
+    display: flex;
+    justify-content: space-around;
+}
+
+.prof {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: .938vw;
+}
+
+.proccess_img {
+    width: 2.084vw;
+    height: 15.483vh;
+    line-height: 15.483vh;
+}
+
+tr {
+    border: 1px solid #fff;
+    height: 3.0966vh;
+}
+
+td {
+    border: 1px solid #fff;
+}
+
+.lie > td:nth-child(1) {
+    border: 1px solid #fff;
+}
+
+.popper__arrow {
+    display: none !important;
+}
+
+.correct {
+    color: greenyellow;
+}
+
+.fail {
+    color: red;
+}
+
+.el-dialog__wrapper {
+    overflow: hidden;
+}
+
+.el-dialog {
+    margin-top: 0 !important;
+    height: 100%;
+}
+
+.el-dialog__body {
+    padding-top: 0;
+    padding-bottom: 0;
+}

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\WEB\CBMAPI</_PublishTargetUrl>
+    <History>True|2023-06-04T07:48:48.3876268Z;True|2023-06-04T15:48:19.7625932+08:00;True|2023-06-04T15:45:21.3668234+08:00;True|2023-06-04T13:47:39.9802374+08:00;False|2023-06-04T13:43:54.0070012+08:00;True|2023-06-04T13:06:18.6540416+08:00;True|2023-06-04T13:02:10.7468025+08:00;</History>
+  </PropertyGroup>
+</Project>

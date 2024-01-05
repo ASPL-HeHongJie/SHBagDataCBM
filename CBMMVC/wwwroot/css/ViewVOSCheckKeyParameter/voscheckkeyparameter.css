@@ -1,0 +1,50 @@
+﻿.el-dialog {
+    width: 70%;
+    height: 80%;
+    margin-top: 8vh !important;
+}
+.el-dialog__header {
+    padding: 10px 20px 10px;
+}
+.el-dialog__body {
+    padding: .516vh 1.0423vw;
+    height: 85%;
+    width: 98%;
+}
+.el-dialog__footer {
+    padding: 0 1.042vw 0 0;
+}
+.demo-form-inline {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.EchartsDiv {
+    position: relative;
+}
+.reductionDiv {
+    width: 1.3vw;
+    height: 3.2vh;
+    position: absolute;
+    right: 4.8vw;
+    z-index: 1;
+}
+.reduction {
+    position: absolute;
+    top: 0.65vh;
+    left: 0.3vw;
+    font-size: 1vw;
+    color: #656566;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.reductionDisplay {
+    position: absolute;
+    width:1.4vw;
+    left: 0.1vw;
+    top: 1.9vh;
+    font-size: .6vw;
+    color: #fff;
+    cursor: pointer;
+}

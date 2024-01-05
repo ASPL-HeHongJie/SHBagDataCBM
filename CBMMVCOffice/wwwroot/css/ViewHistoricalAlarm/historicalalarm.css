@@ -1,0 +1,72 @@
+﻿.disech {
+    width: 44.298vw;
+    height: 30.966vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.echt {
+    width: 15.634vw;
+    height: 30.966vh;
+    margin-left: 1.042vw;
+}
+
+    .echt > div > canvas {
+        margin: 0 0 0 2.6057vw !important;
+    }
+
+
+
+
+
+.el-dialog {
+    background: #FFF;
+}
+
+.el-dialog__header {
+    background: #fff;
+}
+
+
+
+.alarmInfo {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #eeeeee;
+    /*background-color: #FFF;*/
+    color: #606266;
+}
+
+.alarmItem {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.alarmL {
+    width: 19%;
+    /* background: #fafafa; */
+    padding: 12px 10px;
+}
+
+.alarmItem:last-child {
+    border-bottom: none;
+}
+
+.alarmR {
+    width: 73%;
+    padding: 12px 10px;
+    border-left: 1px solid #eeeeee;
+}
+
+.programme {
+    width: 99%;
+    color: #e6a23c;
+    padding: 5px 0;
+    border-bottom: 1px solid #eeeeee;
+}
+
+    .programme:first-child {
+        color: #ff1d1d;
+    }

@@ -1,0 +1,112 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<style>
+    [v-cloak] {
+        display: none;
+    }
+</style>
+<script src="~/js/ViewEarlyWarning/equipmentGoodRate.js" type="module"></script>
+<script src="~/js/Echarts/echarts.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="~/css/ViewEarlyWarning/equipmentGoodRate.css" />
+<div class="content" id="equipmentGoodRate" v-cloak v-loading="loading"
+     element-loading-text="拼命加载中"
+     element-loading-spinner="el-icon-loading"
+     element-loading-custom-class="loading_color"
+     element-loading-background="rgba(0, 0, 0, 0.8)">
+    <div class="header_title">
+        <span>@ViewBag.Title</span>
+    </div>
+    <div class="Drop-downbox">
+        <div class="Drop-downbox_input">
+            <div v-if="isAreaType == 'false'">
+                <span>公司:</span>
+                <el-select v-model="companyName"
+                           multiple
+                           collapse-tags
+                           placeholder="请选择"
+                           style="width: 12.817vw">
+                    <el-option v-for="item in datas"
+                               :key="item.ID"
+                               :label="item.Name"
+                               :value="item.ID">
+                    </el-option>
+                </el-select>
+            </div>
+            <div class="block">
+                <span>日期:</span>
+                <el-date-picker v-model="timeSlot"
+                                type="datetimerange"
+                                align="right"
+                                start-placeholder="开始日期"
+                                end-placeholder="结束日期"
+                                :default-time="['00:00:00', '23:59:59']"
+                                style="width: 18.761vw"
+                                @@change="TimeSelection($event)"
+                                :plain="true">
+                </el-date-picker>
+            </div>
+        </div>
+        <div class="Drop-downbox_btn">
+            <el-button type="primary" icon="el-icon-finished" @@click="Statistics">计算过程</el-button>
+            <el-button type="primary" icon="el-icon-search" @@click="Refresh">刷新</el-button>
+
+        </div>
+    </div>
+    <div class="formview">
+            <div></div>
+            <el-dialog title="计算过程"
+                   :visible.sync="dialogVisible"
+                   :close-on-click-modal="false"
+                   width="56%"
+                   style="height: 50%; margin-top: 20vh ">
+            <div>
+                <div>
+                    <div>计算公式</div>
+                    <div style="font-weight: bold;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;设备月完好率=(∑(每台设备在本月中完灯的小时数)/在用设备总台数*本月小时总数)*100%
+                    </div>
+                </div>
+                <div>
+                    <div>公式解析</div>
+                    <div>
+                        <div style="font-weight: bold;">1、每台设备在本月中完好时间（按小时计算）：</div>
+                        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;若该设备在本月中未发生过不满足完好标准的情况，则该数值应为本月的实际小时数；若该设备在本月中发生过不满足完好标准的情况（例如：发生故障），持续情况为x天，则该数值为（30-x）*24小时。</div>
+                    </div>
+                    <div>
+                        <div style="font-weight: bold;">2、∑每台设备在本月中完好时间（按小时计算）：</div>
+                        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该数值为把所有设备的本月完好小时数进行相加得出的总和。</div>
+                    </div>
+                    <div>
+                        <div style="font-weight: bold;">3、A类报警时间：</div>
+                        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每台设备发生A类报警持续的时间。</div>
+                    </div>
+                    <div>
+                        <div style="font-weight: bold;"> 4、Daniel品牌A类报警明细：</div>
+                        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S600流量计算机报警,S600流量计算机过程量报警,S600流量计算机系统报警,S600流量计算机A类报警,S600冷启动,S600热启动,S600 RAM故障报警,S600 ROM故障报警,累积量初始化为0,部分累积量错误,累积量寄存器冲突,组态参数更改,	累积量达到最大值初始化,累积量达到UDR,流速值采采用键盘值,超声波故障报警,流量计算机断电模式,流量计算机维护模式,组分值采用键盘值,低密度报警。</div>
+                    </div>
+                    <div>
+                        <div style="font-weight: bold;">  5、Elster品牌A类报警明细：</div>
+                        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶</div>
+                    </div>
+                    <div>
+                        <div style="font-weight: bold;"> 6、SICK品牌A类报警明细：</div>
+                        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶</div>
+                    </div>
+                    <div>
+                        <div style="font-weight: bold;">7、Weise品牌A类报警明细：</div>
+                        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;压力变送器离线、温度变送器离线、流量计通讯失败、色谱仪通讯失败</div>
+                    </div>
+                </div>
+            </div>
+        </el-dialog>
+    </div>
+</div>
+<script>
+    var area =@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Area))
+    var isArea = '@ViewBag.IsArea';
+    var company =@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Company));
+      var companies=@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Companies));
+    $("#menu_EarlyEarning").addClass("active")
+</script>
