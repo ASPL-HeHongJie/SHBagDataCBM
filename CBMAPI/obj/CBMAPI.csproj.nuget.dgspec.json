@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\CBMAPI\\CBMAPI.csproj": {}
+    "D:\\wwwroot\\SHBagDataCBM\\CBMAPI\\CBMAPI.csproj": {}
   },
   "projects": {
-    "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\CBMAPI\\CBMAPI.csproj": {
+    "D:\\wwwroot\\SHBagDataCBM\\CBMAPI\\CBMAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\CBMAPI\\CBMAPI.csproj",
+        "projectUniqueName": "D:\\wwwroot\\SHBagDataCBM\\CBMAPI\\CBMAPI.csproj",
         "projectName": "CBMAPI",
-        "projectPath": "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\CBMAPI\\CBMAPI.csproj",
-        "packagesPath": "C:\\Users\\sa\\.nuget\\packages\\",
-        "outputPath": "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\CBMAPI\\obj\\",
+        "projectPath": "D:\\wwwroot\\SHBagDataCBM\\CBMAPI\\CBMAPI.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "D:\\wwwroot\\SHBagDataCBM\\CBMAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "d:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\sa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -32,11 +32,11 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\Models\\Models.csproj": {
-                "projectPath": "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\Models\\Models.csproj"
+              "D:\\wwwroot\\SHBagDataCBM\\Models\\Models.csproj": {
+                "projectPath": "D:\\wwwroot\\SHBagDataCBM\\Models\\Models.csproj"
               },
-              "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\Services\\Services.csproj": {
-                "projectPath": "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\Services\\Services.csproj"
+              "D:\\wwwroot\\SHBagDataCBM\\Services\\Services.csproj": {
+                "projectPath": "D:\\wwwroot\\SHBagDataCBM\\Services\\Services.csproj"
               }
             }
           }
@@ -66,6 +66,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x86",
+              "version": "[3.1.25, 3.1.25]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -74,24 +80,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.416\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\Models\\Models.csproj": {
+    "D:\\wwwroot\\SHBagDataCBM\\Models\\Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\Models\\Models.csproj",
+        "projectUniqueName": "D:\\wwwroot\\SHBagDataCBM\\Models\\Models.csproj",
         "projectName": "Models",
-        "projectPath": "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\Models\\Models.csproj",
-        "packagesPath": "C:\\Users\\sa\\.nuget\\packages\\",
-        "outputPath": "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\Models\\obj\\",
+        "projectPath": "D:\\wwwroot\\SHBagDataCBM\\Models\\Models.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "D:\\wwwroot\\SHBagDataCBM\\Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "d:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\sa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -146,24 +152,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.416\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\Respository\\Respository.csproj": {
+    "D:\\wwwroot\\SHBagDataCBM\\Respository\\Respository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\Respository\\Respository.csproj",
+        "projectUniqueName": "D:\\wwwroot\\SHBagDataCBM\\Respository\\Respository.csproj",
         "projectName": "Respository",
-        "projectPath": "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\Respository\\Respository.csproj",
-        "packagesPath": "C:\\Users\\sa\\.nuget\\packages\\",
-        "outputPath": "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\Respository\\obj\\",
+        "projectPath": "D:\\wwwroot\\SHBagDataCBM\\Respository\\Respository.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "D:\\wwwroot\\SHBagDataCBM\\Respository\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "d:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\sa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -178,8 +184,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\Models\\Models.csproj": {
-                "projectPath": "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\Models\\Models.csproj"
+              "D:\\wwwroot\\SHBagDataCBM\\Models\\Models.csproj": {
+                "projectPath": "D:\\wwwroot\\SHBagDataCBM\\Models\\Models.csproj"
               }
             }
           }
@@ -226,24 +232,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.416\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\Services\\Services.csproj": {
+    "D:\\wwwroot\\SHBagDataCBM\\Services\\Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\Services\\Services.csproj",
+        "projectUniqueName": "D:\\wwwroot\\SHBagDataCBM\\Services\\Services.csproj",
         "projectName": "Services",
-        "projectPath": "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\Services\\Services.csproj",
-        "packagesPath": "C:\\Users\\sa\\.nuget\\packages\\",
-        "outputPath": "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\Services\\obj\\",
+        "projectPath": "D:\\wwwroot\\SHBagDataCBM\\Services\\Services.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "D:\\wwwroot\\SHBagDataCBM\\Services\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "d:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\sa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -258,11 +264,11 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\Models\\Models.csproj": {
-                "projectPath": "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\Models\\Models.csproj"
+              "D:\\wwwroot\\SHBagDataCBM\\Models\\Models.csproj": {
+                "projectPath": "D:\\wwwroot\\SHBagDataCBM\\Models\\Models.csproj"
               },
-              "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\Respository\\Respository.csproj": {
-                "projectPath": "D:\\Work\\更改Elster前。可用于未升级的上海\\LAST\\ShangHaiCBM\\Respository\\Respository.csproj"
+              "D:\\wwwroot\\SHBagDataCBM\\Respository\\Respository.csproj": {
+                "projectPath": "D:\\wwwroot\\SHBagDataCBM\\Respository\\Respository.csproj"
               }
             }
           }
@@ -305,7 +311,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.416\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
         }
       }
     }

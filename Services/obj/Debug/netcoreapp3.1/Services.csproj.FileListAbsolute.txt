@@ -166,3 +166,24 @@ D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM - 副本\
 D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM - 副本\Services\obj\Debug\netcoreapp3.1\Services.csproj.CopyComplete
 D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM - 副本\Services\obj\Debug\netcoreapp3.1\Services.dll
 D:\Work\更改Elster前。可用于未升级的上海\LAST\ShangHaiCBM - 副本\Services\obj\Debug\netcoreapp3.1\Services.pdb
+D:\wwwroot\SHBagDataCBM\Services\bin\Debug\netcoreapp3.1\Services.deps.json
+D:\wwwroot\SHBagDataCBM\Services\bin\Debug\netcoreapp3.1\Services.dll
+D:\wwwroot\SHBagDataCBM\Services\bin\Debug\netcoreapp3.1\Services.pdb
+D:\wwwroot\SHBagDataCBM\Services\bin\Debug\netcoreapp3.1\GeFanuc.iFixToolkit.Adapter.dll
+D:\wwwroot\SHBagDataCBM\Services\bin\Debug\netcoreapp3.1\Models.dll
+D:\wwwroot\SHBagDataCBM\Services\bin\Debug\netcoreapp3.1\Respository.dll
+D:\wwwroot\SHBagDataCBM\Services\bin\Debug\netcoreapp3.1\System.Reactive.dll
+D:\wwwroot\SHBagDataCBM\Services\bin\Debug\netcoreapp3.1\Models.pdb
+D:\wwwroot\SHBagDataCBM\Services\bin\Debug\netcoreapp3.1\Respository.pdb
+D:\wwwroot\SHBagDataCBM\Services\bin\Debug\netcoreapp3.1\System.Reactive.xml
+D:\wwwroot\SHBagDataCBM\Services\bin\Debug\netcoreapp3.1\Interop.OPCAutomation.dll
+D:\wwwroot\SHBagDataCBM\Services\obj\Debug\netcoreapp3.1\Services.csproj.AssemblyReference.cache
+D:\wwwroot\SHBagDataCBM\Services\obj\Debug\netcoreapp3.1\Interop.OPCAutomation.dll
+D:\wwwroot\SHBagDataCBM\Services\obj\Debug\netcoreapp3.1\Services.csproj.ResolveComReference.cache
+D:\wwwroot\SHBagDataCBM\Services\obj\Debug\netcoreapp3.1\Services.GeneratedMSBuildEditorConfig.editorconfig
+D:\wwwroot\SHBagDataCBM\Services\obj\Debug\netcoreapp3.1\Services.AssemblyInfoInputs.cache
+D:\wwwroot\SHBagDataCBM\Services\obj\Debug\netcoreapp3.1\Services.AssemblyInfo.cs
+D:\wwwroot\SHBagDataCBM\Services\obj\Debug\netcoreapp3.1\Services.csproj.CoreCompileInputs.cache
+D:\wwwroot\SHBagDataCBM\Services\obj\Debug\netcoreapp3.1\Services.csproj.CopyComplete
+D:\wwwroot\SHBagDataCBM\Services\obj\Debug\netcoreapp3.1\Services.dll
+D:\wwwroot\SHBagDataCBM\Services\obj\Debug\netcoreapp3.1\Services.pdb

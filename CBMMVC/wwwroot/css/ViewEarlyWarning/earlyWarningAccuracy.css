@@ -1,0 +1,35 @@
+﻿.el-dialog__wrapper {
+    overflow: hidden;
+}
+.el-dialog {
+    margin-top: 0 !important;
+    height: 100%;
+}
+.el-dialog__body{
+    padding-top:0;
+    padding-bottom:0;
+}
+.el-icon-s-order {
+    font-size: .938vw;
+}
+.loading_color i{
+    color:#fff;
+}
+.el-loading-spinner .el-loading-text {
+    color: #fff !important;
+}
+.disech {
+    width: 48vw;
+    height: 30.966vh;
+    display: flex;
+    flex-direction: row;
+}
+.echt {
+    width: 18.634vw;
+    height: 40.966vh;
+    margin-left: 1.042vw;
+}
+
+    .echt > div > canvas {
+        margin: 0 0 0 2.6057vw !important;
+    }
