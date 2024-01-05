@@ -43,7 +43,7 @@
                             <div class="ragUp">
                                 <div class="ragUpBg">
                                     <div class="ragBgNum">
-                                        100
+                                        {{IsEarlyWarningNumber}}
                                     </div>
                                     <div class="ragBgTxt">存在预警</div>
                                 </div>
@@ -51,15 +51,15 @@
                             <div class="ragUp">
                                 <div class="ragUpBg">
                                     <div class="ragBgNum">
-                                        20
+                                        {{IsCommunicationBadNumber}}
                                     </div>
-                                    <div class="ragBgTxt ragBgTxtB">运行正常</div>
+                                    <div class="ragBgTxt ragBgTxtB">通讯故障</div>
                                 </div>
                                 <div class="ragUpBg">
                                     <div class="ragBgNum">
-                                        10
+                                        {{IsNormalNumber}} 
                                     </div>
-                                    <div class="ragBgTxt ragBgTxtC">通讯故障</div>
+                                    <div class="ragBgTxt ragBgTxtC">运行正常</div>
                                 </div>
                             </div>
                         </div>
@@ -70,10 +70,11 @@
                                 <span>状态</span>
                             </div>
                             <div class="tabCon">
-                                <div class="tabTit tabCI" v-for="item in 22">
-                                    <span>场站1</span>
-                                    <span>回路1</span>
-                                    <i class="el-icon-message-solid"></i>
+                                <div class="tabTit tabCI" v-for="item in EarlyWarnings">
+                                    <span>{{item.stationName}}</span>
+                                    <span>{{item.loopName}}</span>
+                                    <span v-if="item.status=='存在预警'" style="color: #f96a34">{{item.status}}</span>
+                                    <span v-else>{{item.status}}</span>
                                 </div>
                             </div>
                         </div>
@@ -82,7 +83,7 @@
                 <div class="conC">
                     <div style="height: 100%;">
                         <div class="itemTit">
-                            告知
+                            告知率
                         </div>
                         <div style="display: flex; flex-direction: column; justify-content: space-between; height: 93%;">
                             <div class="chartEarly" id="echEarly"></div>
@@ -92,7 +93,7 @@
                 </div>
                 <div class="conR">
                     <div class="itemTit">
-                        设备统计
+                        设备状态
                     </div>
                     <div style="display: flex; flex-direction: column; justify-content: space-between; height: 93%;">
                         <div class="chartEarly" id="echPieStat"></div>
