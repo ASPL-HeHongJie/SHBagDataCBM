@@ -134,7 +134,7 @@ namespace CBMMVC.Controllers
             List<NotificationRateBrandStatistics> statisticsList = (List<NotificationRateBrandStatistics>)data["notificationRateBrandStatistics"];
             string templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"wwwroot\ExcelTempate\预警告知率.xlsx");
             string[] columnNames = JsonConvert.DeserializeObject<string[]>(_Configuration["EarlyWarningNotificationRateExportColumnNames"]);
-            byte[] filecontent = await _earlyWarningService.ExportEarlyWarningNotificationRate(list, statisticsList,columnNames, templatePath, imagePath, 8, true);
+            byte[] filecontent = await _earlyWarningService.ExportEarlyWarningNotificationRate(list, statisticsList, columnNames, templatePath, imagePath, 8, true);
             return File(filecontent, _excelExportHelper.ExcelContentType, "预警告知率.xlsx");
         }
 
@@ -145,8 +145,37 @@ namespace CBMMVC.Controllers
             Dictionary<string, object> condition = JsonConvert.DeserializeObject<Dictionary<string, object>>(conditionString);
             DateTime beginDateTime = DateTime.Parse(condition["BeginDateTime"].ToString());
             DateTime endDateTime = DateTime.Parse(condition["EndDateTime"].ToString());
-           
+
             return await _earlyWarningService.BigDataAnalysisOverview(beginDateTime, endDateTime);
+        }
+
+        [HttpPost]
+        public async Task<List<HistoricalEarlyWarning>> GetEarlyWarningAccuracys([FromBody] string conditionString)
+        {
+            Dictionary<string, object> condition = JsonConvert.DeserializeObject<Dictionary<string, object>>(conditionString);
+            List<int> loopIDs = JsonConvert.DeserializeObject<List<int>>(condition["loopIDs"].ToString());
+            DateTime beginDateTime = DateTime.Parse(condition["BeginDateTime"].ToString());
+            DateTime endDateTime = DateTime.Parse(condition["EndDateTime"].ToString());
+            return await _earlyWarningService.GetEarlyWarningAccuracys(loopIDs, beginDateTime, endDateTime);
+        }
+
+        [HttpPost]
+        public async Task<string> UpdateEarlyWarningAccuracy([FromBody] string conditionString)
+        {
+            Dictionary<string, object> condition = JsonConvert.DeserializeObject<Dictionary<string, object>>(conditionString);
+            int id = JsonConvert.DeserializeObject<int>(condition["ID"].ToString());
+            string sceneSolution = condition["BeginDateTime"].ToString();
+            return await _earlyWarningService.UpdateEarlyWarningAccuracy(id, sceneSolution);
+        }
+
+        [HttpPost]
+        public async Task<List<EarlyWarningAccuracyStatistics>> GetEarlyWarningAccuracyStatistics([FromBody] string conditionString)
+        {
+            Dictionary<string, object> condition = JsonConvert.DeserializeObject<Dictionary<string, object>>(conditionString);
+            List<int> loopIDs = JsonConvert.DeserializeObject<List<int>>(condition["loopIDs"].ToString());
+            DateTime beginDateTime = DateTime.Parse(condition["BeginDateTime"].ToString());
+            DateTime endDateTime = DateTime.Parse(condition["EndDateTime"].ToString());
+            return await _earlyWarningService.GetEarlyWarningAccuracyStatistics(loopIDs, beginDateTime, endDateTime);
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using Models;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
+using System.Data;
 
 namespace Respository
 {
@@ -972,7 +973,7 @@ namespace Respository
                                      EarlyWarningParameterDetail = string.Join("、", _context.earlyWarningDetails.Where(detail => detail.LoopID == warning.LoopID && detail.IsWarn == true).Select(detail => detail.Description))
                                  }).ToList().OrderByDescending(warning => warning.ForwordPreDayStandardCumulative).ThenBy(warning => warning.StatusNumber);
             Dictionary<string, object> EarlyWarningNumber = new Dictionary<string, object>();
-             var EarlyWarningStatistics = from warning in _context.EarlyWarnings
+            var EarlyWarningStatistics = from warning in _context.EarlyWarnings
                                          group warning by warning.Status into warningGroup
                                          select new EarlyWarningStatistics
                                          {
@@ -1685,6 +1686,91 @@ namespace Respository
             OverviewRateData["EarlyWarningStatistics"] = EarlyWarningNumber;
             OverviewRateData["NotificationRateBrandStatistics"] = notificationRateBrandStatistics;
             return OverviewRateData;
+        }
+
+        public List<HistoricalEarlyWarning> GetEarlyWarningAccuracys(List<int> loopIDs, DateTime beginDateTime, DateTime endDateTime)
+        {
+            var historicalEarlyWarnings = _context.HistoricalEarlyWarnings.Where(x => loopIDs.Contains(x.LoopID)
+                                      && x.BeginDateTime >= beginDateTime
+                                      && x.EndDateTime <= endDateTime);
+            return (from accuracy in historicalEarlyWarnings
+                    join loop in _context.StationLoops
+                    on accuracy.LoopID equals loop.ID
+                    join station in _context.StationInfos
+                    on loop.StationID equals station.ID
+                    join area in _context.Areas
+                    on station.AreaID equals area.ID
+                    join company in _context.CompanyInfos
+                    on area.CompanyID equals company.ID
+                    select new HistoricalEarlyWarning
+                    {
+                        ID = accuracy.ID,
+                        LoopID = accuracy.LoopID,
+                        BeginDateTime = accuracy.BeginDateTime,
+                        EndDateTime = accuracy.EndDateTime,
+                        KnowledgeSolution = accuracy.KnowledgeSolution,
+                        SceneSolution = accuracy.SceneSolution,
+                        StationName = station.Name,
+                        LoopName = loop.AbbrName,
+                        AreaName = area.Name,
+                        CompanyName = company.Name,
+                        FlowmeterManufacturer = loop.FlowmeterManufacturer
+                    }).ToList();
+        }
+
+        public string UpdateEarlyWarningAccuracy(int id, string sceneSolution)
+        {
+            using var tran = _context.Database.BeginTransaction(IsolationLevel.ReadCommitted);
+            try
+            {
+                var historicalEarlyWarning = _context.HistoricalEarlyWarnings.FirstOrDefault(x => x.ID == id);
+                if (historicalEarlyWarning != null)
+                {
+                    historicalEarlyWarning.SceneSolution = sceneSolution;
+                    _context.HistoricalEarlyWarnings.Update(historicalEarlyWarning);
+                    _context.SaveChanges();
+                }
+                tran.Commit();
+            }
+            catch (Exception)
+            {
+                tran.Rollback();
+                return "OtherError";
+            }
+            return "OK";
+        }
+
+        public List<EarlyWarningAccuracyStatistics> GetEarlyWarningAccuracyStatistics(List<int> loopIDs, DateTime beginDateTime, DateTime endDateTime)
+        {
+            var historicalEarlyWarnings = _context.HistoricalEarlyWarnings.Where(x => loopIDs.Contains(x.LoopID)
+                                      && x.BeginDateTime >= beginDateTime
+                                      && x.EndDateTime <= endDateTime);
+            var accuracys = from accuracy in historicalEarlyWarnings
+                            join loop in _context.StationLoops
+                            on accuracy.LoopID equals loop.ID
+                            join station in _context.StationInfos
+                            on loop.StationID equals station.ID
+                            join area in _context.Areas
+                            on station.AreaID equals area.ID
+                            join company in _context.CompanyInfos
+                            on area.CompanyID equals company.ID
+                            select new HistoricalEarlyWarning
+                            {
+                                ID = accuracy.ID,
+                                LoopID = accuracy.LoopID,
+                                KnowledgeSolution = accuracy.KnowledgeSolution,
+                                SceneSolution = accuracy.SceneSolution,
+                                FlowmeterManufacturer = loop.FlowmeterManufacturer
+                            };
+            return (from statistic in accuracys
+                    group statistic by statistic.FlowmeterManufacturer into g
+                    select new EarlyWarningAccuracyStatistics
+                    {
+                        Description = g.Key,
+                        CorrectNumber = g.Sum(s => s.KnowledgeSolution == s.SceneSolution ? 1 : 0),
+                        ErrorNumber = g.Sum(s => s.KnowledgeSolution != s.SceneSolution ? 1 : 0),
+                        Accuracy = g.Sum(s => s.KnowledgeSolution == s.SceneSolution ? 1 : 0) / g.Count()
+                    }).ToList();
         }
     }
 }

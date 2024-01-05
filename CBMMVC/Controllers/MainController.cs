@@ -399,6 +399,49 @@ namespace CBMMVC.Controllers
             }
         }
 
+        public IActionResult EarlyWarningAccuracy(string id)
+        {
+            ViewBag.Title = "建议告知率统计";
+            ViewBag.CompanyName = _Configuration["CompanyName"].ToString() + "计量远程诊断系统";
+            if (SessionExtensions.Get<User>(HttpContext.Session, "User") != null)
+            {
+                ViewData["User"] = SessionExtensions.Get<User>(HttpContext.Session, "User");
+                User user = ViewData["User"] as User;
+                IConfiguration Configuration = new ConfigurationBuilder().Add(new Microsoft.Extensions.Configuration.Json.JsonConfigurationSource { Path = "appsettings.json", ReloadOnChange = true }).Build();
+                ViewBag.IsArea = Configuration.GetConnectionString("IsArea").ToString();
+                if (ViewBag.IsArea == "true")
+                {
+                    foreach (Company company in user.companies)
+                    {
+                        foreach (Area area in company.Areas)
+                        {
+                            if (area.AbbrName == id)
+                            {
+                                ViewBag.Area = area;
+                                break;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (Company company in user.companies)
+                    {
+                        if (company.AbbrName == id)
+                        {
+                            ViewBag.Company = company;
+                            break;
+                        }
+                    }
+                }
+                return View("EarlyWarningAccuracy", id);
+            }
+            else
+            {
+                return RedirectToAction("LossSession", "Login");
+            }
+        }
+
         public IActionResult EquipmentGoodRate(string id)
         {
             ViewBag.Title = "设备完好统计";

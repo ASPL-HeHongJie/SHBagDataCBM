@@ -72,7 +72,7 @@ namespace Services
             return Task.Run(() =>
             {
                 DataTable dataTable = ListToDataTable<EarlyWarningNotificationRate>(notificationRate, columnNames);
-                string[] StatisticsListcolumnNames =  { "BrandName", "NotificationRate" };
+                string[] StatisticsListcolumnNames = { "BrandName", "NotificationRate" };
                 DataTable StatisticsdataTable = ListToDataTable<NotificationRateBrandStatistics>(statisticsList, StatisticsListcolumnNames);
                 byte[] result = null;
                 ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
@@ -81,9 +81,9 @@ namespace Services
                 {
                     ExcelWorksheet workSheet = package.Workbook.Worksheets[0];
 
-               
 
-                  
+
+
                     #region 统计
 
                     //统计是否显示行编号
@@ -148,7 +148,7 @@ namespace Services
                     //Add Content Into the Excel File
                     workSheet.Cells["A" + startRowFrom].LoadFromDataTable(dataTable, false);
                     // autofit width of cells with small content  
-                     columnIndex = 1;
+                    columnIndex = 1;
                     foreach (DataColumn item in dataTable.Columns)
                     {
                         ExcelRange columnCells = workSheet.Cells[workSheet.Dimension.Start.Row, columnIndex, workSheet.Dimension.End.Row, columnIndex];
@@ -188,6 +188,19 @@ namespace Services
                 }
                 return result;
             });
+        }
+
+        public Task<List<HistoricalEarlyWarning>> GetEarlyWarningAccuracys(List<int> loopIDs, DateTime beginDateTime, DateTime endDateTime)
+        {
+            return Task.Run(() => _earlyWarningRespository.GetEarlyWarningAccuracys(loopIDs, beginDateTime, endDateTime));
+        }
+        public Task<string> UpdateEarlyWarningAccuracy(int id, string sceneSolution)
+        {
+            return Task.Run(() => _earlyWarningRespository.UpdateEarlyWarningAccuracy(id, sceneSolution));
+        }
+        public Task<List<EarlyWarningAccuracyStatistics>> GetEarlyWarningAccuracyStatistics(List<int> loopIDs, DateTime beginDateTime, DateTime endDateTime)
+        {
+            return Task.Run(() => _earlyWarningRespository.GetEarlyWarningAccuracyStatistics(loopIDs, beginDateTime, endDateTime));
         }
 
         /// <summary>
