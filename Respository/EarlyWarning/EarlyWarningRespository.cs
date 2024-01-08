@@ -1769,7 +1769,7 @@ namespace Respository
                         Description = g.Key,
                         CorrectNumber = g.Sum(s => s.KnowledgeSolution == s.SceneSolution ? 1 : 0),
                         ErrorNumber = g.Sum(s => s.KnowledgeSolution != s.SceneSolution ? 1 : 0),
-                        Accuracy = g.Sum(s => s.KnowledgeSolution == s.SceneSolution ? 1 : 0) / g.Count()
+                        Accuracy = g.Sum(s => s.KnowledgeSolution == s.SceneSolution ? 1 : 0) / (double)g.Count() * 100
                     }).ToList();
         }
     }
