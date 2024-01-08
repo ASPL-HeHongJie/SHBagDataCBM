@@ -2,9 +2,10 @@
     el: '#BigDataAnalysisOverview',
     data: {
         loading: false,
-        IsEarlyWarningNumber: '',
-        IsEarlyWarningNumber: '',
-        IsEarlyWarningNumber: '',
+        EarlyWarnings:[],
+        IsEarlyWarningNumber: 0,
+        IsCommunicationBadNumber: 0,
+        IsNormalNumber: 0,
         chartsEarly: null,
         chartsStatistics: null,
         chartsPieStatistics: null,
@@ -24,7 +25,7 @@
         this.Refresh();
     },
     mounted() {
-        this.getChartEarly();
+        //this.getChartEarly();
         this.getChartStatistics();
         this.getChartPieSta();
         this.getChartEquAva();
@@ -46,21 +47,31 @@
                 { timeout: 1000 * 60 * 2 })
                 .then((res) => {
                     this.loading = false;
+                    that.IsEarlyWarningNumber = res.data.EarlyWarningStatistics.EarlyWarningNumber;
+                    that.IsCommunicationBadNumber = res.data.EarlyWarningStatistics.CommunicationBadNumber;
+                    that.IsNormalNumber = res.data.EarlyWarningStatistics.NormalNumber;
+                    that.EarlyWarnings = res.data.EarlyWarnings;
+                    that.getChartEarly(res.data.EarlyWarningNotificationRateBrandStatistics)
 
-
-
-
-                    console.log(res.data);
+                       
                 }, (err) => {
                     this.loading = false;
                 }
                 );
         },
-        getChartEarly() {
+        getChartEarly(chartdata) {
+            console.log(chartdata);
+            var chartsBrands = [];
+            var chartsRates = [];
+            chartdata.map((res) => {
+                chartsBrands.push(res.brandName);
+                chartsRates.push(res.notificationRate);
+            })
+
             this.chartsEarly = echarts.init(document.getElementById("echEarly"));
             const option = {
                 title: {
-                    text: '预报警',
+                    text: '预警告知率',
                     textStyle: {
                         color: '#2AFFFF',
                         fontSize: 14
@@ -84,7 +95,7 @@
                     axisLabel: {
                         color: '#2AFFFF'
                     },
-                    data: ['指定量', '完成量', '计划量', '单日指标']
+                    data: chartsBrands
                 }],
                 yAxis: [{
                     type: 'value',
@@ -144,7 +155,7 @@
                             ],
                         },
                     },
-                    data: [20, 30, 10, 30]
+                    data: chartsRates
                 },]
             };
             this.chartsEarly.setOption(option);

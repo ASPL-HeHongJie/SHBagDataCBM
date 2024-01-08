@@ -972,15 +972,10 @@ namespace Respository
                                      ForwordPreDayStandardCumulative = loopGasTransmission == null ? 0 : loopGasTransmission.ForwordPreDayStandardCumulative,
                                      EarlyWarningParameterDetail = string.Join("、", _context.earlyWarningDetails.Where(detail => detail.LoopID == warning.LoopID && detail.IsWarn == true).Select(detail => detail.Description))
                                  }).ToList().OrderByDescending(warning => warning.ForwordPreDayStandardCumulative).ThenBy(warning => warning.StatusNumber);
-            Dictionary<string, object> EarlyWarningNumber = new Dictionary<string, object>();
-            var EarlyWarningStatistics = from warning in _context.EarlyWarnings
-                                         group warning by warning.Status into warningGroup
-                                         select new EarlyWarningStatistics
-                                         {
-                                             Status = warningGroup.Key,
-                                             Number = warningGroup.Count()
-                                         };
-            //EarlyWarningNumber["EarlyWarningNumber"]= EarlyWarningStatistics.Where(item=>item=="").
+            Dictionary<string, object> earlyWarningNumber = new Dictionary<string, object>();
+            earlyWarningNumber["EarlyWarningNumber"] = earlyWarnings.Where(item => item.Status == "存在预警").Count();
+            earlyWarningNumber["NormalNumber"] = earlyWarnings.Where(item => item.Status == "运行正常").Count();
+            earlyWarningNumber["CommunicationBadNumber"] = earlyWarnings.Where(item => item.Status == "通讯失败" ).Count();
             #endregion
             #region 告知率
             var records = (from record in _context.EarlyWarningDetailRecords.Where(record => DateTime.Compare(record.BeginDate, beginDateTime) >= 0
@@ -1683,8 +1678,8 @@ namespace Respository
 
             #endregion
             OverviewRateData["EarlyWarnings"] = earlyWarnings;
-            OverviewRateData["EarlyWarningStatistics"] = EarlyWarningNumber;
-            OverviewRateData["NotificationRateBrandStatistics"] = notificationRateBrandStatistics;
+            OverviewRateData["EarlyWarningStatistics"] = earlyWarningNumber;
+            OverviewRateData["EarlyWarningNotificationRateBrandStatistics"] = notificationRateBrandStatistics;
             return OverviewRateData;
         }
 
