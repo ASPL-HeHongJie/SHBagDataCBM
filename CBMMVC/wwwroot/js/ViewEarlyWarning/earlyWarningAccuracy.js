@@ -189,6 +189,10 @@ var EarlyWarningvm = new Vue({
                                 name: '建议告知率',
                                 type: 'bar',
                                 barWidth: '60%',
+                                label: {
+                                    show: true,
+                                    formatter: '{c}%'
+                                },
                                 data: ealywarningAccuracy
                             }
                         ]
