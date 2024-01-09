@@ -2,7 +2,7 @@
 var EarlyWarningNotificationRatevm = new Vue({
     el: '#EarlyWarningNotificationRate',
     data: {
-        companyName: '', // 公司的文本框内容
+        companyName: [], // 公司的文本框内容
         datas: '',  // 公司遍历的内容
         StationName: '', // 场站文本框内容
         Stations: '', // 场站遍历的内容
@@ -43,7 +43,7 @@ var EarlyWarningNotificationRatevm = new Vue({
         BrandName: [],
         notificationRateTableData: [],
         tableData: [],
-        notificationRateStatisticsChart:''
+        notificationRateStatisticsChart: ''
     },
     created() {
         var myDate = new Date();  // 当前时间
@@ -64,10 +64,9 @@ var EarlyWarningNotificationRatevm = new Vue({
             this.currentPage = currentPage;
         },
         Refresh() {
-            this.currentPage = 1
-           
-            if (this.BrandName.length==0) {
-                this.$message({ showClose: true, message: '日期间隔未选择', type: 'error' });
+
+            if (this.BrandName.length == 0) {
+                this.$message({ showClose: true, message: '请选择品牌', type: 'error' });
                 return;
             }
             if (this.timeSlot == '' || this.timeSlot == null) {
@@ -84,75 +83,74 @@ var EarlyWarningNotificationRatevm = new Vue({
                 return Y + M + D + h + m + s
             })
             this.loading = true;
-                var data = {
-                    Brands: this.BrandName,
-                    BeginDateTime: times[0],
-                    EndDateTime: times[1]
-                }
-      
+            var data = {
+                Brands: this.BrandName,
+                BeginDateTime: times[0],
+                EndDateTime: times[1]
+            }
             var ipaddress = "/api/EarlyWarning/GetEarlyWarningNotificationRate";
-                data = JSON.stringify(JSON.stringify(data));
-                var that = this;
-                axios.post(
-                    ipaddress,
-                    data,
-                    { headers: { 'Content-Type': 'application/json' } },
-                    { timeout: 1000 * 60 * 2 })
-                    .then((res) => {
-                        this.loading = false;
-                        that.tableData = res.data.NotificationRate;
-                        that.notificationRateTableData = res.data.notificationRateBrandStatistics;
-                        /*var brands =that.notificationRateTableData.fo;*/
-                        var chartsBrands = [];
-                        var chartsRates = [];
-                        that.notificationRateTableData.map((res) => {
-                            chartsBrands.push(res.brandName);
-                            chartsRates.push(res.notificationRate);
-                        })
-                        this.notificationRateStatisticsChart = echarts.init(document.getElementById('notificationRateStatistics'))
-                        this.notificationRateStatisticsChart.setOption({
-                            grid: [{
-                                top: 5,
-                                width: '90%',
-                                height: '100%',
-                                left: '1%',
-                                containLabel: true
-                            }],
-                            xAxis: [{
-                                type: 'category',
-                                data: chartsBrands,
-                                axisLabel: {
-                                    fontSize: 12,
-                                    color: '#000',
-                                    interval: 0,
-                                    textStyle: {
-                                        align: 'center',
-                                        baseline: 'middle'
-                                    }
-                                },
-                                splitLine: {
-                                    show: false
-                                },
-                            }],
-                            yAxis: [{
-                                show: false,
-                            }],
-                            series: [{
-                                type: 'bar',
-                                stack: 'chart',
-                                z: 3,
-                                label: {
-                                    show: true,
-                                    color: '#fff'
-                                },
-                                data: chartsRates
-                            }]
+            data = JSON.stringify(JSON.stringify(data));
+            var that = this;
+            axios.post(
+                ipaddress,
+                data,
+                { headers: { 'Content-Type': 'application/json' } },
+                { timeout: 1000 * 60 * 2 })
+                .then((res) => {
+                    this.loading = false;
+                    that.tableData = res.data.NotificationRate;
+                    that.notificationRateTableData = res.data.notificationRateBrandStatistics;
+                    /*var brands =that.notificationRateTableData.fo;*/
+                    var chartsBrands = [];
+                    var chartsRates = [];
+                    that.notificationRateTableData.map((res) => {
+                        chartsBrands.push(res.brandName);
+                        chartsRates.push(res.notificationRate);
+                    })
+                    this.notificationRateStatisticsChart = echarts.init(document.getElementById('notificationRateStatistics'))
+                    this.notificationRateStatisticsChart.setOption({
+                        grid: [{
+                            top: 5,
+                            width: '90%',
+                            height: '100%',
+                            left: '1%',
+                            containLabel: true
+                        }],
+                        xAxis: [{
+                            type: 'category',
+                            data: chartsBrands,
+                            axisLabel: {
+                                fontSize: 12,
+                                color: '#000',
+                                interval: 0,
+                                textStyle: {
+                                    align: 'center',
+                                    baseline: 'middle'
+                                }
+                            },
+                            splitLine: {
+                                show: false
+                            },
+                        }],
+                        yAxis: [{
+                            show: false,
+                        }],
+                        series: [{
+                            type: 'bar',
+                            stack: 'chart',
+                            z: 3,
+                            label: {
+                                show: true,
+                                color: '#fff'
+                            },
+                            data: chartsRates
+                        }]
 
-                        })
-                    }, (err) => {
-                        this.loading = false;
-                        that.tableData = []
-                    });       
+                    })
+                }, (err) => {
+                    this.loading = false;
+                    that.tableData = []
+                });
         },
         Export() {
             if (this.BrandName.length == 0) {
@@ -216,7 +214,7 @@ var EarlyWarningNotificationRatevm = new Vue({
             return '';
         },
         Statistics() {
-          
+
             this.currentPage = 1
             console.log(this.BrandName.length);
             if (this.BrandName.length == 0) {
@@ -252,7 +250,7 @@ var EarlyWarningNotificationRatevm = new Vue({
                 { headers: { 'Content-Type': 'application/json' } },
                 { timeout: 1000 * 60 * 2 })
                 .then((res) => {
-               
+
                     that.notificationRateTableData = res.data.notificationRateBrandStatistics;
                     /*var brands =that.notificationRateTableData.fo;*/
                     var chartsBrands = [];
@@ -304,7 +302,7 @@ var EarlyWarningNotificationRatevm = new Vue({
                     this.loading = false;
                     //that.tableData = []
                 });
-          
+
         },
         TimeSelection(id) {
             let usedTime = this.timeSlot[1] - this.timeSlot[0]; // 相差的毫秒数

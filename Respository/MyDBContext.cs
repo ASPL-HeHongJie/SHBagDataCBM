@@ -19,5 +19,7 @@ namespace Respository
         public DbSet<Area> Areas { get; set; }
 
         public DbSet<HisCheckDataAlarm> hisCheckDataAlarms { get; set; }
+
+        public DbSet<HistoricalAlarm> HistoricalAlarms { get; set; }
     }
 }

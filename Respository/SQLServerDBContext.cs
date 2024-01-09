@@ -59,5 +59,8 @@ namespace Respository
         public DbSet<EarlyWarningDetailRecord> EarlyWarningDetailRecords { get; set; }
         public DbSet<HistoricalEarlyWarning> HistoricalEarlyWarnings { get; set; }
         public DbSet<LoopGasTransmissionCapacity> LoopGasTransmissionCapacities { get; set; }
+        public DbSet<RealtimeAlarm> RealtimeAlarms { get; set; }
+
+
     }
 }

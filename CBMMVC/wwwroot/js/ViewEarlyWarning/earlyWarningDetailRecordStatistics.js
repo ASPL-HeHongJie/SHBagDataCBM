@@ -267,3 +267,5 @@ var EarlyWarningDetailRecordStatisticsvm = new Vue({
         },
     }
 })
+
+

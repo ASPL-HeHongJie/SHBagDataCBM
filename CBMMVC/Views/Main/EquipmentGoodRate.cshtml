@@ -43,7 +43,6 @@
                                 end-placeholder="结束日期"
                                 :default-time="['00:00:00', '23:59:59']"
                                 style="width: 18.761vw"
-                                @@change="TimeSelection($event)"
                                 :plain="true">
                 </el-date-picker>
             </div>
@@ -55,53 +54,87 @@
         </div>
     </div>
     <div class="formview">
-            <div></div>
-            <el-dialog title="计算过程"
-                   :visible.sync="dialogVisible"
-                   :close-on-click-modal="false"
-                   width="56%"
-                   style="height: 50%; margin-top: 20vh ">
-            <div>
-                <div>
-                    <div>计算公式</div>
-                    <div style="font-weight: bold;">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;设备月完好率=(∑(每台设备在本月中完灯的小时数)/在用设备总台数*本月小时总数)*100%
+
+       
+        <div class="contentBox" style="height: 99%;">
+            <div class="" style="width: 48%;">
+                <div class="left">
+                    <div class="earlywarningtitle" style="margin-bottom: 10px;">
+                       设备完好率
                     </div>
-                </div>
-                <div>
-                    <div>公式解析</div>
-                    <div>
-                        <div style="font-weight: bold;">1、每台设备在本月中完好时间（按小时计算）：</div>
-                        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;若该设备在本月中未发生过不满足完好标准的情况，则该数值应为本月的实际小时数；若该设备在本月中发生过不满足完好标准的情况（例如：发生故障），持续情况为x天，则该数值为（30-x）*24小时。</div>
-                    </div>
-                    <div>
-                        <div style="font-weight: bold;">2、∑每台设备在本月中完好时间（按小时计算）：</div>
-                        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该数值为把所有设备的本月完好小时数进行相加得出的总和。</div>
-                    </div>
-                    <div>
-                        <div style="font-weight: bold;">3、A类报警时间：</div>
-                        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每台设备发生A类报警持续的时间。</div>
-                    </div>
-                    <div>
-                        <div style="font-weight: bold;"> 4、Daniel品牌A类报警明细：</div>
-                        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S600流量计算机报警,S600流量计算机过程量报警,S600流量计算机系统报警,S600流量计算机A类报警,S600冷启动,S600热启动,S600 RAM故障报警,S600 ROM故障报警,累积量初始化为0,部分累积量错误,累积量寄存器冲突,组态参数更改,	累积量达到最大值初始化,累积量达到UDR,流速值采采用键盘值,超声波故障报警,流量计算机断电模式,流量计算机维护模式,组分值采用键盘值,低密度报警。</div>
-                    </div>
-                    <div>
-                        <div style="font-weight: bold;">  5、Elster品牌A类报警明细：</div>
-                        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶</div>
-                    </div>
-                    <div>
-                        <div style="font-weight: bold;"> 6、SICK品牌A类报警明细：</div>
-                        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶</div>
-                    </div>
-                    <div>
-                        <div style="font-weight: bold;">7、Weise品牌A类报警明细：</div>
-                        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;压力变送器离线、温度变送器离线、流量计通讯失败、色谱仪通讯失败</div>
+                    <div style="width: 100%; padding: 0px 10px 10px 10px; box-sizing: border-box; ">
+                        <el-table :data="tableData" height="700" border style="width: 100%">
+                            <el-table-column prop="company" label="公司" align="center">
+                            </el-table-column>
+                            <el-table-column prop="rate" label="设备完好率" align="center">
+                            </el-table-column>
+                        </el-table>
                     </div>
                 </div>
             </div>
-        </el-dialog>
+            <div class="" style="width: 48%;">
+                <div class="left">
+                    <div class="earlywarningtitle" style="margin-bottom: 10px;">
+                        设备完好率趋势
+                    </div>
+                    <div style="margin-bottom: 10px; width: 100% ;height:700px">
+                        <div style="height: 100%">
+                            <div class="echt" id="equipmentGoodRatechert" ref="chert"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <el-dialog title="计算过程"
+               :visible.sync="dialogVisible"
+               :close-on-click-modal="false"
+               width="56%"
+               style="height: 50%; margin-top: 20vh ">
+        <div>
+            <div>
+                <div>计算公式</div>
+                <div style="font-weight: bold;">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;设备月完好率=(∑(每台设备在本月中完灯的小时数)/在用设备总台数*本月小时总数)*100%
+                </div>
+            </div>
+            <div>
+                <div>公式解析</div>
+                <div>
+                    <div style="font-weight: bold;">1、每台设备在本月中完好时间（按小时计算）：</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;若该设备在本月中未发生过不满足完好标准的情况，则该数值应为本月的实际小时数；若该设备在本月中发生过不满足完好标准的情况（例如：发生故障），持续情况为x天，则该数值为（30-x）*24小时。</div>
+                </div>
+                <div>
+                    <div style="font-weight: bold;">2、∑每台设备在本月中完好时间（按小时计算）：</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该数值为把所有设备的本月完好小时数进行相加得出的总和。</div>
+                </div>
+                <div>
+                    <div style="font-weight: bold;">3、A类报警时间：</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每台设备发生A类报警持续的时间。</div>
+                </div>
+                <div>
+                    <div style="font-weight: bold;"> 4、Daniel品牌A类报警明细：</div>
+                    <div>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;流量计算机报警,流量计算机过程报警,流量计算机系统报警,冷启动,热启动,流量计算机RAM故障报警,流量计算机ROM故障报警,累积量初始化为0,部分累积量错误,累积量寄存器冲突,组态参数更改,累积量达到最大值初始化,超声波故障报警,流量计算机维护模式。
+                    </div>
+                </div>
+                <div>
+                    <div style="font-weight: bold;">  5、Elster品牌A类报警明细：</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;流量计与流量计算机通讯报警、压力变送器通讯故障、温度变送器通讯故障。</div>
+                </div>
+                <div>
+                    <div style="font-weight: bold;"> 6、SICK品牌A类报警明细：</div>
+                    <div>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;温度变送器通讯故障,压力变送器通讯故障,色谱分析仪器与流量计算机通,流量计与流量计算机通讯报警,流量计计量失败报警,声道1状态,声道2状态,声道3状态,声道4状态。
+                    </div>
+                </div>
+                <div>
+                    <div style="font-weight: bold;">7、Weise品牌A类报警明细：</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;压力变送器通讯故障、温度变送器通讯故障、色谱分析仪器与流量计算机通、流量计与流量计算机通讯报警。</div>
+                </div>
+            </div>
+        </div>
+    </el-dialog>
 </div>
 <script>
     var area =@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Area))
