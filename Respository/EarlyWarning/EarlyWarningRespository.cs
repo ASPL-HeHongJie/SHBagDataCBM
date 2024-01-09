@@ -975,7 +975,7 @@ namespace Respository
             Dictionary<string, object> earlyWarningNumber = new Dictionary<string, object>();
             earlyWarningNumber["EarlyWarningNumber"] = earlyWarnings.Where(item => item.Status == "存在预警").Count();
             earlyWarningNumber["NormalNumber"] = earlyWarnings.Where(item => item.Status == "运行正常").Count();
-            earlyWarningNumber["CommunicationBadNumber"] = earlyWarnings.Where(item => item.Status == "通讯失败" ).Count();
+            earlyWarningNumber["CommunicationBadNumber"] = earlyWarnings.Where(item => item.Status == "通讯失败").Count();
             #endregion
             #region 告知率
             var records = (from record in _context.EarlyWarningDetailRecords.Where(record => DateTime.Compare(record.BeginDate, beginDateTime) >= 0
@@ -1757,14 +1757,24 @@ namespace Respository
                                 SceneSolution = accuracy.SceneSolution,
                                 FlowmeterManufacturer = loop.FlowmeterManufacturer
                             };
-            return (from statistic in accuracys
-                    group statistic by statistic.FlowmeterManufacturer into g
+            var statistic = from s in accuracys
+                            group s by s.FlowmeterManufacturer into g
+                            select new EarlyWarningAccuracyStatistics
+                            {
+                                Description = g.Key,
+                                CorrectNumber = g.Sum(s => s.KnowledgeSolution == s.SceneSolution ? 1 : 0),
+                                ErrorNumber = g.Sum(s => s.KnowledgeSolution != s.SceneSolution ? 1 : 0),
+                                Accuracy = g.Sum(s => s.KnowledgeSolution == s.SceneSolution ? 1 : 0) / (double)g.Count() * 100
+                            };
+            return (from l in _context.StationLoops.GroupBy(g => g.FlowmeterManufacturer).Select(s => s.Key).ToList()
+                    join s in statistic on l equals s.Description into temp
+                    from tt in temp.DefaultIfEmpty()
                     select new EarlyWarningAccuracyStatistics
                     {
-                        Description = g.Key,
-                        CorrectNumber = g.Sum(s => s.KnowledgeSolution == s.SceneSolution ? 1 : 0),
-                        ErrorNumber = g.Sum(s => s.KnowledgeSolution != s.SceneSolution ? 1 : 0),
-                        Accuracy = g.Sum(s => s.KnowledgeSolution == s.SceneSolution ? 1 : 0) / (double)g.Count() * 100
+                        Description = l,
+                        CorrectNumber = tt != null ? tt.CorrectNumber : -1,
+                        ErrorNumber = tt != null ? tt.ErrorNumber : -1,
+                        Accuracy = tt != null ? tt.Accuracy : 100
                     }).ToList();
         }
     }
