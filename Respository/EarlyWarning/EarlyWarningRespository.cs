@@ -939,10 +939,10 @@ namespace Respository
             return NotificationRateData;
         }
 
-        public Dictionary<string, object> BigDataAnalysisOverview(DateTime beginDateTime, DateTime endDateTime)
+        public Dictionary<string, object> BigDataAnalysisOverview(DateTime beginDateTime, DateTime endDateTime, List<int> companyIDs)
         {
-            Dictionary<string, object> OverviewRateData = new Dictionary<string, object>();
-            List<EarlyWarningNotificationRate> earlyWarningNotificationRates = new List<EarlyWarningNotificationRate>();
+            Dictionary<string, object> OverviewData = new Dictionary<string, object>();
+
             #region 实时预警
             var earlyWarnings = (from warning in _context.EarlyWarnings
                                  join loop in _context.StationLoops
@@ -951,7 +951,7 @@ namespace Respository
                                  on loop.StationID equals station.ID
                                  join area in _context.Areas
                                  on station.AreaID equals area.ID
-                                 join company in _context.CompanyInfos
+                                 join company in _context.CompanyInfos.Where(item=> companyIDs.Contains(item.ID))
                                  on area.CompanyID equals company.ID
                                  join loopGasTransmission in _context.LoopGasTransmissionCapacities
                                  on loop.ID equals loopGasTransmission.LoopID into matches
@@ -977,7 +977,8 @@ namespace Respository
             earlyWarningNumber["NormalNumber"] = earlyWarnings.Where(item => item.Status == "运行正常").Count();
             earlyWarningNumber["CommunicationBadNumber"] = earlyWarnings.Where(item => item.Status == "通讯失败").Count();
             #endregion
-            #region 告知率
+            #region 预警告知率
+            List<EarlyWarningNotificationRate> earlyWarningNotificationRates = new List<EarlyWarningNotificationRate>();
             var records = (from record in _context.EarlyWarningDetailRecords.Where(record => DateTime.Compare(record.BeginDate, beginDateTime) >= 0
                                      && DateTime.Compare(record.EndDate, endDateTime) <= 0)
                            join loop in _context.StationLoops.Where(loop => loop.FlowmeterTypeID == 1)
@@ -1016,7 +1017,7 @@ namespace Respository
                                        on loop.StationID equals station.ID
                                        join area in _context.Areas
                                        on station.AreaID equals area.ID
-                                       join company in _context.CompanyInfos
+                                       join company in _context.CompanyInfos.Where(item => companyIDs.Contains(item.ID))
                                        on area.CompanyID equals company.ID
                                        join collector in _context.Collectors
                                        on station.CollectorID equals collector.ID
@@ -1675,14 +1676,219 @@ namespace Respository
                                                        BrandName = rateGroup.Key.BrandName,
                                                        NotificationRate = (int)rateGroup.Average(rete => rete.NotificationRate)
                                                    }).ToList();
-
+            NotificationRateBrandStatistics NotificationRateStatistics = new NotificationRateBrandStatistics();
+            NotificationRateStatistics.BrandName = "汇总"; NotificationRateStatistics.NotificationRate = (int)notificationRateBrandStatistics.Select(x => x.NotificationRate).Average();
+            notificationRateBrandStatistics.Insert(0,NotificationRateStatistics);
             #endregion
-            OverviewRateData["EarlyWarnings"] = earlyWarnings;
-            OverviewRateData["EarlyWarningStatistics"] = earlyWarningNumber;
-            OverviewRateData["EarlyWarningNotificationRateBrandStatistics"] = notificationRateBrandStatistics;
-            return OverviewRateData;
-        }
+            #region 建议告知率
+            var historicalEarlyWarnings = _context.HistoricalEarlyWarnings.Where(item => DateTime.Compare(item.BeginDateTime, beginDateTime) >= 0
+                                      && DateTime.Compare(item.BeginDateTime, endDateTime) <= 0);
+            var accuracys = (from accuracy in historicalEarlyWarnings
+                             join loop in _context.StationLoops
+                             on accuracy.LoopID equals loop.ID
+                             join station in _context.StationInfos
+                             on loop.StationID equals station.ID
+                             join area in _context.Areas
+                             on station.AreaID equals area.ID
+                             join company in _context.CompanyInfos.Where(item => companyIDs.Contains(item.ID))
+                             on area.CompanyID equals company.ID
+                             select new HistoricalEarlyWarning
+                             {
+                                 ID = accuracy.ID,
+                                 LoopID = accuracy.LoopID,
+                                 KnowledgeSolution = accuracy.KnowledgeSolution,
+                                 SceneSolution = accuracy.SceneSolution,
+                                 FlowmeterManufacturer = loop.FlowmeterManufacturer
+                             }).ToList();
 
+            var solutionAccuracyStatistics = (from statistic in accuracys
+                                              group statistic by statistic.FlowmeterManufacturer into g
+                                              select new EarlyWarningAccuracyStatistics
+                                              {
+                                                  Description = g.Key,
+                                                  CorrectNumber = g.Sum(s => s.KnowledgeSolution == s.SceneSolution ? 1 : 0),
+                                                  ErrorNumber = g.Sum(s => s.KnowledgeSolution != s.SceneSolution ? 1 : 0),
+                                                  Accuracy = (g.Sum(s => s.KnowledgeSolution == s.SceneSolution ? 1.0 : 0) / g.Count()) * 100
+                                              }).ToList();
+            EarlyWarningAccuracyStatistics earlyWarningAccuracyStatistics = new EarlyWarningAccuracyStatistics();
+            earlyWarningAccuracyStatistics.Description = "汇总"; earlyWarningAccuracyStatistics.Accuracy = solutionAccuracyStatistics.Select(x => x.Accuracy).Average();
+            solutionAccuracyStatistics.Insert(0,earlyWarningAccuracyStatistics);
+            #endregion
+            #region 实时的A类报警统计
+            List<string> Alarms = new List<string> { "压力变送器通讯故障", "温度变送器通讯故障", "色谱分析仪器与流量计算机通讯", "流量计与流量计算机通讯报警", "压力变送器通讯故障", "流量计计量失败报警", "声道1状态", "声道2状态", "声道3状态", "声道4状态", "流量计算机报警", "流量计算机过程报警", "流量计算机系统报警", "冷启动", "热启动", "流量计算机RAM故障报警", "流量计算机ROM故障报警", "累积量初始化为0", "部分累积量错误", "累积量寄存器冲突", "组态参数更改", "累积量达到最大值初始化", "超声波故障报警", "流量计算机维护模式" };
+            var alarms = (from alarm in _context.RealtimeAlarms.Where(item => item.Status != "OK")
+                          select new RealtimeAlarm
+                          {
+                              CompanyAbbrName = alarm.Area.Split(",", StringSplitOptions.None)[2],
+                              AlarmDescription = alarm.Description.Split("-", StringSplitOptions.None)[2].Trim(),
+                          }).ToList();
+            alarms = (from alarm in alarms.Where(item => Alarms.Contains(item.AlarmDescription))
+                      join company in _context.CompanyInfos.Where(item => companyIDs.Contains(item.ID))
+                      on alarm.CompanyAbbrName equals company.AbbrName
+                      select new RealtimeAlarm
+                      {
+                          CompanyAbbrName = company.Name,
+                          AlarmDescription = alarm.AlarmDescription
+                      }).ToList();
+            List<AlarmCount> alarmcount = (from alarm in alarms
+                                           group alarm by alarm.CompanyAbbrName into g
+                                           select new AlarmCount
+                                           {
+                                               AlarmArea = g.Key,
+                                               Count = g.Count(),
+                                           }).ToList();
+            #endregion
+            #region 设备完好率统计
+            double span = endDateTime.Subtract(beginDateTime).Duration().TotalSeconds;
+            List<string> IPAddresies = _context.Collectors.Select(x => x.IPAddress).ToList();
+            List<string> CompaniesAbbrNames = _context.CompanyInfos.Where(x => companyIDs.Contains(x.ID)).Select(x => x.AbbrName).ToList();
+            List<HistoricalAlarm> hisAlarm = new List<HistoricalAlarm>();
+            foreach (string ip in IPAddresies)
+            {
+                IConfiguration Configuration = new ConfigurationBuilder().Add(new Microsoft.Extensions.Configuration.Json.JsonConfigurationSource { Path = "appsettings.json", ReloadOnChange = true }).Build();
+                string connectionString = Configuration.GetConnectionString("CollectorSQLConnection").Replace("@IPAddress@", ip);
+                using (var mycontext = new MyDBContext(connectionString))
+                {
+                    List<HistoricalAlarm> tempalarms = (from hisalarm in mycontext.HistoricalAlarms.Where(hisalarm => DateTime.Compare(hisalarm.StartTime, beginDateTime) >= 0
+                                           && DateTime.Compare(hisalarm.EndTime, endDateTime) <= 0
+                                           && hisalarm.MessageType.Contains("ALARM"))
+                                                        select new HistoricalAlarm
+                                                        {
+                                                            AlarmSpan = hisalarm.EndTime.Subtract(hisalarm.StartTime).Duration().TotalSeconds,
+                                                            StartTime = hisalarm.StartTime,
+                                                            EndTime = hisalarm.EndTime,
+                                                            Description = hisalarm.Description,
+                                                            Area = hisalarm.Area,
+                                                            CompanyAbbrName = hisalarm.Area.Split(",", StringSplitOptions.None)[2],
+                                                            AlarmDescription = hisalarm.Description.Split("-", StringSplitOptions.None)[2].Trim(),
+                                                        }).ToList();
+
+                    hisAlarm.AddRange(tempalarms);
+
+                }
+            }
+            hisAlarm = hisAlarm.Where(x => Alarms.Contains(x.AlarmDescription) && CompaniesAbbrNames.Contains(x.CompanyAbbrName)).Distinct().ToList();
+            var alarmStatistic = (from alarm in hisAlarm
+                                  group alarm by alarm.CompanyAbbrName into groupdata
+                                  select new AlarmCount
+                                  {
+                                      AlarmArea = groupdata.Key,
+                                      AlarmSpan = groupdata.Sum(x => x.AlarmSpan)
+                                  }).ToList();
+            List<Avalability> avalabilities = new List<Avalability>();
+
+            foreach (CompanyInfo companyInfo in _context.CompanyInfos.Where(item => companyIDs.Contains(item.ID)).ToList())
+            {
+                Avalability tempavalability = new Avalability();
+                tempavalability.Company = companyInfo.Name;
+                tempavalability.Rate = 100;
+                foreach (AlarmCount count in alarmStatistic)
+                {
+                    if (count.AlarmArea == companyInfo.AbbrName)
+                    {
+                        int Loopcount = (from loop in _context.StationLoops
+                                         join station in _context.StationInfos
+                                         on loop.StationID equals station.ID
+                                         join area in _context.Areas
+                                         on station.AreaID equals area.ID
+                                         join company in _context.CompanyInfos.Where(x => x.AbbrName == companyInfo.AbbrName)
+                                         on area.CompanyID equals company.ID
+                                         select loop).ToList().Count();
+                        tempavalability.Rate = decimal.Round(Convert.ToDecimal(((span * Loopcount) == 0 ? 100 : ((span * Loopcount - count.AlarmSpan.Value) / (span * Loopcount)) * 100)), 2);
+                    }
+                }
+                avalabilities.Add(tempavalability);
+            }
+            Avalability avalability = new Avalability();
+            avalability.Company = "汇总"; avalability.Rate = decimal.Round(Convert.ToDecimal(avalabilities.Select(x => x.Rate).Average()));
+            avalabilities.Insert(0, avalability);
+            #endregion
+            OverviewData["EarlyWarnings"] = earlyWarnings.OrderBy(x => x.StatusNumber);
+            OverviewData["EarlyWarningStatistics"] = earlyWarningNumber;
+            OverviewData["EarlyWarningNotificationRateBrandStatistics"] = notificationRateBrandStatistics.OrderBy(x => x.BrandName);
+            OverviewData["SolutionNotificationRateBrandStatistics"] = solutionAccuracyStatistics.OrderBy(x => x.Description);
+            OverviewData["RealTimeAlarmStatistics"] = alarmcount;
+            OverviewData["EquipmentAvalability"] = avalabilities;
+            return OverviewData;
+        }
+        public Dictionary<string, object> GetEquipmentStatisticAvalability(List<int> CompanyIDs, DateTime beginDateTime, DateTime endDateTime)
+        {
+            double span = endDateTime.Subtract(beginDateTime).Duration().TotalSeconds;
+            Dictionary<string, object> data = new Dictionary<string, object>();
+            List<string> Alarms = new List<string> { "压力变送器通讯故障", "温度变送器通讯故障", "色谱分析仪器与流量计算机通讯", "流量计与流量计算机通讯报警", "压力变送器通讯故障", "流量计计量失败报警", "声道1状态", "声道2状态", "声道3状态", "声道4状态", "流量计算机报警", "流量计算机过程报警", "流量计算机系统报警", "冷启动", "热启动", "流量计算机RAM故障报警", "流量计算机ROM故障报警", "累积量初始化为0", "部分累积量错误", "累积量寄存器冲突", "组态参数更改", "累积量达到最大值初始化", "超声波故障报警", "流量计算机维护模式" };
+            List<string> IPAddresies = _context.Collectors.Select(x => x.IPAddress).ToList();
+            List<string> CompaniesAbbrNames = _context.CompanyInfos.Where(x => CompanyIDs.Contains(x.ID)).Select(x => x.AbbrName).ToList();
+            List<HistoricalAlarm> hisAlarm = new List<HistoricalAlarm>();
+            foreach (string ip in IPAddresies)
+            {
+                IConfiguration Configuration = new ConfigurationBuilder().Add(new Microsoft.Extensions.Configuration.Json.JsonConfigurationSource { Path = "appsettings.json", ReloadOnChange = true }).Build();
+                string connectionString = Configuration.GetConnectionString("CollectorSQLConnection").Replace("@IPAddress@", ip);
+                using (var mycontext = new MyDBContext(connectionString))
+                {
+                    List<HistoricalAlarm> tempalarms = (from hisalarm in mycontext.HistoricalAlarms.Where(hisalarm => DateTime.Compare(hisalarm.StartTime, beginDateTime) >= 0
+                                           && DateTime.Compare(hisalarm.EndTime, endDateTime) <= 0
+                                           && hisalarm.MessageType.Contains("ALARM"))
+                                                        select new HistoricalAlarm
+                                                        {
+                                                            AlarmSpan = hisalarm.EndTime.Subtract(hisalarm.StartTime).Duration().TotalSeconds,
+                                                            StartTime = hisalarm.StartTime,
+                                                            EndTime = hisalarm.EndTime,
+                                                            Description = hisalarm.Description,
+                                                            Area = hisalarm.Area,
+                                                            CompanyAbbrName = hisalarm.Area.Split(",", StringSplitOptions.None)[2],
+                                                            AlarmDescription = hisalarm.Description.Split("-", StringSplitOptions.None)[2].Trim(),
+                                                        }).ToList();
+
+                    hisAlarm.AddRange(tempalarms);
+
+                }
+            }
+            hisAlarm = hisAlarm.Where(x => Alarms.Contains(x.AlarmDescription) && CompaniesAbbrNames.Contains(x.CompanyAbbrName)).Distinct().ToList();
+            var alarmStatistic = (from alarm in hisAlarm
+                                  group alarm by alarm.CompanyAbbrName into groupdata
+                                  select new AlarmCount
+                                  {
+                                      AlarmArea = groupdata.Key,
+                                      AlarmSpan = groupdata.Sum(x => x.AlarmSpan)
+                                  }).ToList();
+            List<Avalability> avalabilities  = new List<Avalability>();
+
+            foreach (CompanyInfo companyInfo in _context.CompanyInfos.Where(item => CompanyIDs.Contains(item.ID)).ToList())
+            {
+                Avalability tempavalability  = new Avalability();
+                tempavalability.Company = companyInfo.Name;
+                tempavalability.Rate = 100;
+                foreach (AlarmCount count in alarmStatistic)
+                {
+                    if (count.AlarmArea == companyInfo.AbbrName)
+                    {
+                        int Loopcount = (from loop in _context.StationLoops
+                                         join station in _context.StationInfos
+                                         on loop.StationID equals station.ID
+                                         join area in _context.Areas
+                                         on station.AreaID equals area.ID
+                                         join company in _context.CompanyInfos.Where(x => x.AbbrName== companyInfo.AbbrName)
+                                         on area.CompanyID equals company.ID
+                                         select loop).ToList().Count();
+                        tempavalability.Rate = decimal.Round(Convert.ToDecimal(((span * Loopcount) == 0 ? 100 : ((span * Loopcount - count.AlarmSpan.Value) / (span * Loopcount)) * 100)),2);
+                    }
+                }
+                avalabilities.Add(tempavalability);
+            }
+            Avalability avalability = new Avalability();
+            avalability.Company = "汇总"; avalability.Rate = decimal.Round(Convert.ToDecimal(avalabilities.Select(x => x.Rate).Average()));
+            avalabilities.Insert(0,avalability);
+            //var EquipmentAvalability = (from company in _context.CompanyInfos.Where(item => CompanyIDs.Contains(item.ID))
+            //                            join alarm in alarmStatistic
+            //                             on company.AbbrName equals alarm.AlarmArea into matches
+            //                            from alarm in matches.DefaultIfEmpty()
+            //                            select new Avalability
+            //                            {
+            //                                Company = company.Name,
+            //                                //Rate = 
+            data["EquipmentAvalability"] = avalabilities;
+            return data;
+        }
         public List<HistoricalEarlyWarning> GetEarlyWarningAccuracys(List<int> loopIDs, DateTime beginDateTime, DateTime endDateTime)
         {
             var historicalEarlyWarnings = _context.HistoricalEarlyWarnings.Where(x => loopIDs.Contains(x.LoopID)

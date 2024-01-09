@@ -1,8 +1,9 @@
 ﻿var BigDataAnalysisOverviewvm = new Vue({
     el: '#BigDataAnalysisOverview',
     data: {
+        datas: [],  // 公司遍历的内容
         loading: false,
-        EarlyWarnings:[],
+        EarlyWarnings: [],
         IsEarlyWarningNumber: 0,
         IsCommunicationBadNumber: 0,
         IsNormalNumber: 0,
@@ -14,26 +15,44 @@
         direction: 'rtl',
         form: {
             staTime: '',
-            endTime: ''
+            endTime: '',
+            companyIDs: []
         }
     },
     created() {
+        function fall(arr) { return [].concat(...arr.map(x => Array.isArray(x) ? fall(x) : x)) }
+        this.datas = fall(companies.map((res) => { return [{ Name: res.Name, ID: res.ID }] }))
+        this.datas.map((res) => {
+            this.form.companyIDs.push(res.ID);
+        })
         var myDate = new Date();  // 当前时间
         var preDate = new Date(new Date(myDate.getTime() - 24 * 60 * 60 * 1000 * 7).toLocaleDateString()); // 前一天时间00:00:00
         this.form.staTime = preDate;
         this.form.endTime = myDate;
+
+        this.loading = true;
         this.Refresh();
-    },
-    mounted() {
-        //this.getChartEarly();
-        this.getChartStatistics();
-        this.getChartPieSta();
-        this.getChartEquAva();
+        if (this.intervalId != null) {
+            return;
+        }
+        ////计时器为空，操作
+        this.intervalId = setInterval(() => {
+            var myDate = new Date();  // 当前时间
+            var preDate = new Date(new Date(myDate.getTime() - 24 * 60 * 60 * 1000 * 7).toLocaleDateString()); // 前一天时间00:00:00
+            this.form.staTime = preDate;
+            this.form.endTime = myDate;
+            this.datas.map((res) => {
+                this.form.companyIDs.push(res.ID);
+            })
+            this.Refresh();
+
+        }, 5 * 60 * 1000);
     },
     methods: {
         Refresh() {
-            this.loading = true;
+
             var data = {
+                CompanyIDs: this.form.companyIDs,
                 BeginDateTime: this.form.staTime,
                 EndDateTime: this.form.endTime,
             }
@@ -47,13 +66,15 @@
                 { timeout: 1000 * 60 * 2 })
                 .then((res) => {
                     this.loading = false;
+                    console.log(res.data);
                     that.IsEarlyWarningNumber = res.data.EarlyWarningStatistics.EarlyWarningNumber;
                     that.IsCommunicationBadNumber = res.data.EarlyWarningStatistics.CommunicationBadNumber;
                     that.IsNormalNumber = res.data.EarlyWarningStatistics.NormalNumber;
                     that.EarlyWarnings = res.data.EarlyWarnings;
                     that.getChartEarly(res.data.EarlyWarningNotificationRateBrandStatistics)
-
-                       
+                    that.getChartStatistics(res.data.SolutionNotificationRateBrandStatistics);
+                    that.getChartPieSta(res.data.RealTimeAlarmStatistics);
+                    that.getChartEquAva(res.data.EquipmentAvalability);
                 }, (err) => {
                     this.loading = false;
                 }
@@ -74,7 +95,7 @@
                     text: '预警告知率',
                     textStyle: {
                         color: '#2AFFFF',
-                        fontSize: 14
+                        fontSize: 15
                     }
                 },
                 tooltip: {
@@ -160,14 +181,21 @@
             };
             this.chartsEarly.setOption(option);
         },
-        getChartStatistics() {
+        getChartStatistics(chartdata) {
+            var chartsBrands = [];
+            var chartsRates = [];
+            chartdata.map((res) => {
+                chartsBrands.push(res.description);
+                chartsRates.push(res.accuracy);
+            })
+
             this.chartsStatistics = echarts.init(document.getElementById("echStat"));
             const option = {
                 title: {
-                    text: '统计',
+                    text: '维护建议统计',
                     textStyle: {
                         color: '#2AFFFF',
-                        fontSize: 14
+                        fontSize: 15
                     }
                 },
                 tooltip: {
@@ -188,7 +216,7 @@
                     axisLabel: {
                         color: '#2AFFFF'
                     },
-                    data: ['指定量', '完成量', '计划量', '单日指标']
+                    data: chartsBrands
                 }],
                 yAxis: [{
                     type: 'value',
@@ -207,7 +235,7 @@
                     label: {
                         show: true,
                         position: 'top',
-                        color: '#707070',
+                        color: '#FFF',
                         backgroundColor: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                             offset: 0,
                             color: 'rgba(102, 125, 182, 1)',
@@ -232,24 +260,24 @@
                         },
                         ]),
                     },
-                    data: [20, 30, 10, 30]
+                    data: chartsRates
                 },]
             };
             this.chartsStatistics.setOption(option);
         },
-        getChartPieSta() {
+        getChartPieSta(chartdata) {
+            var data = chartdata.map((rec) => {
+                return { value: rec.count, name: rec.alarmArea }
+            })
             this.chartsPieStatistics = echarts.init(document.getElementById("echPieStat"));
             const option = {
                 title: {
-                    text: 'Referer of a Website',
-                    subtext: 'Fake Data',
+                    text: '公司实时报警数量统计',
                     textStyle: {
-                        color: '#2AFFFF'
-                    },
-                    subtextStyle: {
-                        color: '#2AFEDE'
-                    },
-                },
+                        color: '#2AFFFF',
+                        fontSize: 15
+                    }
+                }, 
                 tooltip: {
                     trigger: 'item'
                 },
@@ -260,30 +288,10 @@
                     }
                 },
                 series: [{
-                    name: 'Access From',
+                    name: '报警数量',
                     type: 'pie',
                     radius: '50%',
-                    data: [{
-                        value: 1048,
-                        name: 'Search Engine'
-                    },
-                    {
-                        value: 735,
-                        name: 'Direct'
-                    },
-                    {
-                        value: 580,
-                        name: 'Email'
-                    },
-                    {
-                        value: 484,
-                        name: 'Union Ads'
-                    },
-                    {
-                        value: 300,
-                        name: 'Video Ads'
-                    }
-                    ],
+                    data: data,
                     emphasis: {
                         itemStyle: {
                             shadowBlur: 10,
@@ -295,14 +303,20 @@
             }
             this.chartsPieStatistics.setOption(option);
         },
-        getChartEquAva() {
+        getChartEquAva(chartdata) {
+            var chartsCompanies = [];
+            var chartsRates = [];
+            chartdata.map((res) => {
+                chartsCompanies.push(res.company);
+                chartsRates.push(res.rate);
+            })
             this.chartsEquAva = echarts.init(document.getElementById("echPieEquAva"));
             const option = {
                 title: {
-                    text: '设备完好率',
+                    text: '完好率',
                     textStyle: {
                         color: '#2AFFFF',
-                        fontSize: 14
+                        fontSize: 15
                     }
                 },
                 tooltip: {
@@ -323,7 +337,7 @@
                     axisLabel: {
                         color: '#2AFFFF'
                     },
-                    data: ['指定量', '完成量', '计划量', '单日指标']
+                    data: chartsCompanies
                 }],
                 yAxis: [{
                     type: 'value',
@@ -367,7 +381,7 @@
                         },
                         ]),
                     },
-                    data: [20, 30, 10, 30]
+                    data: chartsRates
                 },]
             };
             this.chartsEquAva.setOption(option);

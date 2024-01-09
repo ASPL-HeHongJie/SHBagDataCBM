@@ -62,9 +62,14 @@ namespace Services
             return Task.Run(() => _earlyWarningRespository.GetEarlyWarningNotificationRate(collectDataTypeIDs, beginDateTime, endDateTime));
         }
 
-        public Task<Dictionary<string, object>> BigDataAnalysisOverview(DateTime beginDateTime, DateTime endDateTime)
+        public Task<Dictionary<string, object>> GetEquipmentStatisticAvalability(List<int> companyIDs, DateTime beginDateTime, DateTime endDateTime)
         {
-            return Task.Run(() => _earlyWarningRespository.BigDataAnalysisOverview(beginDateTime, endDateTime));
+            return Task.Run(() => _earlyWarningRespository.GetEquipmentStatisticAvalability(companyIDs, beginDateTime, endDateTime));
+        }
+
+        public Task<Dictionary<string, object>> BigDataAnalysisOverview(DateTime beginDateTime, DateTime endDateTime, List<int> companyIDs)
+        {
+            return Task.Run(() => _earlyWarningRespository.BigDataAnalysisOverview(beginDateTime, endDateTime, companyIDs));
         }
 
         public Task<byte[]> ExportEarlyWarningNotificationRate(List<EarlyWarningNotificationRate> notificationRate, List<NotificationRateBrandStatistics> statisticsList, string[] columnNames, string templatePath, string imagePath, int startRowFrom = 2, bool isShowSlNo = false)
@@ -80,10 +85,6 @@ namespace Services
                 using (ExcelPackage package = new ExcelPackage(existingFile))
                 {
                     ExcelWorksheet workSheet = package.Workbook.Worksheets[0];
-
-
-
-
                     #region 统计
 
                     //统计是否显示行编号
@@ -129,7 +130,6 @@ namespace Services
                         }
                     }
                     #endregion
-
                     #region 详细
 
                     //是否显示行编号
@@ -176,8 +176,6 @@ namespace Services
                         }
                     }
                     #endregion
-
-
                     Bitmap picture1 = new Bitmap(imagePath);
                     ExcelPicture picture = workSheet.Drawings.AddPicture("Image", picture1);//插入图片
                     picture.SetPosition(10, 1000);//设置图片的位置

@@ -83,6 +83,17 @@ namespace CBMMVC.Controllers
             if (brand == "Elster") { collectDataTypeIDs.Add(2); collectDataTypeIDs.Add(7); collectDataTypeIDs.Add(10); collectDataTypeIDs.Add(12); }
             return await _earlyWarningService.GetEarlyWarningDetailRecordByBrandStatistics(collectDataTypeIDs, beginDateTime, endDateTime, CompanyIDs);
         }
+
+        [HttpPost]
+        public async Task<Dictionary<string, object>> GetEquipmentStatisticAvalability([FromBody] string conditionString) 
+        {
+            Dictionary<string, object> condition = JsonConvert.DeserializeObject<Dictionary<string, object>>(conditionString);
+            List<int> CompanyIDs = JsonConvert.DeserializeObject<List<int>>(condition["CompanyIDs"].ToString());
+            DateTime beginDateTime = DateTime.Parse(condition["BeginDateTime"].ToString());
+            DateTime endDateTime = DateTime.Parse(condition["EndDateTime"].ToString());
+            return await _earlyWarningService.GetEquipmentStatisticAvalability(CompanyIDs, beginDateTime, endDateTime);
+        }
+
         [HttpPost]
         public async Task<Dictionary<string, object>> GetEarlyWarningNotificationRate([FromBody] string conditionString)
         {
@@ -138,15 +149,14 @@ namespace CBMMVC.Controllers
             return File(filecontent, _excelExportHelper.ExcelContentType, "预警告知率.xlsx");
         }
 
-
         [HttpPost]
         public async Task<Dictionary<string, object>> BigDataAnalysisOverview([FromBody] string conditionString)
         {
             Dictionary<string, object> condition = JsonConvert.DeserializeObject<Dictionary<string, object>>(conditionString);
             DateTime beginDateTime = DateTime.Parse(condition["BeginDateTime"].ToString());
             DateTime endDateTime = DateTime.Parse(condition["EndDateTime"].ToString());
-
-            return await _earlyWarningService.BigDataAnalysisOverview(beginDateTime, endDateTime);
+            List<int> CompanyIDs = JsonConvert.DeserializeObject<List<int>>(condition["CompanyIDs"].ToString());
+            return await _earlyWarningService.BigDataAnalysisOverview(beginDateTime, endDateTime, CompanyIDs);
         }
 
         [HttpPost]

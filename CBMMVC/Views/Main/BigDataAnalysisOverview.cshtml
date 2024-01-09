@@ -57,7 +57,7 @@
                                 </div>
                                 <div class="ragUpBg">
                                     <div class="ragBgNum">
-                                        {{IsNormalNumber}} 
+                                        {{IsNormalNumber}}
                                     </div>
                                     <div class="ragBgTxt ragBgTxtC">运行正常</div>
                                 </div>
@@ -109,20 +109,33 @@
         <el-drawer title="选择器" :visible.sync="drawer" :direction="direction" size="22%">
             <div style="padding: 0 40px;">
                 <el-form ref="form" :model="form" label-width="80px">
+                    <el-form-item label="公司">
+                        <el-select v-model="form.companyIDs"
+                                   multiple
+                                   collapse-tags
+                                   placeholder="请选择"
+                                   style="width: 11.417vw ">
+                            <el-option v-for="item in datas"
+                                       :key="item.ID"
+                                       :label="item.Name"
+                                       :value="item.ID">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
                     <el-form-item label="开始时间">
                         <el-date-picker v-model="form.staTime"
-                                        type="date"
+                                        type="datetime"
                                         placeholder="选择日期">
                         </el-date-picker>
                     </el-form-item>
                     <el-form-item label="结束时间">
                         <el-date-picker v-model="form.endTime"
-                                        type="date"
+                                        type="datetime"
                                         placeholder="选择日期">
                         </el-date-picker>
                     </el-form-item>
                 </el-form>
-                <el-button @@click="" type="primary" style="margin-left: 16px;">
+                <el-button @@click="Refresh" type="primary" style="margin-left: 16px;">
                     刷新
                 </el-button>
             </div>
@@ -133,4 +146,5 @@
     var area =@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Area))
     var isArea = '@ViewBag.IsArea';
     var company =@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Company));
+    var companies=@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Companies));
 </script>

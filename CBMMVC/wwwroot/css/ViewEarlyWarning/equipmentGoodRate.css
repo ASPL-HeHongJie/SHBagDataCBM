@@ -24,11 +24,53 @@
     display: flex;
     flex-direction: row;
 }
+.loading_color i {
+    color: #fff;
+}
+
+.el-loading-spinner .el-loading-text {
+    color: #fff !important;
+}
+
+.earlywarningtitle {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    box-sizing: border-box;
+    padding-left: 20px;
+    background-color: #0b5b7dff;
+    color: #FFF;
+    border-bottom: 1px solid;
+}
+.contentBox {
+    width: 100%;
+    height: calc(100vh - 178px);
+    display: flex;
+    justify-content: space-around;
+    padding-top: 20px;
+}
+
+.left {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    border: 1px solid #FFF;
+}
+
+.leftItem {
+    width: 49%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 10px;
+    /*  color: #FFF;*/
+}
 
 .echt {
-    width: 18.634vw;
-    height: 40.966vh;
-    margin-left: 1.042vw;
+    width: 40vw;
+    height: 100%;
+    /*margin-left: 1.042vw;*/
 }
 
     .echt > div > canvas {
