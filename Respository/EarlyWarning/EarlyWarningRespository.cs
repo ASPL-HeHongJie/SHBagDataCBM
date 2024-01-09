@@ -1963,14 +1963,24 @@ namespace Respository
                                 SceneSolution = accuracy.SceneSolution,
                                 FlowmeterManufacturer = loop.FlowmeterManufacturer
                             };
-            return (from statistic in accuracys
-                    group statistic by statistic.FlowmeterManufacturer into g
+            var statistic = from s in accuracys
+                            group s by s.FlowmeterManufacturer into g
+                            select new EarlyWarningAccuracyStatistics
+                            {
+                                Description = g.Key,
+                                CorrectNumber = g.Sum(s => s.KnowledgeSolution == s.SceneSolution ? 1 : 0),
+                                ErrorNumber = g.Sum(s => s.KnowledgeSolution != s.SceneSolution ? 1 : 0),
+                                Accuracy = g.Sum(s => s.KnowledgeSolution == s.SceneSolution ? 1 : 0) / (double)g.Count() * 100
+                            };
+            return (from l in _context.StationLoops.GroupBy(g => g.FlowmeterManufacturer).Select(s => s.Key).ToList()
+                    join s in statistic on l equals s.Description into temp
+                    from tt in temp.DefaultIfEmpty()
                     select new EarlyWarningAccuracyStatistics
                     {
-                        Description = g.Key,
-                        CorrectNumber = g.Sum(s => s.KnowledgeSolution == s.SceneSolution ? 1 : 0),
-                        ErrorNumber = g.Sum(s => s.KnowledgeSolution != s.SceneSolution ? 1 : 0),
-                        Accuracy = g.Sum(s => s.KnowledgeSolution == s.SceneSolution ? 1 : 0) / g.Count()
+                        Description = l,
+                        CorrectNumber = tt != null ? tt.CorrectNumber : -1,
+                        ErrorNumber = tt != null ? tt.ErrorNumber : -1,
+                        Accuracy = tt != null ? tt.Accuracy : 100
                     }).ToList();
         }
     }

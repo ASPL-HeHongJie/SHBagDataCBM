@@ -31,6 +31,6 @@ namespace Models
         public string Description { get; set; }
         public int CorrectNumber { get; set; }
         public int ErrorNumber { get; set; }
-        public double? Accuracy { get; set; }
+        public double Accuracy { get; set; }
     }
 }

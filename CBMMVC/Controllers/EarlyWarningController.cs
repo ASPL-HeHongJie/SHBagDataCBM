@@ -174,7 +174,7 @@ namespace CBMMVC.Controllers
         {
             Dictionary<string, object> condition = JsonConvert.DeserializeObject<Dictionary<string, object>>(conditionString);
             int id = JsonConvert.DeserializeObject<int>(condition["ID"].ToString());
-            string sceneSolution = condition["BeginDateTime"].ToString();
+            string sceneSolution = condition["SceneSolution"].ToString();
             return await _earlyWarningService.UpdateEarlyWarningAccuracy(id, sceneSolution);
         }
 

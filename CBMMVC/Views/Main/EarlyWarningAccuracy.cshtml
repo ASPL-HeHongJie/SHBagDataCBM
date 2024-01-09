@@ -96,9 +96,9 @@
     </div>
     <div class="formview">
         <el-table :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)" height="75.867vh" border :stripe="true" style="width: 98%; margin-left: 1%; margin-top: 1.032vh;text-align: center;" :row-class-name="tableRowClassName">
-            <el-table-column prop="beginDate" :formatter="dateFormat" label="开始时间">
+            <el-table-column prop="beginDateTime" :formatter="dateFormat" label="开始时间">
             </el-table-column>
-            <el-table-column prop="endDate" :formatter="dateFormat" label="结束时间">
+            <el-table-column prop="endDateTime" :formatter="dateFormat" label="结束时间">
             </el-table-column>
             <el-table-column prop="stationName" label="场站名称">
             </el-table-column>
@@ -106,6 +106,12 @@
             <el-table-column prop="flowmeterManufacturer" label="品牌"></el-table-column>
             <el-table-column prop="knowledgeSolution" label="专家建议"></el-table-column>
             <el-table-column prop="sceneSolution" label="现场解决方案"></el-table-column>
+            <el-table-column prop="" label="操作" width="150" align="center">
+                <template slot-scope="scope">
+                    <el-button type="text" size="small"
+                               @@click="showEditDialog(JSON.parse(JSON.stringify(scope.row)))">信息编辑</el-button>
+                </template>
+            </el-table-column>
         </el-table>
         <el-pagination style="width:50%;margin-left:1%;margin-top:5px;" @@size-change="handleSizeChange"
                        @@current-change="handleCurrentChange"
@@ -140,6 +146,58 @@
             </el-table>
             <div class="echt" id="ealywarningAccuracyStatistics" ref="chert"></div>
         </div>
+    </el-dialog>
+    <el-dialog :title="dialogTit"
+               :visible.sync="editDialogVisible"
+               width="40%"
+               style="height: 54%; margin-top: 10vh "
+               :before-close="handleClose">
+        <el-form label-width="150px"
+                 :model="editForm"
+                 ref="editForm"
+                 :rules="rules">
+            <el-form-item label="场站名称" prop="selStationName">
+                <el-input style="width: 300px;"
+                          :disabled="true"
+                          v-model="editForm.selStationName">
+                </el-input>
+            </el-form-item>
+            <el-form-item label="回路名称" prop="selLoopName">
+                <el-input style="width: 300px;"
+                          :disabled="true"
+                          v-model="editForm.selLoopName">
+                </el-input>
+            </el-form-item>
+
+            <el-form-item label="品牌" prop="selFlowmeterManufacturer">
+                <el-input style="width: 300px;"
+                          :disabled="true"
+                          v-model="editForm.selFlowmeterManufacturer">
+                </el-input>
+            </el-form-item>
+            <el-form-item label="专家建议" prop="selKnowledgeSolution">
+                <el-input style="width: 500px;"
+                          type="textarea"
+                          :disabled="true"
+                          resize="none"
+                          rows="3"
+                          v-model="editForm.selKnowledgeSolution">
+                </el-input>
+            </el-form-item>
+            <el-form-item label="现场解决方案" prop="selSceneSolution">
+                <el-input style="width: 500px;"
+                          type="textarea"
+                          resize="none"
+                          rows="3"
+                          placeholder="请填写现场解决方案"
+                          v-model="editForm.selSceneSolution">
+                </el-input>
+            </el-form-item>
+        </el-form>
+        <span slot="footer" class="dialog-footer">
+            <el-button @@click="editDialogVisible = false">取 消</el-button>
+            <el-button type="primary" @@click="subDiaLog('editForm')">确 定</el-button>
+        </span>
     </el-dialog>
 </div>
 <script>
