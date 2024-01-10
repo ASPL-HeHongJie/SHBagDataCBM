@@ -951,7 +951,7 @@ namespace Respository
                                  on loop.StationID equals station.ID
                                  join area in _context.Areas
                                  on station.AreaID equals area.ID
-                                 join company in _context.CompanyInfos.Where(item=> companyIDs.Contains(item.ID))
+                                 join company in _context.CompanyInfos.Where(item => companyIDs.Contains(item.ID))
                                  on area.CompanyID equals company.ID
                                  join loopGasTransmission in _context.LoopGasTransmissionCapacities
                                  on loop.ID equals loopGasTransmission.LoopID into matches
@@ -1678,7 +1678,7 @@ namespace Respository
                                                    }).ToList();
             NotificationRateBrandStatistics NotificationRateStatistics = new NotificationRateBrandStatistics();
             NotificationRateStatistics.BrandName = "汇总"; NotificationRateStatistics.NotificationRate = (int)notificationRateBrandStatistics.Select(x => x.NotificationRate).Average();
-            notificationRateBrandStatistics.Insert(0,NotificationRateStatistics);
+            notificationRateBrandStatistics.Insert(0, NotificationRateStatistics);
             #endregion
             #region 建议告知率
             var historicalEarlyWarnings = _context.HistoricalEarlyWarnings.Where(item => DateTime.Compare(item.BeginDateTime, beginDateTime) >= 0
@@ -1701,18 +1701,29 @@ namespace Respository
                                  FlowmeterManufacturer = loop.FlowmeterManufacturer
                              }).ToList();
 
-            var solutionAccuracyStatistics = (from statistic in accuracys
-                                              group statistic by statistic.FlowmeterManufacturer into g
-                                              select new EarlyWarningAccuracyStatistics
-                                              {
-                                                  Description = g.Key,
-                                                  CorrectNumber = g.Sum(s => s.KnowledgeSolution == s.SceneSolution ? 1 : 0),
-                                                  ErrorNumber = g.Sum(s => s.KnowledgeSolution != s.SceneSolution ? 1 : 0),
-                                                  Accuracy = (g.Sum(s => s.KnowledgeSolution == s.SceneSolution ? 1.0 : 0) / g.Count()) * 100
-                                              }).ToList();
+            var statistic = (from s in accuracys
+                            group s by s.FlowmeterManufacturer into g
+                            select new EarlyWarningAccuracyStatistics
+                            {
+                                Description = g.Key,
+                                CorrectNumber = g.Sum(s => s.KnowledgeSolution == s.SceneSolution ? 1 : 0),
+                                ErrorNumber = g.Sum(s => s.KnowledgeSolution != s.SceneSolution ? 1 : 0),
+                                Accuracy = g.Sum(s => s.KnowledgeSolution == s.SceneSolution ? 1 : 0) / (double)g.Count() * 100
+                            }).ToList();
+            statistic = (from l in _context.StationLoops.GroupBy(g => g.FlowmeterManufacturer).Select(s => s.Key).ToList()
+                         join s in statistic on l equals s.Description into temp
+                         from tt in temp.DefaultIfEmpty()
+                         select new EarlyWarningAccuracyStatistics
+                         {
+                             Description = l,
+                             CorrectNumber = tt != null ? tt.CorrectNumber : -1,
+                             ErrorNumber = tt != null ? tt.ErrorNumber : -1,
+                             Accuracy = tt != null ? tt.Accuracy : 100
+                         }).ToList();
+
             EarlyWarningAccuracyStatistics earlyWarningAccuracyStatistics = new EarlyWarningAccuracyStatistics();
-            earlyWarningAccuracyStatistics.Description = "汇总"; earlyWarningAccuracyStatistics.Accuracy = solutionAccuracyStatistics.Select(x => x.Accuracy).Average();
-            solutionAccuracyStatistics.Insert(0,earlyWarningAccuracyStatistics);
+            earlyWarningAccuracyStatistics.Description = "汇总"; earlyWarningAccuracyStatistics.Accuracy = statistic.Select(x => x.Accuracy).Average();
+            statistic.Insert(0, earlyWarningAccuracyStatistics);
             #endregion
             #region 实时的A类报警统计
             List<string> Alarms = new List<string> { "压力变送器通讯故障", "温度变送器通讯故障", "色谱分析仪器与流量计算机通讯", "流量计与流量计算机通讯报警", "压力变送器通讯故障", "流量计计量失败报警", "声道1状态", "声道2状态", "声道3状态", "声道4状态", "流量计算机报警", "流量计算机过程报警", "流量计算机系统报警", "冷启动", "热启动", "流量计算机RAM故障报警", "流量计算机ROM故障报警", "累积量初始化为0", "部分累积量错误", "累积量寄存器冲突", "组态参数更改", "累积量达到最大值初始化", "超声波故障报警", "流量计算机维护模式" };
@@ -1805,8 +1816,8 @@ namespace Respository
             #endregion
             OverviewData["EarlyWarnings"] = earlyWarnings.OrderBy(x => x.StatusNumber);
             OverviewData["EarlyWarningStatistics"] = earlyWarningNumber;
-            OverviewData["EarlyWarningNotificationRateBrandStatistics"] = notificationRateBrandStatistics.OrderBy(x => x.BrandName);
-            OverviewData["SolutionNotificationRateBrandStatistics"] = solutionAccuracyStatistics.OrderBy(x => x.Description);
+            OverviewData["EarlyWarningNotificationRateBrandStatistics"] = notificationRateBrandStatistics.OrderByDescending(x => x.BrandName);
+            OverviewData["SolutionNotificationRateBrandStatistics"] = statistic.OrderByDescending(x => x.Description);
             OverviewData["RealTimeAlarmStatistics"] = alarmcount;
             OverviewData["EquipmentAvalability"] = avalabilities;
             return OverviewData;
@@ -1851,11 +1862,11 @@ namespace Respository
                                       AlarmArea = groupdata.Key,
                                       AlarmSpan = groupdata.Sum(x => x.AlarmSpan)
                                   }).ToList();
-            List<Avalability> avalabilities  = new List<Avalability>();
+            List<Avalability> avalabilities = new List<Avalability>();
 
             foreach (CompanyInfo companyInfo in _context.CompanyInfos.Where(item => CompanyIDs.Contains(item.ID)).ToList())
             {
-                Avalability tempavalability  = new Avalability();
+                Avalability tempavalability = new Avalability();
                 tempavalability.Company = companyInfo.Name;
                 tempavalability.Rate = 100;
                 foreach (AlarmCount count in alarmStatistic)
@@ -1867,25 +1878,18 @@ namespace Respository
                                          on loop.StationID equals station.ID
                                          join area in _context.Areas
                                          on station.AreaID equals area.ID
-                                         join company in _context.CompanyInfos.Where(x => x.AbbrName== companyInfo.AbbrName)
+                                         join company in _context.CompanyInfos.Where(x => x.AbbrName == companyInfo.AbbrName)
                                          on area.CompanyID equals company.ID
                                          select loop).ToList().Count();
-                        tempavalability.Rate = decimal.Round(Convert.ToDecimal(((span * Loopcount) == 0 ? 100 : ((span * Loopcount - count.AlarmSpan.Value) / (span * Loopcount)) * 100)),2);
+                        tempavalability.Rate = decimal.Round(Convert.ToDecimal(((span * Loopcount) == 0 ? 100 : ((span * Loopcount - count.AlarmSpan.Value) / (span * Loopcount)) * 100)), 2);
                     }
                 }
                 avalabilities.Add(tempavalability);
             }
             Avalability avalability = new Avalability();
             avalability.Company = "汇总"; avalability.Rate = decimal.Round(Convert.ToDecimal(avalabilities.Select(x => x.Rate).Average()));
-            avalabilities.Insert(0,avalability);
-            //var EquipmentAvalability = (from company in _context.CompanyInfos.Where(item => CompanyIDs.Contains(item.ID))
-            //                            join alarm in alarmStatistic
-            //                             on company.AbbrName equals alarm.AlarmArea into matches
-            //                            from alarm in matches.DefaultIfEmpty()
-            //                            select new Avalability
-            //                            {
-            //                                Company = company.Name,
-            //                                //Rate = 
+            avalabilities.Insert(0, avalability);
+
             data["EquipmentAvalability"] = avalabilities;
             return data;
         }

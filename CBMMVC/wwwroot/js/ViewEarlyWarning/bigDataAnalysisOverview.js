@@ -192,7 +192,7 @@
             this.chartsStatistics = echarts.init(document.getElementById("echStat"));
             const option = {
                 title: {
-                    text: '维护建议统计',
+                    text: '建议告知率',
                     textStyle: {
                         color: '#2AFFFF',
                         fontSize: 15
@@ -272,7 +272,7 @@
             this.chartsPieStatistics = echarts.init(document.getElementById("echPieStat"));
             const option = {
                 title: {
-                    text: '公司实时报警数量统计',
+                    text: '实时报警统计',
                     textStyle: {
                         color: '#2AFFFF',
                         fontSize: 15
