@@ -1982,8 +1982,8 @@ namespace Respository
                     select new EarlyWarningAccuracyStatistics
                     {
                         Description = l,
-                        CorrectNumber = tt != null ? tt.CorrectNumber : -1,
-                        ErrorNumber = tt != null ? tt.ErrorNumber : -1,
+                        CorrectNumber = tt != null ? tt.CorrectNumber : 0,
+                        ErrorNumber = tt != null ? tt.ErrorNumber : 0,
                         Accuracy = tt != null ? tt.Accuracy : 100
                     }).ToList();
         }

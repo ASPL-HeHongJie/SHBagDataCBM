@@ -104,9 +104,9 @@
             </el-table-column>
             <el-table-column prop="loopName" label="回路名称"> </el-table-column>
             <el-table-column prop="flowmeterManufacturer" label="品牌"></el-table-column>
-            <el-table-column prop="knowledgeSolution" label="专家建议"></el-table-column>
-            <el-table-column prop="sceneSolution" label="现场解决方案"></el-table-column>
-            <el-table-column prop="" label="操作" width="150" align="center">
+            <el-table-column prop="knowledgeSolution" width="450" label="专家建议"></el-table-column>
+            <el-table-column prop="sceneSolution" width="450" label="现场解决方案"></el-table-column>
+            <el-table-column prop="" label="操作" width="100" align="center">
                 <template slot-scope="scope">
                     <el-button type="text" size="small"
                                @@click="showEditDialog(JSON.parse(JSON.stringify(scope.row)))">信息编辑</el-button>
@@ -128,7 +128,7 @@
                style="height: 70%; margin-top: 10vh ">
         <div class="disech">
             <el-table :data="ealywarningAccuracyTableData"
-                      height="48.805vh"
+                      height="40.805vh"
                       border
                       style="width: 28.663vw; margin-top:5vh">
                 <el-table-column prop="index"
@@ -146,6 +146,9 @@
             </el-table>
             <div class="echt" id="ealywarningAccuracyStatistics" ref="chert"></div>
         </div>
+        <span slot="footer" class="dialog-footer">
+            <el-button @@click="dialogVisible = false" style="margin-right:5vh">关 闭</el-button>
+        </span>
     </el-dialog>
     <el-dialog :title="dialogTit"
                :visible.sync="editDialogVisible"

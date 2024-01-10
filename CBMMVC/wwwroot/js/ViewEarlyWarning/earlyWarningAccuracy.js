@@ -138,8 +138,6 @@ var EarlyWarningvm = new Vue({
                     this.ealywarningAccuracyTableData = res.data;
                     this.ealywarningAccuracyTableData.forEach((item, index) => {
                         item.index = index + 1;
-                        item.correctNumber = item.correctNumber == -1 ? '' : item.correctNumber;
-                        item.errorNumber = item.errorNumber == -1 ? '' : item.errorNumber;
                     });
                     var ealywarningName = this.ealywarningAccuracyTableData.map(rec => rec.description);
                     var ealywarningAccuracy = this.ealywarningAccuracyTableData.map(rec => rec.accuracy);
@@ -189,6 +187,10 @@ var EarlyWarningvm = new Vue({
                                 name: '建议告知率',
                                 type: 'bar',
                                 barWidth: '60%',
+                                label: {
+                                    show: true,
+                                    formatter: '{c}%'
+                                },
                                 data: ealywarningAccuracy
                             }
                         ]
