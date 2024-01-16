@@ -96,9 +96,9 @@
     </div>
     <div class="formview">
         <el-table :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)" height="75.867vh" border :stripe="true" style="width: 98%; margin-left: 1%; margin-top: 1.032vh;text-align: center;" :row-class-name="tableRowClassName">
-            <el-table-column prop="beginDateTime" :formatter="dateFormat" label="开始时间">
+            <el-table-column prop="beginDateTime"  width="200":formatter="dateFormat" label="开始时间">
             </el-table-column>
-            <el-table-column prop="endDateTime" :formatter="dateFormat" label="结束时间">
+            <el-table-column prop="endDateTime"  width="200" :formatter="dateFormat" label="结束时间">
             </el-table-column>
             <el-table-column prop="stationName" label="场站名称">
             </el-table-column>
@@ -142,6 +142,9 @@
                 </el-table-column>
                 <el-table-column prop="errorNumber"
                                  label="错误个数">
+                </el-table-column>
+                <el-table-column prop="accuracy"
+                                 label="告知率">
                 </el-table-column>
             </el-table>
             <div class="echt" id="ealywarningAccuracyStatistics" ref="chert"></div>
