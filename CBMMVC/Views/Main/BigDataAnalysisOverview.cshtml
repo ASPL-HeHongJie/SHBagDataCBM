@@ -205,13 +205,13 @@
                                         </div>
                                     </div>
                                     <div class="ragUp">
-                                        <div class="ragUpBg">
+                                        <div class="ragUpBg"  @@click="getIsCommunicationBad">
                                             <div class="ragBgNum">
                                                 {{IsCommunicationBadNumber}}
                                             </div>
                                             <div class="ragBgTxt ragBgTxtB">通讯故障</div>
                                         </div>
-                                        <div class="ragUpBg">
+                                        <div class="ragUpBg"  @@click="getIsNormal">
                                             <div class="ragBgNum">
                                                 {{IsNormalNumber}}
                                             </div>
@@ -235,9 +235,11 @@
                         </div>
                     </div>
                     <div class="conR">
-                        <div class="itemTit">
-                            设备状态
-                        </div>
+                        <a href="/Main/EquipmentGoodRate/@ViewBag.CompanyAbbrName">
+                            <div class="itemTit">
+                                设备完好率
+                            </div>
+                        </a>
                         <div style="display: flex; flex-direction: column; justify-content: space-between; height: 93%;">
                             <div class="listTable">
                                 <div class="tabTit">
@@ -245,7 +247,7 @@
                                     <span>设备完好率</span>
                                 </div>
                                 <div class="tabCon">
-                                    <div class="tabTit tabCI" v-for="item in EarlyWarnings">
+                                    <div class="tabTit tabCI" v-for="item in EquipmentAvalability">
                                         <span>{{item.company}}</span>
                                         <span>{{item.rate}}</span>
                                     </div>

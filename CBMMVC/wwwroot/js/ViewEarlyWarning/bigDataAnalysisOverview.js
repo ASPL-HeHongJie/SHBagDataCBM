@@ -18,7 +18,8 @@
             endTime: '',
             companyIDs: []
         },
-        echBarBranchHisIntactRate: null
+        echBarBranchHisIntactRate: null,
+        EquipmentAvalability: []
     },
     created() {
         function fall(arr) { return [].concat(...arr.map(x => Array.isArray(x) ? fall(x) : x)) }
@@ -71,24 +72,58 @@
                     that.IsEarlyWarningNumber = res.data.EarlyWarningStatistics.EarlyWarningNumber;
                     that.IsCommunicationBadNumber = res.data.EarlyWarningStatistics.CommunicationBadNumber;
                     that.IsNormalNumber = res.data.EarlyWarningStatistics.NormalNumber;
-                    that.EarlyWarnings = res.data.EquipmentAvalability;
-                    that.getChartBarBranch(res.data.EquipmentAvalability);
+                    that.EarlyWarnings = res.data.EarlyWarnings;
+                    that.EquipmentAvalability = res.data.EquipmentAvalability;
                     that.getChartEarly(res.data.EarlyWarningNotificationRateBrandStatistics)
                     that.getChartStatistics(res.data.SolutionNotificationRateBrandStatistics);
                     //that.getChartPieSta(res.data.RealTimeAlarmStatistics);
                     that.getChartBarBranchHisIntactRate(res.data.EquipmentAvalability);
+                    that.getIsEarlyWarn();
                 }, (err) => {
                     this.loading = false;
                 }
             );
         },
-        getChartBarBranch(chartdata) {
+        getChartBarBranch(chartdata,typeName) {
             var chartsCompanies = [];
-            var chartsRates = [];
-            chartdata.map((res) => {
-                chartsCompanies.push(res.company.replace('输气分公司',''));
-                chartsRates.push(res.rate);
+            var chartNumbers = [];
+            let dataarr = [];
+             chartdata.forEach(item => {
+                const parent = dataarr.find(c => c.companyName === item.companyName)
+                if (parent) {
+                    parent.number.push(1);
+                } else {
+                    const obj = {
+                        companyName: item.companyName,
+                        number: [1]
+                    }
+                    dataarr.push(obj)
+                }
+             })
+            dataarr.forEach(item => {
+                chartsCompanies.push(item.companyName);
+                chartNumbers.push(item.number.length);
             })
+            //let dataarr = [];
+            //chartdata.forEach(item => {
+            //    const parent = dataarr.find(c => c.companyName === item.companyName)
+            //    if (parent) {
+            //        parent.number.push(item.statusNumber)
+            //    } else {
+            //        const obj = {
+            //            companyName: item.companyName,
+            //            number: [item.statusNumber]
+            //        }
+            //        dataarr.push(obj)
+            //    }
+            //})
+            //dataarr.forEach(item => {
+            //    let total = 0;
+            //    item.number.forEach(num => total += num);
+            //    chartsCompanies.push(item.companyName);
+            //    chartNumbers.push(total);
+            //})
+
             this.echBarBranch = echarts.init(document.getElementById("echBarBranch"));
             const option = {
                 title: {
@@ -125,7 +160,7 @@
                     data: chartsCompanies
                 }],
                 series: [{
-                    name: '数量',
+                    name: typeName,
                     type: 'bar',
                     label: {
                         show: true,
@@ -171,7 +206,7 @@
                             ],
                         },
                     },
-                    data: chartsRates
+                    data: chartNumbers
                 },]
             };
             this.echBarBranch.setOption(option);
@@ -494,8 +529,22 @@
             this.echBarBranchHisIntactRate.setOption(option);
         },
         getIsEarlyWarn() {
-            var aaa = 0;
-            console.log(aaa);
+            let that = this;
+            var chartEarlyWarning = [];
+            chartEarlyWarning = that.EarlyWarnings.filter(item => item.status == '存在预警');
+            that.getChartBarBranch(chartEarlyWarning,'预警数量');
+        },
+        getIsCommunicationBad() {
+            let that = this; 
+            var chartEarlyWarning = [];
+            chartEarlyWarning = that.EarlyWarnings.filter(item => item.status == '通讯失败');
+            that.getChartBarBranch(chartEarlyWarning, '故障数量');
+        },
+        getIsNormal() {
+            let that = this;
+            var chartEarlyWarning = [];
+            chartEarlyWarning = that.EarlyWarnings.filter(item => item.status == '运行正常');
+            that.getChartBarBranch(chartEarlyWarning, '正常数量');
         }
     }
 })
