@@ -482,7 +482,7 @@ namespace Respository
                                     }
                                 }
                                 rate.AlarmNumber = AlarmNumber;
-                                rate.NotificationRate = AlarmNumber / rate.EarlywarningNumber * 100;
+                                rate.NotificationRate = AlarmNumber / (float)rate.EarlywarningNumber * 100;
                             }
                             earlyWarningNotificationRates.Add(rate);
                             break;
@@ -637,7 +637,7 @@ namespace Respository
                                     }
                                 }
                                 rate.AlarmNumber = AlarmNumber;
-                                rate.NotificationRate = AlarmNumber / rate.EarlywarningNumber * 100;
+                                rate.NotificationRate = AlarmNumber / (float)rate.EarlywarningNumber * 100;
                             }
                             earlyWarningNotificationRates.Add(rate);
                             break;
@@ -792,7 +792,7 @@ namespace Respository
                                     }
                                 }
                                 rate.AlarmNumber = AlarmNumber;
-                                rate.NotificationRate = AlarmNumber / rate.EarlywarningNumber * 100;
+                                rate.NotificationRate = AlarmNumber / (float)rate.EarlywarningNumber * 100;
                             }
                             earlyWarningNotificationRates.Add(rate);
                             break;
@@ -895,7 +895,7 @@ namespace Respository
                                     }
                                 }
                                 rate.AlarmNumber = AlarmNumber;
-                                rate.NotificationRate = AlarmNumber / rate.EarlywarningNumber * 100;
+                                rate.NotificationRate = AlarmNumber / (float)rate.EarlywarningNumber * 100;
                             }
                             earlyWarningNotificationRates.Add(rate);
                             break;
@@ -920,7 +920,7 @@ namespace Respository
                                                  BrandName = rate.BrandName,
                                                  FlowmeterModel = loop.FlowmeterModel,
                                                  Caliber = loop.Caliber,
-                                                 ForwordPreDayStandardCumulative = loopGasTransmission == null ? 0 : loopGasTransmission.ForwordPreDayStandardCumulative
+                                                 ForwordPreDayStandardCumulative = loopGasTransmission == null ? 0 : Convert.ToInt32(loopGasTransmission.ForwordPreDayStandardCumulative) 
                                              }).OrderByDescending(rate => rate.ForwordPreDayStandardCumulative).ThenBy(rate => rate.CompanyName).ToList();
 
             var notificationRateBrandStatistics = (from rate in earlyWarningNotificationRates
@@ -1224,7 +1224,7 @@ namespace Respository
                                     }
                                 }
                                 rate.AlarmNumber = AlarmNumber;
-                                rate.NotificationRate = AlarmNumber / rate.EarlywarningNumber * 100;
+                                rate.NotificationRate = AlarmNumber / (float)rate.EarlywarningNumber * 100;
                             }
                             earlyWarningNotificationRates.Add(rate);
                             break;
@@ -1379,7 +1379,7 @@ namespace Respository
                                     }
                                 }
                                 rate.AlarmNumber = AlarmNumber;
-                                rate.NotificationRate = AlarmNumber / rate.EarlywarningNumber * 100;
+                                rate.NotificationRate = AlarmNumber / (float)rate.EarlywarningNumber * 100;
                             }
                             earlyWarningNotificationRates.Add(rate);
                             break;
@@ -1534,7 +1534,7 @@ namespace Respository
                                     }
                                 }
                                 rate.AlarmNumber = AlarmNumber;
-                                rate.NotificationRate = AlarmNumber / rate.EarlywarningNumber * 100;
+                                rate.NotificationRate = AlarmNumber / (float)rate.EarlywarningNumber * 100;
                             }
                             earlyWarningNotificationRates.Add(rate);
                             break;
@@ -1637,7 +1637,7 @@ namespace Respository
                                     }
                                 }
                                 rate.AlarmNumber = AlarmNumber;
-                                rate.NotificationRate = AlarmNumber / rate.EarlywarningNumber * 100;
+                                rate.NotificationRate = AlarmNumber / (float)rate.EarlywarningNumber * 100;
                             }
                             earlyWarningNotificationRates.Add(rate);
                             break;

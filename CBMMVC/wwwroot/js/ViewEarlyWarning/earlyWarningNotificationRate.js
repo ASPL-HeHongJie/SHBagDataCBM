@@ -189,7 +189,7 @@ var EarlyWarningNotificationRatevm = new Vue({
                 { timeout: 1000 * 60 * 2 })
                 .then((res) => {
                     console.log(res);
-                    let fileName = "设备完好率.xlsx";
+                    let fileName = "预警告知率.xlsx";
                     let blob = new Blob([res.data], { type: 'application/vnd.ms-excel' });
                     let link = document.createElement("a");
                     link.download = fileName;
