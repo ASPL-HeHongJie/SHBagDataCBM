@@ -10,14 +10,16 @@
         chartsEarly: null,
         chartsStatistics: null,
         chartsPieStatistics: null,
-        chartsEquAva: null,
+        echBarBranch: null,
         drawer: false,
         direction: 'rtl',
         form: {
             staTime: '',
             endTime: '',
             companyIDs: []
-        }
+        },
+        echBarBranchHisIntactRate: null,
+        EquipmentAvalability: []
     },
     created() {
         function fall(arr) { return [].concat(...arr.map(x => Array.isArray(x) ? fall(x) : x)) }
@@ -71,14 +73,143 @@
                     that.IsCommunicationBadNumber = res.data.EarlyWarningStatistics.CommunicationBadNumber;
                     that.IsNormalNumber = res.data.EarlyWarningStatistics.NormalNumber;
                     that.EarlyWarnings = res.data.EarlyWarnings;
+                    that.EquipmentAvalability = res.data.EquipmentAvalability;
                     that.getChartEarly(res.data.EarlyWarningNotificationRateBrandStatistics)
                     that.getChartStatistics(res.data.SolutionNotificationRateBrandStatistics);
-                    that.getChartPieSta(res.data.RealTimeAlarmStatistics);
-                    that.getChartEquAva(res.data.EquipmentAvalability);
+                    //that.getChartPieSta(res.data.RealTimeAlarmStatistics);
+                    that.getChartBarBranchHisIntactRate(res.data.EquipmentAvalability);
+                    that.getIsEarlyWarn();
                 }, (err) => {
                     this.loading = false;
                 }
-                );
+            );
+        },
+        getChartBarBranch(chartdata,typeName) {
+            var chartsCompanies = [];
+            var chartNumbers = [];
+            let dataarr = [];
+             chartdata.forEach(item => {
+                const parent = dataarr.find(c => c.companyName === item.companyName)
+                if (parent) {
+                    parent.number.push(1);
+                } else {
+                    const obj = {
+                        companyName: item.companyName,
+                        number: [1]
+                    }
+                    dataarr.push(obj)
+                }
+             })
+            dataarr.forEach(item => {
+                chartsCompanies.push(item.companyName);
+                chartNumbers.push(item.number.length);
+            })
+            //let dataarr = [];
+            //chartdata.forEach(item => {
+            //    const parent = dataarr.find(c => c.companyName === item.companyName)
+            //    if (parent) {
+            //        parent.number.push(item.statusNumber)
+            //    } else {
+            //        const obj = {
+            //            companyName: item.companyName,
+            //            number: [item.statusNumber]
+            //        }
+            //        dataarr.push(obj)
+            //    }
+            //})
+            //dataarr.forEach(item => {
+            //    let total = 0;
+            //    item.number.forEach(num => total += num);
+            //    chartsCompanies.push(item.companyName);
+            //    chartNumbers.push(total);
+            //})
+
+            this.echBarBranch = echarts.init(document.getElementById("echBarBranch"));
+            const option = {
+                title: {
+                    text: '分公司',
+                    textStyle: {
+                        color: '#2AFFFF',
+                        fontSize: 15
+                    }
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                },
+                grid: {
+                    top: '12%',
+                    left: '3%',
+                    right: '10%',
+                    bottom: '1%',
+                    containLabel: true
+                },
+                xAxis: [{
+                    type: 'value',
+                    axisLabel: {
+                        color: '#2AFFFF'
+                    }
+                }],
+                yAxis: [{
+                    type: 'category',
+                    axisLabel: {
+                        color: '#2AFFFF'
+                    },
+                    data: chartsCompanies
+                }],
+                series: [{
+                    name: typeName,
+                    type: 'bar',
+                    label: {
+                        show: true,
+                        position: ['103%', '0%'],
+                        color: '#707070',
+                        backgroundColor: {
+                            type: 'linear',
+                            x: 0,
+                            y: 0,
+                            x2: 1,
+                            y2: 0,
+                            colorStops: [
+                                {
+                                    offset: 0,
+                                    color: 'rgba(131, 164, 212, 1)',
+                                },
+                                {
+                                    offset: 1,
+                                    color: 'rgba(182, 251, 255, 1)',
+                                },
+                            ],
+                        },
+                        padding: 5,
+                        borderRadius: 6
+                    },
+                    itemStyle: {
+                        barBorderRadius: [5, 5, 0, 0],
+                        color: {
+                            type: 'linear',
+                            x: 0,
+                            y: 0,
+                            x2: 1,
+                            y2: 0,
+                            colorStops: [
+                                {
+                                    offset: 0,
+                                    color: 'rgba(131, 164, 212, 1)',
+                                },
+                                {
+                                    offset: 1,
+                                    color: 'rgba(182, 251, 255, 1)',
+                                },
+                            ],
+                        },
+                    },
+                    data: chartNumbers
+                },]
+            };
+            this.echBarBranch.setOption(option);
         },
         getChartEarly(chartdata) {
             console.log(chartdata);
@@ -303,17 +434,17 @@
             }
             this.chartsPieStatistics.setOption(option);
         },
-        getChartEquAva(chartdata) {
+        getChartBarBranchHisIntactRate(chartdata) {
             var chartsCompanies = [];
             var chartsRates = [];
             chartdata.map((res) => {
-                chartsCompanies.push(res.company);
+                chartsCompanies.push(res.company.replace('输气分公司', ''));
                 chartsRates.push(res.rate);
             })
-            this.chartsEquAva = echarts.init(document.getElementById("echPieEquAva"));
+            this.echBarBranchHisIntactRate = echarts.init(document.getElementById("echBarBranchHisIntactRate"));
             const option = {
                 title: {
-                    text: '完好率',
+                    text: '分公司',
                     textStyle: {
                         color: '#2AFFFF',
                         fontSize: 15
@@ -328,63 +459,92 @@
                 grid: {
                     top: '12%',
                     left: '3%',
-                    right: '4%',
+                    right: '10%',
                     bottom: '1%',
                     containLabel: true
                 },
                 xAxis: [{
+                    type: 'value',
+                    axisLabel: {
+                        color: '#2AFFFF'
+                    }
+                }],
+                yAxis: [{
                     type: 'category',
                     axisLabel: {
                         color: '#2AFFFF'
                     },
                     data: chartsCompanies
                 }],
-                yAxis: [{
-                    type: 'value',
-                    axisLabel: {
-                        color: '#2AFFFF'
-                    }
-                }],
                 series: [{
-                    name: '',
+                    name: '数量',
                     type: 'bar',
-                    stack: 'Ad',
-                    barWidth: '30%',
-                    emphasis: {
-                        focus: 'series'
-                    },
                     label: {
                         show: true,
-                        position: 'top',
-                        color: '#707070',
-                        backgroundColor: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                            offset: 0,
-                            color: 'rgba(179, 255, 171, 1)',
+                        position: ['103%','0%'],
+                        color: '#FFF',
+                        backgroundColor: {
+                            type: 'linear',
+                            x: 0,
+                            y: 0,
+                            x2: 1,
+                            y2: 0,
+                            colorStops: [
+                                {
+                                    offset: 0,
+                                    color: 'rgba(102, 125, 182, 1)',
+                                },
+                                {
+                                    offset: 1,
+                                    color: 'rgba(5, 117, 230, 1)',
+                                },
+                            ],
                         },
-                        {
-                            offset: 1,
-                            color: 'rgba(18, 255, 247, 1)',
-                        },
-                        ]),
                         padding: 5,
                         borderRadius: 6
                     },
                     itemStyle: {
                         barBorderRadius: [5, 5, 0, 0],
-                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                            offset: 0,
-                            color: 'rgba(179, 255, 171, 1)',
+                        color: {
+                            type: 'linear',
+                            x: 0,
+                            y: 0,
+                            x2: 1,
+                            y2: 0,
+                            colorStops: [
+                                {
+                                    offset: 0,
+                                    color: 'rgba(102, 125, 182, 1)',
+                                },
+                                {
+                                    offset: 1,
+                                    color: 'rgba(5, 117, 230, 1)',
+                                },
+                            ],
                         },
-                        {
-                            offset: 1,
-                            color: 'rgba(18, 255, 247, 1)',
-                        },
-                        ]),
                     },
                     data: chartsRates
                 },]
             };
-            this.chartsEquAva.setOption(option);
+            this.echBarBranchHisIntactRate.setOption(option);
+        },
+        getIsEarlyWarn() {
+            let that = this;
+            var chartEarlyWarning = [];
+            chartEarlyWarning = that.EarlyWarnings.filter(item => item.status == '存在预警');
+            that.getChartBarBranch(chartEarlyWarning,'预警数量');
+        },
+        getIsCommunicationBad() {
+            let that = this; 
+            var chartEarlyWarning = [];
+            chartEarlyWarning = that.EarlyWarnings.filter(item => item.status == '通讯失败');
+            that.getChartBarBranch(chartEarlyWarning, '故障数量');
+        },
+        getIsNormal() {
+            let that = this;
+            var chartEarlyWarning = [];
+            chartEarlyWarning = that.EarlyWarnings.filter(item => item.status == '运行正常');
+            that.getChartBarBranch(chartEarlyWarning, '正常数量');
         }
     }
 })
