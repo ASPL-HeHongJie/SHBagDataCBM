@@ -113,7 +113,7 @@ var EarlyWarningvm = new Vue({
                     var chartsCmopanys = [];
                     var chartsRates = [];
                     equipmentAvalability.map((res) => {
-                        chartsCmopanys.push(res.company);
+                        chartsCmopanys.push(res.company.replace("输气分公司", ""));
                         chartsRates.push(res.rate);
                     })
                     this.equipmentGoodRateChart = echarts.init(document.getElementById('equipmentGoodRatechert'))
@@ -121,7 +121,7 @@ var EarlyWarningvm = new Vue({
                         grid: [{
                             /*top: '5%',*/
                             width: '90%',
-                            height: '98%',
+                            height: '90%',
                             left: '1%',
                             containLabel: true
                         }],
@@ -129,11 +129,11 @@ var EarlyWarningvm = new Vue({
                             type: 'category',
                             data: chartsCmopanys,
                             axisLabel: {
-                                margin: 45,
-                                fontSize: 12,
-                                color: '#000',
+                                margin: 8,
+                                fontSize: 14,
+                                color: '#fff',
                                 interval: 0,
-                                rotate: 60,
+                                rotate: 0,
                                 textStyle: {
                                     align: 'center',
                                     baseline: 'middle'

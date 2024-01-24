@@ -19,14 +19,14 @@
     color: #fff !important;
 }
 .disech {
-    width: 48vw;
-    height: 30.966vh;
+    width: 74vw;
+    height: 68.966vh;
     display: flex;
     flex-direction: row;
 }
 .echt {
-    width: 18.634vw;
-    height: 40.966vh;
+    width: 44.634vw;
+    height: 68.966vh;
     margin-left: 1.042vw;
 }
 

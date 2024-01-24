@@ -69,8 +69,8 @@ var EarlyWarningDetailRecordStatisticsvm = new Vue({
     },
     created() {
         function fall(arr) { return [].concat(...arr.map(x => Array.isArray(x) ? fall(x) : x)) }
-        this.datas = fall( companies.map((res) => {return [{ Name: res.Name, ID: res.ID }] }))
-      
+        this.datas = fall(companies.map((res) => { return [{ Name: res.Name, ID: res.ID }] }))
+
         this.companyName.push(company.ID);
 
         var myDate = new Date();  // 当前时间
@@ -78,7 +78,7 @@ var EarlyWarningDetailRecordStatisticsvm = new Vue({
         this.timeSlot = [preDate, myDate]
 
         this.BrandName = 'Daniel';
-      
+
         this.Refresh();
     },
     methods: {
@@ -98,7 +98,7 @@ var EarlyWarningDetailRecordStatisticsvm = new Vue({
             }
         },
         Refresh() {
-            if (this.companyName.length == 0 ) {
+            if (this.companyName.length == 0) {
                 this.$message({ showClose: true, message: '请选择输气分公司', type: 'error' });
                 return;
             }
@@ -133,11 +133,12 @@ var EarlyWarningDetailRecordStatisticsvm = new Vue({
                 { timeout: 1000 * 60 * 2 })
                 .then((res) => {
                     this.loading = false;
-                    var colorData = ['#09c8f1', '#7dcfe0', '#6497a2', '#a57923', '#b07a0f', '#755923', '#a4ec89', '#7b7974', '#2b1bc2', '#06f230', '#5fb53e','#292173', '#33a347', '#20da41', '#e4ece1', '#06f230', '#e41111', '#e74848']
+                    var colorData = ['#09c8f1', '#7dcfe0', '#6497a2', '#a57923', '#b07a0f', '#755923', '#a4ec89', '#7b7974', '#2b1bc2', '#06f230', '#5fb53e', '#292173', '#33a347', '#20da41', '#e4ece1', '#06f230', '#e41111', '#e74848']
                     that.tableData = res.data.TableData;
                     var durationStatistics = res.data.statisticsByDescription.map((rec, recIndex) => {
                         return {
-                            value: rec.duration.totalHours, name: rec.description, itemStyle: { color: colorData[recIndex]} }
+                            value: rec.duration.totalHours, name: rec.description, itemStyle: { color: colorData[recIndex] }
+                        }
                     })
                     let myChart = echarts.init(document.getElementById("ealywarningRecordDurationStatistics"))
                     // 绘制图表
@@ -145,6 +146,14 @@ var EarlyWarningDetailRecordStatisticsvm = new Vue({
                         tooltip: {
                             trigger: 'item',
                             formatter: "{a} <br/>{b}"
+                        },
+                        title: {
+                            text: '按预警参数统计',
+                            textStyle: {
+                                color: '#fff',
+                                fontSize: 15
+                            },
+                            left: 'center'
                         },
                         series: [
                             {
@@ -173,6 +182,14 @@ var EarlyWarningDetailRecordStatisticsvm = new Vue({
                         tooltip: {
                             trigger: 'item',
                             formatter: "{a} <br/>{b}"
+                        },
+                        title: {
+                            text: '按分公司统计',
+                            textStyle: {
+                                color: '#fff',
+                                fontSize: 15
+                            },
+                            left: 'center'
                         },
                         series: [
                             {
@@ -204,7 +221,7 @@ var EarlyWarningDetailRecordStatisticsvm = new Vue({
                             type: 'bar',
                             label: {
                                 show: true,
-                               /* rotate: 90,*/
+                                /* rotate: 90,*/
                                 formatter: '{c}',
                             },
                             itemStyle: { color: colorData[index] },
@@ -255,7 +272,7 @@ var EarlyWarningDetailRecordStatisticsvm = new Vue({
                 }, (err) => {
                     this.loading = false;
                     that.tableData = []
-                } );
+                });
         },
         tableRowClassName({ row, rowIndex }) {
             if (rowIndex % 2 === 1) {

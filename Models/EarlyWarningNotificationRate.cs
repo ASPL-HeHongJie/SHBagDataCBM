@@ -17,19 +17,35 @@ namespace Models
 
         public string BrandName { get; set; }
 
-        public int  LoopID { get; set; }
+        public int LoopID { get; set; }
         [NotMapped]
         public string FlowmeterModel { get; set; }
         [NotMapped]
         public double? ForwordPreDayStandardCumulative { get; set; }
         [NotMapped]
         public string Caliber { get; set; }
+        [NotMapped]
+        public List<string> EarlyWarningDescItems { get; set; } = new List<string>();
+        [NotMapped]
+        public List<string> AlarmDescItems { get; set; } = new List<string>();
 
     }
 
     public class NotificationRateBrandStatistics
     {
         public string BrandName { get; set; }
+        public int NotificationRate { get; set; }
+    }
+
+    public class NotificationRateCompanyStatistics
+    {
+        public string CompanyName { get; set; }
+        public int NotificationRate { get; set; }
+    }
+
+    public class NotificationRateCaliberStatistics
+    {
+        public string Caliber { get; set; }
         public int NotificationRate { get; set; }
     }
 }

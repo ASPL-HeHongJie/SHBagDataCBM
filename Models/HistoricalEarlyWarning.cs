@@ -24,6 +24,8 @@ namespace Models
         public string CompanyName { get; set; }
         [NotMapped]
         public string FlowmeterManufacturer { get; set; }
+        [NotMapped]
+        public string Caliber { get; set; }
     }
 
     public class EarlyWarningAccuracyStatistics

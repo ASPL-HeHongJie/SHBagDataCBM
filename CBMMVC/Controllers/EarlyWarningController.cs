@@ -60,7 +60,7 @@ namespace CBMMVC.Controllers
             return await _earlyWarningService.GetEarlyWarningDetailRecords(loopIDs, beginDateTime, endDateTime);
         }
         [HttpPost]
-        public async Task<IEnumerable<EarlyWarningDetailRecordStatistics>> GetEarlyWarningDetailRecordStatistics([FromBody] string conditionString)
+        public async Task<Dictionary<string, object>> GetEarlyWarningDetailRecordStatistics([FromBody] string conditionString)
         {
             Dictionary<string, object> condition = JsonConvert.DeserializeObject<Dictionary<string, object>>(conditionString);
             List<int> loopIDs = JsonConvert.DeserializeObject<List<int>>(condition["loopIDs"].ToString());
@@ -157,6 +157,16 @@ namespace CBMMVC.Controllers
             DateTime endDateTime = DateTime.Parse(condition["EndDateTime"].ToString());
             List<int> CompanyIDs = JsonConvert.DeserializeObject<List<int>>(condition["CompanyIDs"].ToString());
             return await _earlyWarningService.BigDataAnalysisOverview(beginDateTime, endDateTime, CompanyIDs);
+        }
+
+        [HttpPost]
+        public async Task<Dictionary<string, object>> NotificationRateOverview([FromBody] string conditionString)
+        {
+            Dictionary<string, object> condition = JsonConvert.DeserializeObject<Dictionary<string, object>>(conditionString);
+            DateTime beginDateTime = DateTime.Parse(condition["BeginDateTime"].ToString());
+            DateTime endDateTime = DateTime.Parse(condition["EndDateTime"].ToString());
+            List<int> CompanyIDs = JsonConvert.DeserializeObject<List<int>>(condition["CompanyIDs"].ToString());
+            return await _earlyWarningService.NotificationRateOverview(beginDateTime, endDateTime, CompanyIDs);
         }
 
         [HttpPost]

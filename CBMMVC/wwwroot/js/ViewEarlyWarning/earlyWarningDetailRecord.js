@@ -68,6 +68,7 @@ var EarlyWarningvm = new Vue({
         Starttime: '',
         Endtime: '',
         ealywarningRecordTableData: [],
+        ealywarningRecordStatistic: []
     },
     created() {
         var myDate = new Date();  // 当前时间
@@ -115,7 +116,7 @@ var EarlyWarningvm = new Vue({
             })
         })
 
-         this.Refresh();
+        this.Refresh();
     },
     methods: {
         handleSizeChange: function (val) {
@@ -124,7 +125,7 @@ var EarlyWarningvm = new Vue({
         handleCurrentChange: function (currentPage) {
             this.currentPage = currentPage;
         },
-        Statistics() { 
+        Statistics() {
             if (this.LoopName.length == 0 || this.LoopName == null) {
                 this.$message({ showClose: true, message: '回路未选择', type: 'error' });
                 return;
@@ -157,43 +158,58 @@ var EarlyWarningvm = new Vue({
                 { headers: { 'Content-Type': 'application/json' } },
                 { timeout: 1000 * 60 * 2 })
                 .then((res) => {
-                    that.ealywarningRecordTableData = res.data;  
+                    that.ealywarningRecordTableData = res.data.TableData;
                     that.ealywarningRecordTableData.forEach((item, index) => {
                         item.index = index + 1;
                     });
-                    var ealywarningRecord = that.ealywarningRecordTableData.map((rec) => {
-                        return { value: rec.number, name: rec.description }
+                    that.ealywarningRecordStatistic = res.data.statisticsByLoop;
+                    let remainder = that.ealywarningRecordStatistic.length % 3;
+                    let rows = Math.ceil(that.ealywarningRecordStatistic.length / 3);
+                    let center_x = remainder === 0 ? 16.67 : (100 / (remainder === 1 ? remainder + 1 : remainder + 2)).toFixed(2);
+                    let center_y = (100 / (rows * 2)).toFixed(2);
+                    let title = [];
+                    var ealywarningRecord = that.ealywarningRecordStatistic.map((rec, index) => {
+                        const center = Math.ceil((index + 1) / 3) === rows ? center_x : 16.67;
+                        title.push({
+                            text: rec.loop,
+                            textStyle: {
+                                color: '#333',
+                                fontSize: 15
+                            },
+                            left: (center * (2 * (index % 3) + 1) - 5).toFixed(2) + "%",
+                            top: (center_y * (2 * Math.ceil((index + 1) / 3) - 1) - ((Math.ceil((index + 1) / 3) === rows && rows > 1 ? 16.67 : center) * 0.75)).toFixed(2) + "%"
+                        });
+                        return {
+                            name: '报警记录统计',
+                            type: 'pie',
+                            center: [(center * (2 * (index % 3) + 1)).toFixed(2) + "%", (center_y * (2 * Math.ceil((index + 1) / 3) - 1)).toFixed(2) + "%"],
+                            radius: Math.ceil((index + 1) / 3) === rows && rows > 1 ? '16.67%' : center + "%",
+                            data: rec.statistic.map((d) => {
+                                return { value: d.number, name: d.description }
+                            }),
+                            emphasis: {
+                                itemStyle: {
+                                    shadowBlur: 10,
+                                    shadowOffsetX: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                }
+                            }
+                        }
                     })
                     let myChart = echarts.init(document.getElementById("ealywarningRecordStatistics"))
                     // 绘制图表
                     myChart.setOption({
+                        title: title,
                         tooltip: {
                             trigger: 'item',
                             formatter: "{a} <br/>{b}"
                         },
-                        series: [
-                            {
-                                name: '报警记录统计',
-                                type: 'pie',
-                                radius: '50%',
-                                data: ealywarningRecord,
-                                emphasis: {
-                                    itemStyle: {
-                                        shadowBlur: 10,
-                                        shadowOffsetX: 0,
-                                        shadowColor: 'rgba(0, 0, 0, 0.5)'
-                                    }
-                                }
-                            }
-                        ]
+                        series: ealywarningRecord
                     })
                 }, (err) => {
                     that.ealywarningRecordTableData = []
                     this.dialogVisible = true;
-                }
-                );
-           
-          
+                });
         },
         Refresh() {
             this.currentPage = 1

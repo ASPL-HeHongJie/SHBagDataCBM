@@ -1,0 +1,219 @@
+﻿.bg {
+    width: 100%;
+    height: 100%;
+    background: url('/image/map_bg.png') no-repeat center;
+    background-size: 100% 100%;
+}
+.home_title {
+    width: 100%;
+    height: 5.342vh;
+    display: flex;
+    justify-content: center;
+    color: #fff;
+}
+
+    .home_title > span {
+        line-height: 5.342vh;
+        font-size: 2.67vh;
+        padding: 0 1.8vw;
+    }
+
+    .home_title > i > img {
+        height: 5vh;
+        margin-top: 0.4vh;
+    }
+    .home_title i {
+        width: auto !important
+    }
+    .diaT {
+        /* height: 45px; */
+        position: relative;
+        /* background: url(../../../../static/diaTit2.png) no-repeat center; */
+        background-size: 100% 100%;
+    }
+
+.backBtn {
+    width: 88px;
+    height: 39px;
+    position: absolute;
+    top: -36px;
+    right: 40px;
+}
+
+.backTit {
+    height: 39px;
+    line-height: 39px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.diaTxt {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 65px;
+    line-height: 80px;
+    text-align: center;
+    color: #29D2FD;
+    font-size: 24px;
+}
+
+.conBox {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    height: 94%;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.itemTit {
+    box-sizing: border-box;
+    width: 100%;
+    height: 40px;
+    background: url('/image/littleTit.png') no-repeat;
+    /* background-size: 100%; */
+    color: #FFF;
+    line-height: 40px;
+    padding-left: 40px;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.conL {
+    width: 33%;
+    box-sizing: border-box;
+    /*padding-top: 60px;*/
+}
+
+.realAlarmGroup {
+    /* width: 50%; */
+    height: 38%;
+}
+
+.ragUp {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.ragUpBg {
+    width: 100%;
+    background: url('/image/rightBg.png') no-repeat center;
+    background-position-y: 2px;
+    /* position: relative; */
+    box-sizing: border-box;
+}
+
+.ragBgNum {
+    /* position: absolute;
+		top: 20px; */
+    margin-top: 40px;
+    font-size: 38px;
+    color: #4adff6;
+    text-align: center;
+}
+
+.ragBgTxt {
+    margin-top: 47px;
+    font-size: 16px;
+    color: #f96a34;
+    text-align: center;
+}
+
+.ragBgTxtB {
+    color: #f9d334;
+}
+
+.ragBgTxtC {
+    color: #34f96d;
+}
+
+.listTable {
+    width: 100%;
+    height: calc(100% - 390px);
+    border: 1px solid #0a6ab8;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px 0px #136dc0;
+    box-sizing: border-box;
+    padding: 0 5px;
+    margin-top: 20px;
+}
+
+.tabTit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #6fb7f6;
+    margin-top: 10px;
+    text-align: center;
+}
+
+    .tabTit span,
+    i {
+        width: 33%;
+    }
+
+.tabCI {
+    padding: 10px 0;
+    background-color: rgba(16, 56, 92, 0.5);
+}
+
+.tabCon {
+    height: calc(100% - 34px);
+    overflow: auto;
+}
+
+    .tabCon::-webkit-scrollbar {
+        width: 6px;
+        height: 10px;
+    }
+
+    .tabCon::-webkit-scrollbar-track {
+        background: #fff;
+        border-radius: 2px;
+    }
+
+    .tabCon::-webkit-scrollbar-thumb {
+        background: #6fb7f6;
+        border-radius: 10px;
+    }
+
+        .tabCon::-webkit-scrollbar-thumb:hover {
+            background: #065279;
+        }
+
+    .tabCon::-webkit-scrollbar-corner {
+        background: #fff;
+    }
+
+.conC {
+    width: 36%;
+    box-sizing: border-box;
+    /*padding-top: 60px;*/
+}
+
+.chartEarly {
+    width: 100%;
+    height: 46%;
+}
+
+.conR {
+    width: 30%;
+    box-sizing: border-box;
+    /*padding-top: 60px;*/
+}
+
+.draw {
+    position: fixed;
+    top: 50%;
+    right: -18px;
+    transition-duration: .25s, 1s;
+}
+
+    .draw:hover {
+        right: 0;
+    }
