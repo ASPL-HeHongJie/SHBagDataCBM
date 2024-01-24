@@ -1284,9 +1284,9 @@ namespace Respository
                 string connectionString = Configuration.GetConnectionString("CollectorSQLConnection").Replace("@IPAddress@", ip);
                 using (var mycontext = new MyDBContext(connectionString))
                 {
-                    List<HisCheckDataAlarmStatistics> checkalarmStatistics = (from alarm in mycontext.hisCheckDataAlarms.Where(alarm => loopIDs.Contains(alarm.LoopID) && DateTime.Compare(alarm.StartTime, beginDateTime) >= 0
-                                      && DateTime.Compare(alarm.EndTime, endDateTime) <= 0)
-
+                    List<HisCheckDataAlarmStatistics> checkalarmStatistics = (from alarm in mycontext.hisCheckDataAlarms.Where(alarm => loopIDs.Contains(alarm.LoopID) 
+                                                                              && DateTime.Compare(alarm.StartTime, beginDateTime) >= 0
+                                                                              && DateTime.Compare(alarm.EndTime, endDateTime) <= 0)
                                                                               group alarm by new
                                                                               {
                                                                                   alarm.Description,
@@ -1469,7 +1469,7 @@ namespace Respository
                                     }
                                 }
                                 rate.AlarmNumber = AlarmNumber;
-                                rate.NotificationRate = AlarmNumber / rate.EarlywarningNumber * 100;
+                                rate.NotificationRate = AlarmNumber / (float)rate.EarlywarningNumber * 100;
                             }
                             earlyWarningNotificationRates.Add(rate);
                             break;
@@ -1624,7 +1624,7 @@ namespace Respository
                                     }
                                 }
                                 rate.AlarmNumber = AlarmNumber;
-                                rate.NotificationRate = AlarmNumber / rate.EarlywarningNumber * 100;
+                                rate.NotificationRate = AlarmNumber / (float)rate.EarlywarningNumber * 100;
                             }
                             earlyWarningNotificationRates.Add(rate);
                             break;
@@ -1779,7 +1779,7 @@ namespace Respository
                                     }
                                 }
                                 rate.AlarmNumber = AlarmNumber;
-                                rate.NotificationRate = AlarmNumber / rate.EarlywarningNumber * 100;
+                                rate.NotificationRate = AlarmNumber / (float)rate.EarlywarningNumber * 100;
                             }
                             earlyWarningNotificationRates.Add(rate);
                             break;
@@ -1882,7 +1882,7 @@ namespace Respository
                                     }
                                 }
                                 rate.AlarmNumber = AlarmNumber;
-                                rate.NotificationRate = AlarmNumber / rate.EarlywarningNumber * 100;
+                                rate.NotificationRate = AlarmNumber / (float)rate.EarlywarningNumber * 100;
                             }
                             earlyWarningNotificationRates.Add(rate);
                             break;
@@ -1988,6 +1988,7 @@ namespace Respository
             List<string> IPAddresies = _context.Collectors.Select(x => x.IPAddress).ToList();
             List<string> CompaniesAbbrNames = _context.CompanyInfos.Where(x => companyIDs.Contains(x.ID)).Select(x => x.AbbrName).ToList();
             List<HistoricalAlarm> hisAlarm = new List<HistoricalAlarm>();
+            //采集器下时间段内所有的Alarm类型报警数据查找出来
             foreach (string ip in IPAddresies)
             {
                 IConfiguration Configuration = new ConfigurationBuilder().Add(new Microsoft.Extensions.Configuration.Json.JsonConfigurationSource { Path = "appsettings.json", ReloadOnChange = true }).Build();
@@ -2012,6 +2013,7 @@ namespace Respository
 
                 }
             }
+            //通过“实时的A类报警统计”中Alarms和公司缩写筛选hisAlarm
             hisAlarm = hisAlarm.Where(x => Alarms.Contains(x.AlarmDescription) && CompaniesAbbrNames.Contains(x.CompanyAbbrName)).Distinct().ToList();
             var alarmStatistic = (from alarm in hisAlarm
                                   group alarm by alarm.CompanyAbbrName into groupdata
@@ -2050,8 +2052,8 @@ namespace Respository
             #endregion
             OverviewData["EarlyWarnings"] = earlyWarnings.OrderBy(x => x.StatusNumber);
             OverviewData["EarlyWarningStatistics"] = earlyWarningNumber;
-            OverviewData["EarlyWarningNotificationRateBrandStatistics"] = notificationRateBrandStatistics.OrderBy(x => x.BrandName);
-            OverviewData["SolutionNotificationRateBrandStatistics"] = solutionAccuracyStatistics.OrderBy(x => x.Description);
+            OverviewData["EarlyWarningNotificationRateBrandStatistics"] = notificationRateBrandStatistics.OrderByDescending(x => x.BrandName);
+            OverviewData["SolutionNotificationRateBrandStatistics"] = statistic.OrderByDescending(x => x.Description);
             OverviewData["RealTimeAlarmStatistics"] = alarmcount;
             OverviewData["EquipmentAvalability"] = avalabilities;
             return OverviewData;

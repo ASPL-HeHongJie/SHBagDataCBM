@@ -66,6 +66,7 @@ var EarlyWarningDetailRecordStatisticsvm = new Vue({
             number: 356,
         }],
         BrandName: '',
+        numberStatisticsChart:null
     },
     created() {
         function fall(arr) { return [].concat(...arr.map(x => Array.isArray(x) ? fall(x) : x)) }
@@ -133,13 +134,17 @@ var EarlyWarningDetailRecordStatisticsvm = new Vue({
                 { timeout: 1000 * 60 * 2 })
                 .then((res) => {
                     this.loading = false;
-                    var colorData = ['#09c8f1', '#7dcfe0', '#6497a2', '#a57923', '#b07a0f', '#755923', '#a4ec89', '#7b7974', '#2b1bc2', '#06f230', '#5fb53e', '#292173', '#33a347', '#20da41', '#e4ece1', '#06f230', '#e41111', '#e74848']
+                    //var colorData = ['#09c8f1', '#7dcfe0', '#6497a2', '#a57923', '#b07a0f', '#755923', '#a4ec89', '#7b7974', '#2b1bc2', '#06f230', '#5fb53e','#292173', '#33a347', '#20da41', '#e4ece1', '#06f230', '#e41111', '#e74848']
                     that.tableData = res.data.TableData;
                     var durationStatistics = res.data.statisticsByDescription.map((rec, recIndex) => {
                         return {
-                            value: rec.duration.totalHours, name: rec.description, itemStyle: { color: colorData[recIndex] }
-                        }
+                            value: rec.duration.totalHours, name: rec.description}
                     })
+                    //var durationStatistics = res.data.statisticsByDescription.map((rec, recIndex) => {
+                    //    return {
+                    //        value: rec.duration.totalHours, name: rec.description, itemStyle: { color: colorData[recIndex] }
+                    //    }
+                    //})
                     let myChart = echarts.init(document.getElementById("ealywarningRecordDurationStatistics"))
                     // 绘制图表
                     myChart.setOption({
@@ -172,10 +177,12 @@ var EarlyWarningDetailRecordStatisticsvm = new Vue({
                         ]
                     })
 
+                    //var byCompanydurationStatistics = res.data.statisticsByCompany.map((rec, recIndex) => {
+                    //    return { value: rec.duration.totalHours, name: rec.companyName, itemStyle: { color: colorData[recIndex] } }
+                    //})
                     var byCompanydurationStatistics = res.data.statisticsByCompany.map((rec, recIndex) => {
-                        return { value: rec.duration.totalHours, name: rec.companyName, itemStyle: { color: colorData[recIndex] } }
+                        return { value: rec.duration.totalHours, name: rec.companyName }
                     })
-
                     let ByCompanymyChart = echarts.init(document.getElementById("ealywarningRecordByCompanyDurationStatistics"))
                     // 绘制图表
                     ByCompanymyChart.setOption({
@@ -207,8 +214,14 @@ var EarlyWarningDetailRecordStatisticsvm = new Vue({
                             }
                         ]
                     })
-
-                    var numberStatisticsChart = echarts.init(document.getElementById('ealywarningRecordNumberStatistics'))
+                    if (
+                        this.numberStatisticsChart != null &&
+                        this.numberStatisticsChart != "" &&
+                        this.numberStatisticsChart != undefined
+                    ) {
+                        this.numberStatisticsChart.dispose(); //销毁
+                    }
+                    this.numberStatisticsChart = echarts.init(document.getElementById('ealywarningRecordNumberStatistics'))
                     let xData = []
                     let staNumData = []
                     let seriesData = []
@@ -224,7 +237,7 @@ var EarlyWarningDetailRecordStatisticsvm = new Vue({
                                 /* rotate: 90,*/
                                 formatter: '{c}',
                             },
-                            itemStyle: { color: colorData[index] },
+                            //itemStyle: { color: colorData[index] },
                             barGap: 0,
                             emphasis: {
                                 focus: 'series'
@@ -232,7 +245,8 @@ var EarlyWarningDetailRecordStatisticsvm = new Vue({
                             data: item.descriotionNumber
                         })
                     })
-                    numberStatisticsChart.setOption({
+                    console.log(seriesData);
+                    this.numberStatisticsChart.setOption({
                         legend: {
                             textStyle: {
                                 color: '#fff'
@@ -267,7 +281,6 @@ var EarlyWarningDetailRecordStatisticsvm = new Vue({
                             }
                         ],
                         series: seriesData
-
                     })
                 }, (err) => {
                     this.loading = false;
