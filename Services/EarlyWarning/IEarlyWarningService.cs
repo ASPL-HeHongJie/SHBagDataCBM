@@ -19,6 +19,7 @@ namespace Services
 
         public Task<Dictionary<string, object>> GetEquipmentStatisticAvalability(List<int> CompanyIDs, DateTime beginDateTime, DateTime endDateTime);
         public Task<Dictionary<string, object>> BigDataAnalysisOverview(DateTime beginDateTime, DateTime endDateTime,  List<int> companyIDs);
+        public Task<Dictionary<string, object>> GetEarlyWarningByOverview();
         public Task<byte[]> ExportEarlyWarningNotificationRate(List<EarlyWarningNotificationRate> notificationRate, List<NotificationRateBrandStatistics> StatisticsList , string[] columnNames, string templatePath, string imagePath, int startRowFrom = 2, bool isShowSlNo = false);
 
         public Task<List<HistoricalEarlyWarning>> GetEarlyWarningAccuracys(List<int> loopIDs, DateTime beginDateTime, DateTime endDateTime);

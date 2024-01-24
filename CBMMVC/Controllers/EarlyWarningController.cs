@@ -35,6 +35,12 @@ namespace CBMMVC.Controllers
             List<string> status = JsonConvert.DeserializeObject<List<string>>(condition["status"].ToString());
             return await _earlyWarningService.GetEarlyWarning(loopIDs, status);
         }
+
+        [HttpPost]
+        public async Task<Dictionary<string, object>> GetEarlyWarningByOverview()
+        {
+            return await _earlyWarningService.GetEarlyWarningByOverview();
+        }
         [HttpPost]
         public async Task<IEnumerable<EarlyWarningDetail>> GetEarlyWarningDetail([FromBody] string conditionString)
         {

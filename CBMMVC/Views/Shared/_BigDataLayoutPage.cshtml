@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 @{
     Company company = ViewBag.Company as Company;
     Area m_area = ViewBag.Area as Area;
@@ -24,26 +24,5 @@
 </head>
 <body>
     @RenderBody()
-    @*<div class="home" id="home">
-        <div class="header">
-            <div class="logo">
-                <img src="~/image/LogoZSY.png" />
-                <span>@ViewBag.CompanyName</span>
-            </div>
-            <div></div>
-            <div class="logo_rig">
-                @{
-                    if (user.RoleName == "系统管理员" || user.RoleName == "管理处管理员")
-                    {
-                        <a href="" style="display: none; color: #fff; padding: 10px"><span><i class="fa fa-group fa-lg"></i>用户管理</span></a>
-                    }
-                }
-                <a href="" style="color:#fff;padding:10px"><span><i class="el-icon-user-solid"></i>@user.PersonName</span></a>
-                <a href="/Login/Logout" style="color: #fff;padding: 10px"><span><i class="fa fa-sign-out fa-lg"></i>退出</span></a>
-            </div>
-        </div>
-        <div>
-        </div>
-    </div>*@
 </body>
 </html>

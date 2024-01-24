@@ -22,6 +22,11 @@ namespace Models
         public string LoopName { get; set; }
 
         [NotMapped]
+        public string Caliber { get; set; }
+        [NotMapped]
+        public string Customer { get; set; }
+
+        [NotMapped]
         public string StationName { get; set; }
 
         [NotMapped]
@@ -43,6 +48,6 @@ namespace Models
     public class EarlyWarningStatistics
     {
         public string Status { get; set; }
-        public int Number { get; set; }    
+        public int Number { get; set; }
     }
 }

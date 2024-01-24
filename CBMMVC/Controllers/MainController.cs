@@ -531,6 +531,52 @@ namespace CBMMVC.Controllers
             }
         }
 
+
+        public IActionResult EarlyWarningOverview(string id)
+        {
+            ViewBag.Title = "大数据分析总览";
+            ViewBag.CompanyName = _Configuration["CompanyName"].ToString() + "计量远程诊断系统";
+            if (SessionExtensions.Get<User>(HttpContext.Session, "User") != null)
+            {
+                ViewData["User"] = SessionExtensions.Get<User>(HttpContext.Session, "User");
+                User user = ViewData["User"] as User;
+                IConfiguration Configuration = new ConfigurationBuilder().Add(new Microsoft.Extensions.Configuration.Json.JsonConfigurationSource { Path = "appsettings.json", ReloadOnChange = true }).Build();
+                ViewBag.IsArea = Configuration.GetConnectionString("IsArea").ToString();
+                ViewBag.Companies = user.companies;
+                if (ViewBag.IsArea == "true")
+                {
+                    foreach (Company company in user.companies)
+                    {
+                        foreach (Area area in company.Areas)
+                        {
+                            if (area.AbbrName == id)
+                            {
+                                ViewBag.Area = area;
+                                break;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (Company company in user.companies)
+                    {
+                        if (company.AbbrName == id)
+                        {
+                            ViewBag.CompanyAbbrName = id;
+                            ViewBag.Company = company;
+                            break;
+                        }
+                    }
+                }
+                return View("EarlyWarningOverview", id);
+            }
+            else
+            {
+                return RedirectToAction("LossSession", "Login");
+            }
+        }
+
         public IActionResult KeyParametersChangeRecord(string id)
         {
             ViewBag.Title = "关键参数变更记录";

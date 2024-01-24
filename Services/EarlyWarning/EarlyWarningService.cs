@@ -72,6 +72,10 @@ namespace Services
             return Task.Run(() => _earlyWarningRespository.BigDataAnalysisOverview(beginDateTime, endDateTime, companyIDs));
         }
 
+        public Task<Dictionary<string, object>> GetEarlyWarningByOverview()
+        {
+            return Task.Run(() => _earlyWarningRespository.GetEarlyWarningByOverview());
+        }
         public Task<byte[]> ExportEarlyWarningNotificationRate(List<EarlyWarningNotificationRate> notificationRate, List<NotificationRateBrandStatistics> statisticsList, string[] columnNames, string templatePath, string imagePath, int startRowFrom = 2, bool isShowSlNo = false)
         {
             return Task.Run(() =>

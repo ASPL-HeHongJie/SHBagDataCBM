@@ -82,13 +82,13 @@
                 }, (err) => {
                     this.loading = false;
                 }
-            );
+                );
         },
-        getChartBarBranch(chartdata,typeName) {
+        getChartBarBranch(chartdata, typeName) {
             var chartsCompanies = [];
             var chartNumbers = [];
             let dataarr = [];
-             chartdata.forEach(item => {
+            chartdata.forEach(item => {
                 const parent = dataarr.find(c => c.companyName === item.companyName)
                 if (parent) {
                     parent.number.push(1);
@@ -99,7 +99,7 @@
                     }
                     dataarr.push(obj)
                 }
-             })
+            })
             dataarr.forEach(item => {
                 chartsCompanies.push(item.companyName);
                 chartNumbers.push(item.number.length);
@@ -127,7 +127,7 @@
             this.echBarBranch = echarts.init(document.getElementById("echBarBranch"));
             const option = {
                 title: {
-                    text: '分公司',
+                    text: '分公司统计',
                     textStyle: {
                         color: '#2AFFFF',
                         fontSize: 15
@@ -187,7 +187,7 @@
                         borderRadius: 6
                     },
                     itemStyle: {
-                        barBorderRadius: [5, 5, 0, 0],
+                        barBorderRadius: [0, 5, 5, 0],
                         color: {
                             type: 'linear',
                             x: 0,
@@ -408,7 +408,7 @@
                         color: '#2AFFFF',
                         fontSize: 15
                     }
-                }, 
+                },
                 tooltip: {
                     trigger: 'item'
                 },
@@ -438,13 +438,13 @@
             var chartsCompanies = [];
             var chartsRates = [];
             chartdata.map((res) => {
-                chartsCompanies.push(res.company.replace('输气分公司', ''));
+                chartsCompanies.push(res.company);
                 chartsRates.push(res.rate);
             })
             this.echBarBranchHisIntactRate = echarts.init(document.getElementById("echBarBranchHisIntactRate"));
             const option = {
                 title: {
-                    text: '分公司',
+                    text: '分公司统计',
                     textStyle: {
                         color: '#2AFFFF',
                         fontSize: 15
@@ -481,7 +481,7 @@
                     type: 'bar',
                     label: {
                         show: true,
-                        position: ['103%','0%'],
+                        position: ['103%', '0%'],
                         color: '#FFF',
                         backgroundColor: {
                             type: 'linear',
@@ -504,7 +504,7 @@
                         borderRadius: 6
                     },
                     itemStyle: {
-                        barBorderRadius: [5, 5, 0, 0],
+                        barBorderRadius: [0, 5, 5, 0],
                         color: {
                             type: 'linear',
                             x: 0,
@@ -532,10 +532,10 @@
             let that = this;
             var chartEarlyWarning = [];
             chartEarlyWarning = that.EarlyWarnings.filter(item => item.status == '存在预警');
-            that.getChartBarBranch(chartEarlyWarning,'预警数量');
+            that.getChartBarBranch(chartEarlyWarning, '预警数量');
         },
         getIsCommunicationBad() {
-            let that = this; 
+            let that = this;
             var chartEarlyWarning = [];
             chartEarlyWarning = that.EarlyWarnings.filter(item => item.status == '通讯失败');
             that.getChartBarBranch(chartEarlyWarning, '故障数量');

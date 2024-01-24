@@ -1,0 +1,153 @@
+    ﻿@{
+    Layout = "~/Views/Shared/_BigDataLayoutPage.cshtml";
+    }
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+    <script src="~/js/ViewEarlyWarning/bigDataAnalysisOverview.js" type="module"></script>
+    <script src="~/js/Echarts/echarts.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="~/css/ViewEarlyWarning/bigDataAnalysisOverview.css" />
+    <div class="content" id="BigDataAnalysisOverview" v-cloak v-loading="loading"
+         element-loading-text="拼命加载中"
+         element-loading-spinner="el-icon-loading"
+         element-loading-custom-class="loading_color"
+         element-loading-background="rgba(0, 0, 0, 0.8)">
+        <div style="height: 100%;">
+            <div class="bg">
+                <div class="home_title">
+                    <i>
+                        <img src="~/image/title-left.png">
+                    </i>
+                    <span>大数据分析总览</span>
+                    <i>
+                        <img src="~/image/title-right.png">
+                    </i>
+                </div>
+                <div class="conBox">
+                    <div class="backBtn">
+                        <img src="/image/bnt.png" alt="">
+                        <a href="/Main/EarlyEarning/@ViewBag.CompanyAbbrName">
+                            <div class="diaTxt backTit" style="height: 39px; line-height: 34px; font-size: 20px;">
+                                返回
+                            </div>
+                        </a>
+                    </div>
+                    <div class="conL">
+                        <div style="height: 100%;">
+                            <a href="/Main/EarlyWarningOverview/@ViewBag.CompanyAbbrName">
+                                <div class="itemTit">
+                                    实时预警
+                                </div>
+                            </a>
+                            <div style="display: flex; flex-direction: column; justify-content: space-between; height: 93%;">
+                                <div class="realAlarmGroup">
+                                    <div class="ragUp">
+                                        <div class="ragUpBg" @@click="getIsEarlyWarn">
+                                            <div class="ragBgNum">
+                                                {{IsEarlyWarningNumber}}
+                                            </div>
+                                            <div class="ragBgTxt">存在预警</div>
+                                        </div>
+                                    </div>
+                                    <div class="ragUp">
+                                        <div class="ragUpBg" @@click="getIsCommunicationBad">
+                                            <div class="ragBgNum">
+                                                {{IsCommunicationBadNumber}}
+                                            </div>
+                                            <div class="ragBgTxt ragBgTxtB">通讯故障</div>
+                                        </div>
+                                        <div class="ragUpBg" @@click="getIsNormal">
+                                            <div class="ragBgNum">
+                                                {{IsNormalNumber}}
+                                            </div>
+                                            <div class="ragBgTxt ragBgTxtC">运行正常</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="chartEarly" id="echBarBranch"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="conC">
+                        <div style="height: 100%;">
+                            <div class="itemTit">
+                                告知率
+                            </div>
+                            <div style="display: flex; flex-direction: column; justify-content: space-between; height: 93%;">
+                                <div class="chartEarly" id="echEarly"></div>
+                                <div class="chartEarly" id="echStat"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="conR">
+                        <a href="/Main/EquipmentGoodRate/@ViewBag.CompanyAbbrName">
+                            <div class="itemTit">
+                                设备完好率
+                            </div>
+                        </a>
+                        <div style="display: flex; flex-direction: column; justify-content: space-between; height: 93%;">
+                            <div class="listTable">
+                                <div class="tabTit">
+                                    <span>分公司</span>
+                                    <span>设备完好率</span>
+                                </div>
+                                <div class="tabCon">
+                                    <div class="tabTit tabCI" v-for="item in EquipmentAvalability">
+                                        <span>{{item.company}}</span>
+                                        <span>{{item.rate}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chartEarly" id="echBarBranchHisIntactRate"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="draw">
+
+                <el-button type="primary" icon="el-icon-edit" circle @@click="drawer = true"></el-button>
+            </div>
+            <el-drawer title="选择器" :visible.sync="drawer" :direction="direction" size="22%">
+                <div style="padding: 0 40px;">
+                    <el-form ref="form" :model="form" label-width="80px">
+                        <el-form-item label="公司">
+                            <el-select v-model="form.companyIDs"
+                                       multiple
+                                       collapse-tags
+                                       placeholder="请选择"
+                                       style="width: 11.417vw ">
+                                <el-option v-for="item in datas"
+                                           :key="item.ID"
+                                           :label="item.Name"
+                                           :value="item.ID">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item label="开始时间">
+                            <el-date-picker v-model="form.staTime"
+                                            type="datetime"
+                                            placeholder="选择日期">
+                            </el-date-picker>
+                        </el-form-item>
+                        <el-form-item label="结束时间">
+                            <el-date-picker v-model="form.endTime"
+                                            type="datetime"
+                                            placeholder="选择日期">
+                            </el-date-picker>
+                        </el-form-item>
+                    </el-form>
+                    <el-button @@click="Refresh" type="primary" style="margin-left: 16px;">
+                        刷新
+                    </el-button>
+                </div>
+            </el-drawer>
+        </div>
+    </div>
+    <script>
+    var area =@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Area))
+    var isArea = '@ViewBag.IsArea';
+    var company =@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Company));
+    var companies=@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Companies));
+    </script>

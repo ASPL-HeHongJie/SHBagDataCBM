@@ -1824,6 +1824,51 @@ namespace Respository
             OverviewData["EquipmentAvalability"] = avalabilities;
             return OverviewData;
         }
+        public Dictionary<string, object> GetEarlyWarningByOverview()
+        {
+            Dictionary<string, object> OverviewData = new Dictionary<string, object>();
+
+            #region 实时预警
+            var earlyWarnings = (from warning in _context.EarlyWarnings
+                                 join loop in _context.StationLoops
+                                 on warning.LoopID equals loop.ID
+                                 join station in _context.StationInfos
+                                 on loop.StationID equals station.ID
+                                 join area in _context.Areas
+                                 on station.AreaID equals area.ID
+                                 join company in _context.CompanyInfos
+                                 on area.CompanyID equals company.ID
+                                 join loopGasTransmission in _context.LoopGasTransmissionCapacities
+                                 on loop.ID equals loopGasTransmission.LoopID into matches
+                                 from loopGasTransmission in matches.DefaultIfEmpty()
+                                 select new EarlyWarning
+                                 {
+                                     ID = warning.ID,
+                                     LoopID = warning.LoopID,
+                                     Status = warning.Status == "流量计存在预警" ? "存在预警" : (warning.Status == "流量计运行正常" ? "运行正常" : "通讯失败"),
+                                     StatusNumber = warning.Status == "流量计存在预警" ? 1 : (warning.Status == "流量计运行正常" ? 2 : 3),
+                                     Solution = warning.Solution,
+                                     StationName = station.Name,
+                                     LoopName = loop.AbbrName,
+                                     AreaName = area.Name,
+                                     CompanyName = company.Name,
+                                     DateTime = warning.DateTime,
+                                     Customer=loop.Customer,
+                                     Caliber=loop.Caliber,
+                                     FlowmeterManufacturer = loop.FlowmeterManufacturer,
+                                     ForwordPreDayStandardCumulative = loopGasTransmission == null ? 0 : loopGasTransmission.ForwordPreDayStandardCumulative,
+                                     EarlyWarningParameterDetail = string.Join("、", _context.earlyWarningDetails.Where(detail => detail.LoopID == warning.LoopID && detail.IsWarn == true).Select(detail => detail.Description))
+                                 }).ToList().OrderByDescending(warning => warning.ForwordPreDayStandardCumulative).ThenBy(warning => warning.StatusNumber);
+            Dictionary<string, object> earlyWarningNumber = new Dictionary<string, object>();
+            earlyWarningNumber["EarlyWarningNumber"] = earlyWarnings.Where(item => item.Status == "存在预警").Count();
+            earlyWarningNumber["NormalNumber"] = earlyWarnings.Where(item => item.Status == "运行正常").Count();
+            earlyWarningNumber["CommunicationBadNumber"] = earlyWarnings.Where(item => item.Status == "通讯失败").Count();
+            #endregion
+         
+            OverviewData["EarlyWarnings"] = earlyWarnings.OrderBy(x => x.StatusNumber);
+            OverviewData["EarlyWarningStatistics"] = earlyWarningNumber;
+            return OverviewData;
+        }
         public Dictionary<string, object> GetEquipmentStatisticAvalability(List<int> CompanyIDs, DateTime beginDateTime, DateTime endDateTime)
         {
             double span = endDateTime.Subtract(beginDateTime).Duration().TotalSeconds;
