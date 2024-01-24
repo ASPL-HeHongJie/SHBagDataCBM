@@ -9657,12 +9657,18 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\sa\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+=======
+    "C:\\Users\\admin\\.nuget\\packages\\": {},
+    "d:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+>>>>>>> c86e7456475fe39988759d01c420aaa0042c0e54
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "D:\\Work\\更改Elster前。可用于未升级的上海\\SHCBMByBagData\\CBMAPI\\CBMAPI.csproj",
       "projectName": "CBMAPI",
       "projectPath": "D:\\Work\\更改Elster前。可用于未升级的上海\\SHCBMByBagData\\CBMAPI\\CBMAPI.csproj",
@@ -9674,6 +9680,19 @@
       ],
       "configFilePaths": [
         "C:\\Users\\sa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+      "projectUniqueName": "D:\\wwwroot\\SHBagDataCBM\\CBMAPI\\CBMAPI.csproj",
+      "projectName": "CBMAPI",
+      "projectPath": "D:\\wwwroot\\SHBagDataCBM\\CBMAPI\\CBMAPI.csproj",
+      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+      "outputPath": "D:\\wwwroot\\SHBagDataCBM\\CBMAPI\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "d:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> c86e7456475fe39988759d01c420aaa0042c0e54
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -9688,11 +9707,19 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
+<<<<<<< HEAD
             "D:\\Work\\更改Elster前。可用于未升级的上海\\SHCBMByBagData\\Models\\Models.csproj": {
               "projectPath": "D:\\Work\\更改Elster前。可用于未升级的上海\\SHCBMByBagData\\Models\\Models.csproj"
             },
             "D:\\Work\\更改Elster前。可用于未升级的上海\\SHCBMByBagData\\Services\\Services.csproj": {
               "projectPath": "D:\\Work\\更改Elster前。可用于未升级的上海\\SHCBMByBagData\\Services\\Services.csproj"
+=======
+            "D:\\wwwroot\\SHBagDataCBM\\Models\\Models.csproj": {
+              "projectPath": "D:\\wwwroot\\SHBagDataCBM\\Models\\Models.csproj"
+            },
+            "D:\\wwwroot\\SHBagDataCBM\\Services\\Services.csproj": {
+              "projectPath": "D:\\wwwroot\\SHBagDataCBM\\Services\\Services.csproj"
+>>>>>>> c86e7456475fe39988759d01c420aaa0042c0e54
             }
           }
         }
@@ -9722,6 +9749,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x86",
+            "version": "[3.1.25, 3.1.25]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -9730,7 +9763,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.416\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
       }
     }
   }

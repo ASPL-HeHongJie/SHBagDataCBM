@@ -131,7 +131,7 @@ var EarlyWarningvm = new Vue({
                             axisLabel: {
                                 margin: 45,
                                 fontSize: 12,
-                                color: '#000',
+                                color: '#fff',
                                 interval: 0,
                                 rotate: 60,
                                 textStyle: {

@@ -1,23 +1,29 @@
 ﻿.el-dialog__wrapper {
     overflow: hidden;
 }
+
 .el-dialog {
     margin-top: 0 !important;
     height: 100%;
 }
-.el-dialog__body{
-    padding-top:0;
-    padding-bottom:0;
+
+.el-dialog__body {
+    padding-top: 0;
+    padding-bottom: 0;
 }
+
 .el-icon-s-order {
     font-size: .938vw;
 }
-.loading_color i{
-    color:#fff;
+
+.loading_color i {
+    color: #fff;
 }
+
 .el-loading-spinner .el-loading-text {
     color: #fff !important;
 }
+
 .earlywarningtitle {
     width: 100%;
     height: 40px;
@@ -28,6 +34,7 @@
     color: #FFF;
     border-bottom: 1px solid;
 }
+
 .contentBox {
     width: 100%;
     height: calc(100vh - 178px);
@@ -35,6 +42,7 @@
     justify-content: space-around;
     padding-top: 20px;
 }
+
 .left {
     width: 100%;
     display: flex;
@@ -51,12 +59,14 @@
     margin-bottom: 10px;
     /*  color: #FFF;*/
 }
+
 .disech {
     width: 48vw;
     height: 30.966vh;
     display: flex;
     flex-direction: row;
 }
+
 .echt {
     width: 18.634vw;
     height: 35.966vh;
@@ -66,3 +76,8 @@
     .echt > div > canvas {
         margin: 0 0 0 2.6057vw !important;
     }
+
+.desc {
+    font-size: 14px;
+    margin: 0 0 8px 18px;
+}

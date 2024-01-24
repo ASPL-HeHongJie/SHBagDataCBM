@@ -70,8 +70,8 @@ var EarlyWarningDetailRecordStatisticsvm = new Vue({
     },
     created() {
         function fall(arr) { return [].concat(...arr.map(x => Array.isArray(x) ? fall(x) : x)) }
-        this.datas = fall( companies.map((res) => {return [{ Name: res.Name, ID: res.ID }] }))
-      
+        this.datas = fall(companies.map((res) => { return [{ Name: res.Name, ID: res.ID }] }))
+
         this.companyName.push(company.ID);
 
         var myDate = new Date();  // 当前时间
@@ -79,7 +79,7 @@ var EarlyWarningDetailRecordStatisticsvm = new Vue({
         this.timeSlot = [preDate, myDate]
 
         this.BrandName = 'Daniel';
-      
+
         this.Refresh();
     },
     methods: {
@@ -99,7 +99,7 @@ var EarlyWarningDetailRecordStatisticsvm = new Vue({
             }
         },
         Refresh() {
-            if (this.companyName.length == 0 ) {
+            if (this.companyName.length == 0) {
                 this.$message({ showClose: true, message: '请选择输气分公司', type: 'error' });
                 return;
             }
@@ -152,6 +152,14 @@ var EarlyWarningDetailRecordStatisticsvm = new Vue({
                             trigger: 'item',
                             formatter: "{a} <br/>{b}"
                         },
+                        title: {
+                            text: '按预警参数统计',
+                            textStyle: {
+                                color: '#fff',
+                                fontSize: 15
+                            },
+                            left: 'center'
+                        },
                         series: [
                             {
                                 name: '参数预警时长统计',
@@ -181,6 +189,14 @@ var EarlyWarningDetailRecordStatisticsvm = new Vue({
                         tooltip: {
                             trigger: 'item',
                             formatter: "{a} <br/>{b}"
+                        },
+                        title: {
+                            text: '按分公司统计',
+                            textStyle: {
+                                color: '#fff',
+                                fontSize: 15
+                            },
+                            left: 'center'
                         },
                         series: [
                             {
@@ -218,7 +234,7 @@ var EarlyWarningDetailRecordStatisticsvm = new Vue({
                             type: 'bar',
                             label: {
                                 show: true,
-                               /* rotate: 90,*/
+                                /* rotate: 90,*/
                                 formatter: '{c}',
                             },
                             //itemStyle: { color: colorData[index] },
@@ -269,7 +285,7 @@ var EarlyWarningDetailRecordStatisticsvm = new Vue({
                 }, (err) => {
                     this.loading = false;
                     that.tableData = []
-                } );
+                });
         },
         tableRowClassName({ row, rowIndex }) {
             if (rowIndex % 2 === 1) {

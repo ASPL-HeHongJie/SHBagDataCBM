@@ -52,7 +52,7 @@ var EarlyWarningvm = new Vue({
                 var station = res.Stations.map((res) => {
                     this.StationName.push(res.ID)
                     this.StationsData = res
-                    return [{ Name: res.Name, ID: res.ID, Loops: res.Loops}]
+                    return [{ Name: res.Name, ID: res.ID, Loops: res.Loops }]
                 })
                 function fall(arr) { return [].concat(...arr.map(x => Array.isArray(x) ? fall(x) : x)) }
                 this.Stations = fall(station)
@@ -69,7 +69,7 @@ var EarlyWarningvm = new Vue({
                 var station = res.Stations.map((res) => {
                     this.StationName.push(res.ID)
                     this.StationsData = res
-                    return [{ Name: res.Name, ID: res.ID, Loops: res.loops}]
+                    return [{ Name: res.Name, ID: res.ID, Loops: res.loops }]
                 })
                 function fall(arr) { return [].concat(...arr.map(x => Array.isArray(x) ? fall(x) : x)) }
                 this.Stations = fall(station)
@@ -81,12 +81,12 @@ var EarlyWarningvm = new Vue({
         console.log(this.Stations)
         console.log(this.StationsData)
         this.StationsData.filter(el => this.StationName.includes(el.ID)).map((res) => {
-           res.Loops.filter((el) => el.FlowmeterType != 'Turbo').map((res) => {
+            res.Loops.filter((el) => el.FlowmeterType != 'Turbo').map((res) => {
                 this.LoopName.push(res.ID);
             })
         })
 
-         this.Refresh();
+        this.Refresh();
     },
     methods: {
         handleSizeChange: function (val) {
@@ -124,7 +124,7 @@ var EarlyWarningvm = new Vue({
                         item.index = index + 1;
                     });
                     var earlywarming = that.ealywarningTableData.map((rec) => {
-                        return { value: rec.number, name: rec.status }
+                        return { value: rec.number, name: rec.status.indexOf("失败") != -1 ? rec.status.substring(0, rec.status.indexOf("失败") + 2) : rec.status.replace("流量计", "") }
                     })
                     let myChart = echarts.init(document.getElementById("earlyStatistics"))
                     // 绘制图表
@@ -152,7 +152,7 @@ var EarlyWarningvm = new Vue({
 
                 }, (err) => {
                     that.ealywarningTableData = []
-                    this.dialogVisible = true;  
+                    this.dialogVisible = true;
                 }
                 );
 
@@ -224,18 +224,18 @@ var EarlyWarningvm = new Vue({
 
             this.StationsData = this.Stations.filter(el => id.includes(el.ID));
             this.StationsData.map((res) => {
-            
-                        var LoopsData = res.Loops.filter((el) => el.FlowmeterType != 'Turbo').map((res) => {
-                            /* console.log(res);*/
-                           /* this.LoopData.push(res)*/
-                            this.LoopName.push(res.ID);
-                            return { Name: res.Name + '(回路)', ID: res.ID, BrandName: res.BrandName }
-                        })
-                        //this.Loops.unshift(LoopsData)
-                        //function fall(arr) { return [].concat(...arr.map(x => Array.isArray(x) ? fall(x) : x)) }
-                        //this.Loops = fall(this.Loops)
-                    
-                
+
+                var LoopsData = res.Loops.filter((el) => el.FlowmeterType != 'Turbo').map((res) => {
+                    /* console.log(res);*/
+                    /* this.LoopData.push(res)*/
+                    this.LoopName.push(res.ID);
+                    return { Name: res.Name + '(回路)', ID: res.ID, BrandName: res.BrandName }
+                })
+                //this.Loops.unshift(LoopsData)
+                //function fall(arr) { return [].concat(...arr.map(x => Array.isArray(x) ? fall(x) : x)) }
+                //this.Loops = fall(this.Loops)
+
+
             });
         },
         dateFormat: function (row, column) {

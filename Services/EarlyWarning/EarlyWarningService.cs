@@ -48,7 +48,7 @@ namespace Services
             return Task.Run(() => _earlyWarningRespository.GetEarlyWarningDetailRecords(loopIDs, beginDateTime, endDateTime));
         }
 
-        public Task<IEnumerable<EarlyWarningDetailRecordStatistics>> GetEarlyWarningDetailRecordStatistics(List<int> loopIDs, DateTime beginDateTime, DateTime endDateTime)
+        public Task<Dictionary<string, object>> GetEarlyWarningDetailRecordStatistics(List<int> loopIDs, DateTime beginDateTime, DateTime endDateTime)
         {
             return Task.Run(() => _earlyWarningRespository.GetEarlyWarningDetailRecordStatistics(loopIDs, beginDateTime, endDateTime));
         }
@@ -76,6 +76,11 @@ namespace Services
         {
             return Task.Run(() => _earlyWarningRespository.GetEarlyWarningByOverview());
         }
+        public Task<Dictionary<string, object>> NotificationRateOverview(DateTime beginDateTime, DateTime endDateTime, List<int> companyIDs)
+        {
+            return Task.Run(() => _earlyWarningRespository.NotificationRateOverview(beginDateTime, endDateTime, companyIDs));
+        }
+
         public Task<byte[]> ExportEarlyWarningNotificationRate(List<EarlyWarningNotificationRate> notificationRate, List<NotificationRateBrandStatistics> statisticsList, string[] columnNames, string templatePath, string imagePath, int startRowFrom = 2, bool isShowSlNo = false)
         {
             return Task.Run(() =>

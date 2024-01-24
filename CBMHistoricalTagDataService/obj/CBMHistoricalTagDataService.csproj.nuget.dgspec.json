@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "D:\\Work\\更改Elster前。可用于未升级的上海\\SHCBMByBagData\\CBMHistoricalTagDataService\\CBMHistoricalTagDataService.csproj": {}
   },
   "projects": {
@@ -18,6 +19,25 @@
         ],
         "configFilePaths": [
           "C:\\Users\\sa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+    "D:\\wwwroot\\SHBagDataCBM\\CBMHistoricalTagDataService\\CBMHistoricalTagDataService.csproj": {}
+  },
+  "projects": {
+    "D:\\wwwroot\\SHBagDataCBM\\CBMHistoricalTagDataService\\CBMHistoricalTagDataService.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\wwwroot\\SHBagDataCBM\\CBMHistoricalTagDataService\\CBMHistoricalTagDataService.csproj",
+        "projectName": "CBMHistoricalTagDataService",
+        "projectPath": "D:\\wwwroot\\SHBagDataCBM\\CBMHistoricalTagDataService\\CBMHistoricalTagDataService.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "D:\\wwwroot\\SHBagDataCBM\\CBMHistoricalTagDataService\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "d:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> c86e7456475fe39988759d01c420aaa0042c0e54
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -75,12 +95,18 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[3.1.25, 3.1.25]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.416\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
         }
       }
     }

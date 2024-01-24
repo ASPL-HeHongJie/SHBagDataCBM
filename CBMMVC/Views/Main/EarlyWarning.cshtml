@@ -108,12 +108,12 @@
     </div>
     <div class="formview">
         <el-table :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)" height="75.867vh" border :stripe="true" style="width: 98%; margin-left: 1%; margin-top: 1.032vh;text-align: center;" :row-class-name="tableRowClassName">
-            <el-table-column prop="stationName" width="120" label="场站名称">
+            <el-table-column prop="stationName" width="100" label="场站名称">
             </el-table-column>
-            <el-table-column prop="loopName" width="100" label="回路名称"> </el-table-column>
+            <el-table-column prop="loopName" width="80" label="回路名称"> </el-table-column>
             <el-table-column prop="dateTime" width="150" :formatter="dateFormat" label="开始时间"></el-table-column>
-            <el-table-column prop="flowmeterManufacturer" width="90" label="品牌"></el-table-column>
-            <el-table-column prop="forwordPreDayStandardCumulative" width="80" label="输气量"></el-table-column>
+            <el-table-column prop="flowmeterManufacturer" width="80" label="品牌"></el-table-column>
+            <el-table-column prop="forwordPreDayStandardCumulative" width="130" label="日输气量(SKm3)"></el-table-column>
             <el-table-column prop="status" width="120" label="状态"></el-table-column>
             <el-table-column prop="earlyWarningParameterDetail" width="300" label="预警的参数"></el-table-column>
             <el-table-column prop="solution" label="解决方案"></el-table-column>

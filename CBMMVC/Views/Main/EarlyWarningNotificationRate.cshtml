@@ -61,9 +61,35 @@
             <el-table-column prop="brandName" label="品牌" align="center"> </el-table-column>
             <el-table-column prop="flowmeterModel" label="型号" align="center"> </el-table-column>
             <el-table-column prop="caliber" label="口径" align="center"> </el-table-column>
-            <el-table-column prop="forwordPreDayStandardCumulative" label="输气量" align="center"> </el-table-column>
-            <el-table-column prop="earlywarningNumber" label="参数预警数" align="center"></el-table-column>
-            <el-table-column prop="alarmNumber" label="对应报警数" align="center"></el-table-column>
+            <el-table-column prop="forwordPreDayStandardCumulative" label="日输气量(SKm3)" align="center"> </el-table-column>
+            <el-table-column label="参数预警数" align="center">
+                <template slot-scope="scope">
+                    <el-popover v-if="scope.row.earlyWarningDescItems.length > 0"
+                                placement="right"
+                                width="150"
+                                trigger="hover">
+                        <div v-for="(item,index) in scope.row.earlyWarningDescItems" :key="index" class="desc">
+                            {{ item }}
+                        </div>
+                        <span slot="reference">{{ scope.row.earlywarningNumber }}</span>
+                    </el-popover>
+                    <span v-else>{{ scope.row.earlywarningNumber }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column label="对应报警数" align="center">
+                <template slot-scope="scope">
+                    <el-popover v-if="scope.row.alarmDescItems.length > 0"
+                                placement="right"
+                                width="150"
+                                trigger="hover">
+                        <div v-for="(item,index) in scope.row.alarmDescItems" :key="index" class="desc">
+                            {{ item }}
+                        </div>
+                        <span slot="reference">{{ scope.row.alarmNumber }}</span>
+                    </el-popover>
+                    <span v-else>{{ scope.row.alarmNumber }}</span>
+                </template>
+            </el-table-column>
             <el-table-column prop="notificationRate" label="告知率" align="center"></el-table-column>
         </el-table>
         <el-pagination style="width:50%;margin-left:1%;margin-top:5px;" @@size-change="handleSizeChange"
@@ -80,7 +106,7 @@
                width="56%"
                style="height: 59%; margin-top: 10vh ">
         <div class="disech">
-           
+
             <el-table :data="notificationRateTableData"
                       height="37.805vh"
                       border
@@ -94,12 +120,12 @@
             </el-table>
             <div class="echt" style="margin-top:50px" id="notificationRateStatistics" ref="chert"></div>
         </div>
-        <div  class="dialog-footer" style="padding: 141px 20px 20px; float: right;">
-            <span slot="footer" >
+        <div class="dialog-footer" style="padding: 141px 20px 20px; float: right;">
+            <span slot="footer">
                 <el-button type="primary" icon="el-icon-upload" @@click="Export">导出</el-button>
             </span>
         </div>
-        
+
     </el-dialog>
 </div>
 <script>

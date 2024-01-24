@@ -116,7 +116,7 @@
             <el-table-column prop="loopName" label="回路名称"> </el-table-column>
             <el-table-column prop="flowmeterManufacturer" label="品牌"></el-table-column>
             <el-table-column prop="caliber" label="口径"></el-table-column>
-            <el-table-column prop="forwordPreDayStandardCumulative" label="输气量"></el-table-column>
+            <el-table-column prop="forwordPreDayStandardCumulative" label="日输气量(SKm3)"></el-table-column>
             <el-table-column prop="description" label="预警参数"></el-table-column>
         </el-table>
         <el-pagination style="width:50%;margin-left:1%;margin-top:5px;" @@size-change="handleSizeChange"
@@ -130,8 +130,8 @@
     </div>
     <el-dialog title="预警记录统计"
                :visible.sync="dialogVisible"
-               width="56%"
-               style="height: 70%; margin-top: 10vh ">
+               width="76%"
+               style="height: 80%; margin-top: 10vh ">
         <div class="disech">
             <el-table :data="ealywarningRecordTableData"
                       height="48.805vh"
@@ -139,6 +139,7 @@
                       style="width: 28.663vw; margin-top:5vh">
                 <el-table-column prop="index"
                                  label="序号"
+                                 width="50"
                                 >
                 </el-table-column>
                 <el-table-column prop="description"
@@ -146,7 +147,7 @@
                               >
                 </el-table-column>
                 <el-table-column prop="number"
-                                 label="条数"
+                                 label="次数"
                                 >
                 </el-table-column>
             </el-table>
