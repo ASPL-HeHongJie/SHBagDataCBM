@@ -6,11 +6,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Microsoft.Extensions.Configuration;
-using Services;
-using Models;
 using System.IO;
 using Microsoft.Extensions.Hosting;
 using System.Drawing;
+using Services;
+using Models;
 
 namespace CBMMVC.Controllers
 {

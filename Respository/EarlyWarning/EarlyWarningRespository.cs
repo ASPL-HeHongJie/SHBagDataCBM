@@ -1959,31 +1959,8 @@ namespace Respository
             earlyWarningAccuracyStatistics.Description = "汇总"; earlyWarningAccuracyStatistics.Accuracy = solutionAccuracyStatistics.Select(x => x.Accuracy).Average();
             solutionAccuracyStatistics.Insert(0, earlyWarningAccuracyStatistics);
             #endregion
-            #region 实时的A类报警统计
-            List<string> Alarms = new List<string> { "压力变送器通讯故障", "温度变送器通讯故障", "色谱分析仪器与流量计算机通讯", "流量计与流量计算机通讯报警", "压力变送器通讯故障", "流量计计量失败报警", "声道1状态", "声道2状态", "声道3状态", "声道4状态", "流量计算机报警", "流量计算机过程报警", "流量计算机系统报警", "冷启动", "热启动", "流量计算机RAM故障报警", "流量计算机ROM故障报警", "累积量初始化为0", "部分累积量错误", "累积量寄存器冲突", "组态参数更改", "累积量达到最大值初始化", "超声波故障报警", "流量计算机维护模式" };
-            var alarms = (from alarm in _context.RealtimeAlarms.Where(item => item.Status != "OK")
-                          select new RealtimeAlarm
-                          {
-                              CompanyAbbrName = alarm.Area.Split(",", StringSplitOptions.None)[2],
-                              AlarmDescription = alarm.Description.Split("-", StringSplitOptions.None)[2].Trim(),
-                          }).ToList();
-            alarms = (from alarm in alarms.Where(item => Alarms.Contains(item.AlarmDescription))
-                      join company in _context.CompanyInfos.Where(item => companyIDs.Contains(item.ID))
-                      on alarm.CompanyAbbrName equals company.AbbrName
-                      select new RealtimeAlarm
-                      {
-                          CompanyAbbrName = company.Name,
-                          AlarmDescription = alarm.AlarmDescription
-                      }).ToList();
-            List<AlarmCount> alarmcount = (from alarm in alarms
-                                           group alarm by alarm.CompanyAbbrName into g
-                                           select new AlarmCount
-                                           {
-                                               AlarmArea = g.Key,
-                                               Count = g.Count(),
-                                           }).ToList();
-            #endregion
             #region 设备完好率统计
+            List<string> Alarms = new List<string> { "压力变送器通讯故障", "温度变送器通讯故障", "色谱分析仪器与流量计算机通讯", "流量计与流量计算机通讯报警", "压力变送器通讯故障", "流量计计量失败报警", "声道1状态", "声道2状态", "声道3状态", "声道4状态", "流量计算机报警", "流量计算机过程报警", "流量计算机系统报警", "冷启动", "热启动", "流量计算机RAM故障报警", "流量计算机ROM故障报警", "累积量初始化为0", "部分累积量错误", "累积量寄存器冲突", "组态参数更改", "累积量达到最大值初始化", "超声波故障报警", "流量计算机维护模式" };
             double span = endDateTime.Subtract(beginDateTime).Duration().TotalSeconds;
             List<string> IPAddresies = _context.Collectors.Select(x => x.IPAddress).ToList();
             List<string> CompaniesAbbrNames = _context.CompanyInfos.Where(x => companyIDs.Contains(x.ID)).Select(x => x.AbbrName).ToList();
@@ -2054,7 +2031,6 @@ namespace Respository
             OverviewData["EarlyWarningStatistics"] = earlyWarningNumber;
             OverviewData["EarlyWarningNotificationRateBrandStatistics"] = notificationRateBrandStatistics.OrderByDescending(x => x.BrandName);
             OverviewData["SolutionNotificationRateBrandStatistics"] = solutionAccuracyStatistics.OrderByDescending(x => x.Description);
-            OverviewData["RealTimeAlarmStatistics"] = alarmcount;
             OverviewData["EquipmentAvalability"] = avalabilities;
             return OverviewData;
         }
