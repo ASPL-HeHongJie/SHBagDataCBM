@@ -2053,7 +2053,7 @@ namespace Respository
             OverviewData["EarlyWarnings"] = earlyWarnings.OrderBy(x => x.StatusNumber);
             OverviewData["EarlyWarningStatistics"] = earlyWarningNumber;
             OverviewData["EarlyWarningNotificationRateBrandStatistics"] = notificationRateBrandStatistics.OrderByDescending(x => x.BrandName);
-            OverviewData["SolutionNotificationRateBrandStatistics"] = statistic.OrderByDescending(x => x.Description);
+            OverviewData["SolutionNotificationRateBrandStatistics"] = solutionAccuracyStatistics.OrderByDescending(x => x.Description);
             OverviewData["RealTimeAlarmStatistics"] = alarmcount;
             OverviewData["EquipmentAvalability"] = avalabilities;
             return OverviewData;

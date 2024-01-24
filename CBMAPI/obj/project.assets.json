@@ -9657,19 +9657,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Administrator\\.nuget\\packages\\": {}
+    "C:\\Users\\admin\\.nuget\\packages\\": {},
+    "d:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\BigDataAnalysis\\CBMAPI\\CBMAPI.csproj",
+      "projectUniqueName": "D:\\wwwroot\\SHBagDataCBM\\CBMAPI\\CBMAPI.csproj",
       "projectName": "CBMAPI",
-      "projectPath": "C:\\BigDataAnalysis\\CBMAPI\\CBMAPI.csproj",
-      "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "C:\\BigDataAnalysis\\CBMAPI\\obj\\",
+      "projectPath": "D:\\wwwroot\\SHBagDataCBM\\CBMAPI\\CBMAPI.csproj",
+      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+      "outputPath": "D:\\wwwroot\\SHBagDataCBM\\CBMAPI\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "d:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9683,11 +9688,11 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\BigDataAnalysis\\Models\\Models.csproj": {
-              "projectPath": "C:\\BigDataAnalysis\\Models\\Models.csproj"
+            "D:\\wwwroot\\SHBagDataCBM\\Models\\Models.csproj": {
+              "projectPath": "D:\\wwwroot\\SHBagDataCBM\\Models\\Models.csproj"
             },
-            "C:\\BigDataAnalysis\\Services\\Services.csproj": {
-              "projectPath": "C:\\BigDataAnalysis\\Services\\Services.csproj"
+            "D:\\wwwroot\\SHBagDataCBM\\Services\\Services.csproj": {
+              "projectPath": "D:\\wwwroot\\SHBagDataCBM\\Services\\Services.csproj"
             }
           }
         }
@@ -9717,6 +9722,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x86",
+            "version": "[3.1.25, 3.1.25]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -9725,7 +9736,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.416\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -5891,19 +5891,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Administrator\\.nuget\\packages\\": {}
+    "C:\\Users\\admin\\.nuget\\packages\\": {},
+    "d:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\BigDataAnalysis\\Respository\\Respository.csproj",
+      "projectUniqueName": "D:\\wwwroot\\SHBagDataCBM\\Respository\\Respository.csproj",
       "projectName": "Respository",
-      "projectPath": "C:\\BigDataAnalysis\\Respository\\Respository.csproj",
-      "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "C:\\BigDataAnalysis\\Respository\\obj\\",
+      "projectPath": "D:\\wwwroot\\SHBagDataCBM\\Respository\\Respository.csproj",
+      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+      "outputPath": "D:\\wwwroot\\SHBagDataCBM\\Respository\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "d:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5917,8 +5922,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\BigDataAnalysis\\Models\\Models.csproj": {
-              "projectPath": "C:\\BigDataAnalysis\\Models\\Models.csproj"
+            "D:\\wwwroot\\SHBagDataCBM\\Models\\Models.csproj": {
+              "projectPath": "D:\\wwwroot\\SHBagDataCBM\\Models\\Models.csproj"
             }
           }
         }
@@ -5965,7 +5970,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.416\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -443,11 +443,8 @@
             this.chartsStatisticsByCompany.setOption(option);
         },
         getChartEarlyByCaliber(chartdata) {
-            var chartsCalibers = [];
-            var chartsRates = [];
-            chartdata.map((res) => {
-                chartsCalibers.push(res.caliber);
-                chartsRates.push(res.notificationRate.toFixed(2));
+            var byCaliberEarly = chartdata.map((rec) => {
+                return { value: rec.notificationRate.toFixed(2), name: rec.caliber }
             })
 
             this.chartsEarlyByCaliber = echarts.init(document.getElementById("echEarlyByCaliber"));
@@ -460,94 +457,30 @@
                     }
                 },
                 tooltip: {
-                    trigger: 'axis',
-                    axisPointer: {
-                        type: 'shadow'
-                    }
+                    trigger: 'item',
+                    //formatter: "{a} <br/>{b}"
                 },
-                grid: {
-                    top: '12%',
-                    left: '3%',
-                    right: '4%',
-                    bottom: '1%',
-                    containLabel: true
-                },
-                xAxis: [{
-                    type: 'category',
-                    axisLabel: {
-                        color: '#2AFFFF'
-                    },
-                    data: chartsCalibers
-                }],
-                yAxis: [{
-                    type: 'value',
-                    axisLabel: {
-                        color: '#2AFFFF'
+                series: [
+                    {
+                        name: '预警告知率',
+                        type: 'pie',
+                        radius: '60%',
+                        data: byCaliberEarly,
+                        emphasis: {
+                            itemStyle: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
                     }
-                }],
-                series: [{
-                    name: '',
-                    type: 'bar',
-                    stack: 'Ad',
-                    barWidth: '30%',
-                    emphasis: {
-                        focus: 'series'
-                    },
-                    label: {
-                        show: true,
-                        position: 'top',
-                        color: '#707070',
-                        backgroundColor: {
-                            type: 'linear',
-                            x: 0,
-                            y: 0,
-                            x2: 0,
-                            y2: 1,
-                            colorStops: [
-                                {
-                                    offset: 0,
-                                    color: 'rgba(131, 164, 212, 1)',
-                                },
-                                {
-                                    offset: 1,
-                                    color: 'rgba(182, 251, 255, 1)',
-                                },
-                            ],
-                        },
-                        padding: 5,
-                        borderRadius: 6
-                    },
-                    itemStyle: {
-                        barBorderRadius: [5, 5, 0, 0],
-                        color: {
-                            type: 'linear',
-                            x: 0,
-                            y: 0,
-                            x2: 0,
-                            y2: 1,
-                            colorStops: [
-                                {
-                                    offset: 0,
-                                    color: 'rgba(131, 164, 212, 1)',
-                                },
-                                {
-                                    offset: 1,
-                                    color: 'rgba(182, 251, 255, 1)',
-                                },
-                            ],
-                        },
-                    },
-                    data: chartsRates
-                },]
+                ]
             };
             this.chartsEarlyByCaliber.setOption(option);
         },
         getChartStatisticsByCaliber(chartdata) {
-            var chartsCalibers = [];
-            var chartsRates = [];
-            chartdata.map((res) => {
-                chartsCalibers.push(res.description);
-                chartsRates.push(res.accuracy.toFixed(2));
+            var byCaliberStatistics = chartdata.map((rec) => {
+                return { value: rec.accuracy.toFixed(2), name: rec.description }
             })
 
             this.chartsStatisticsByCaliber = echarts.init(document.getElementById("echStatByCaliber"));
@@ -560,69 +493,24 @@
                     }
                 },
                 tooltip: {
-                    trigger: 'axis',
-                    axisPointer: {
-                        type: 'shadow'
-                    }
+                    trigger: 'item',
+                    //formatter: "{a} <br/>{b}"
                 },
-                grid: {
-                    top: '12%',
-                    left: '3%',
-                    right: '4%',
-                    bottom: '1%',
-                    containLabel: true
-                },
-                xAxis: [{
-                    type: 'category',
-                    axisLabel: {
-                        color: '#2AFFFF'
-                    },
-                    data: chartsCalibers
-                }],
-                yAxis: [{
-                    type: 'value',
-                    axisLabel: {
-                        color: '#2AFFFF'
+                series: [
+                    {
+                        name: '维护建议统计',
+                        type: 'pie',
+                        radius: '60%',
+                        data: byCaliberStatistics,
+                        emphasis: {
+                            itemStyle: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
                     }
-                }],
-                series: [{
-                    name: '',
-                    type: 'bar',
-                    stack: 'Ad',
-                    barWidth: '30%',
-                    emphasis: {
-                        focus: 'series'
-                    },
-                    label: {
-                        show: true,
-                        position: 'top',
-                        color: '#FFF',
-                        backgroundColor: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                            offset: 0,
-                            color: 'rgba(102, 125, 182, 1)',
-                        },
-                        {
-                            offset: 1,
-                            color: 'rgba(5, 117, 230, 1)',
-                        },
-                        ]),
-                        padding: 5,
-                        borderRadius: 6
-                    },
-                    itemStyle: {
-                        barBorderRadius: [5, 5, 0, 0],
-                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                            offset: 0,
-                            color: 'rgba(102, 125, 182, 1)',
-                        },
-                        {
-                            offset: 1,
-                            color: 'rgba(5, 117, 230, 1)',
-                        },
-                        ]),
-                    },
-                    data: chartsRates
-                },]
+                ]
             };
             this.chartsStatisticsByCaliber.setOption(option);
         }
