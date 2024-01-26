@@ -34,5 +34,7 @@ namespace Models
         public int CorrectNumber { get; set; }
         public int ErrorNumber { get; set; }
         public double Accuracy { get; set; }
+
+        public int OrderNumber { get; set; }
     }
 }

@@ -46,7 +46,7 @@ namespace Respository
                         CompanyName = company.Name,
                         DateTime = warning.DateTime,
                         FlowmeterManufacturer = loop.FlowmeterManufacturer,
-                        ForwordPreDayStandardCumulative = loopGasTransmission == null ? 0 : loopGasTransmission.ForwordPreDayStandardCumulative,
+                        ForwordPreDayStandardCumulative = loopGasTransmission == null ? 0 : loopGasTransmission.ForwordPreDayStandardCumulative==null ?0: (int)loopGasTransmission.ForwordPreDayStandardCumulative,
                         EarlyWarningParameterDetail = string.Join("、", _context.earlyWarningDetails.Where(detail => detail.LoopID == warning.LoopID && detail.IsWarn == true).Select(detail => detail.Description))
                     }).ToList().OrderByDescending(warning => warning.ForwordPreDayStandardCumulative).ThenBy(warning => warning.StatusNumber);
         }
@@ -563,7 +563,7 @@ namespace Respository
                                     }
                                 }
                                 rate.AlarmNumber = AlarmNumber;
-                                rate.NotificationRate = AlarmNumber / rate.EarlywarningNumber * 100;
+                                rate.NotificationRate = AlarmNumber / (float)rate.EarlywarningNumber * 100;
                                 rate.AlarmDescItems = alarmDescItems;
                             }
                             earlyWarningNotificationRates.Add(rate);
@@ -781,7 +781,7 @@ namespace Respository
                                     }
                                 }
                                 rate.AlarmNumber = AlarmNumber;
-                                rate.NotificationRate = AlarmNumber / rate.EarlywarningNumber * 100;
+                                rate.NotificationRate = AlarmNumber / (float)rate.EarlywarningNumber * 100;
                                 rate.AlarmDescItems = alarmDescItems;
                             }
                             earlyWarningNotificationRates.Add(rate);
@@ -998,7 +998,7 @@ namespace Respository
                                     }
                                 }
                                 rate.AlarmNumber = AlarmNumber;
-                                rate.NotificationRate = AlarmNumber / rate.EarlywarningNumber * 100;
+                                rate.NotificationRate = AlarmNumber / (float)rate.EarlywarningNumber * 100;
                                 rate.AlarmDescItems = alarmDescItems;
                             }
                             earlyWarningNotificationRates.Add(rate);
@@ -1137,7 +1137,7 @@ namespace Respository
                                     }
                                 }
                                 rate.AlarmNumber = AlarmNumber;
-                                rate.NotificationRate = AlarmNumber / rate.EarlywarningNumber * 100;
+                                rate.NotificationRate = AlarmNumber / (float)rate.EarlywarningNumber * 100;
                                 rate.AlarmDescItems = alarmDescItems;
                             }
                             earlyWarningNotificationRates.Add(rate);
@@ -1163,7 +1163,7 @@ namespace Respository
                                                  BrandName = rate.BrandName,
                                                  FlowmeterModel = loop.FlowmeterModel,
                                                  Caliber = loop.Caliber,
-                                                 ForwordPreDayStandardCumulative = loopGasTransmission == null ? 0 : loopGasTransmission.ForwordPreDayStandardCumulative,
+                                                 ForwordPreDayStandardCumulative = loopGasTransmission == null ? 0 : loopGasTransmission.ForwordPreDayStandardCumulative==null ?0:Convert.ToUInt64(loopGasTransmission.ForwordPreDayStandardCumulative),
                                                  EarlyWarningDescItems = rate.EarlyWarningDescItems,
                                                  AlarmDescItems = rate.AlarmDescItems
                                              }).OrderByDescending(rate => rate.ForwordPreDayStandardCumulative).ThenBy(rate => rate.CompanyName).ToList();
@@ -1273,7 +1273,9 @@ namespace Respository
                                            CompanyName = company.Name,
                                            StationName = station.Name,
                                            IPAddress = collector.IPAddress,
-                                           CollectDataTypeID = loop.CollectDataTypeID
+                                           CollectDataTypeID = loop.CollectDataTypeID,
+                                           FlowmeterManufacturer = loop.FlowComputerManufacturer
+
                                        }).ToList();
 
             foreach (string ip in collectorIPs)
@@ -1284,7 +1286,7 @@ namespace Respository
                 string connectionString = Configuration.GetConnectionString("CollectorSQLConnection").Replace("@IPAddress@", ip);
                 using (var mycontext = new MyDBContext(connectionString))
                 {
-                    List<HisCheckDataAlarmStatistics> checkalarmStatistics = (from alarm in mycontext.hisCheckDataAlarms.Where(alarm => loopIDs.Contains(alarm.LoopID) 
+                    List<HisCheckDataAlarmStatistics> checkalarmStatistics = (from alarm in mycontext.hisCheckDataAlarms.Where(alarm => loopIDs.Contains(alarm.LoopID)
                                                                               && DateTime.Compare(alarm.StartTime, beginDateTime) >= 0
                                                                               && DateTime.Compare(alarm.EndTime, endDateTime) <= 0)
                                                                               group alarm by new
@@ -1921,6 +1923,7 @@ namespace Respository
                                                        BrandName = rateGroup.Key.BrandName,
                                                        NotificationRate = (int)rateGroup.Average(rete => rete.NotificationRate)
                                                    }).ToList();
+
             NotificationRateBrandStatistics NotificationRateStatistics = new NotificationRateBrandStatistics();
             NotificationRateStatistics.BrandName = "汇总"; NotificationRateStatistics.NotificationRate = (int)notificationRateBrandStatistics.Select(x => x.NotificationRate).Average();
             notificationRateBrandStatistics.Insert(0, NotificationRateStatistics);
@@ -1946,18 +1949,29 @@ namespace Respository
                                  FlowmeterManufacturer = loop.FlowmeterManufacturer
                              }).ToList();
 
-            var solutionAccuracyStatistics = (from statistic in accuracys
-                                              group statistic by statistic.FlowmeterManufacturer into g
-                                              select new EarlyWarningAccuracyStatistics
-                                              {
-                                                  Description = g.Key,
-                                                  CorrectNumber = g.Sum(s => s.KnowledgeSolution.Contains(s.SceneSolution.Replace("检查", "")) ? 1 : 0),
-                                                  ErrorNumber = g.Sum(s => !s.KnowledgeSolution.Contains(s.SceneSolution.Replace("检查", "")) ? 1 : 0),
-                                                  Accuracy = g.Sum(s => s.KnowledgeSolution.Contains(s.SceneSolution.Replace("检查", "")) ? 1.0 : 0) / g.Count() * 100
-                                              }).ToList();
+
+            var statistic = (from s in accuracys
+                             group s by s.FlowmeterManufacturer into g
+                             select new EarlyWarningAccuracyStatistics
+                             {
+                                 Description = g.Key,
+                                 CorrectNumber = g.Sum(s => s.KnowledgeSolution.Contains(s.SceneSolution.Replace("检查", "")) ? 1 : 0),
+                                 ErrorNumber = g.Sum(s => !s.KnowledgeSolution.Contains(s.SceneSolution.Replace("检查", "")) ? 1 : 0),
+                                 Accuracy = g.Sum(s => s.KnowledgeSolution.Contains(s.SceneSolution.Replace("检查", "")) ? 1 : 0) / (double)g.Count() * 100
+                             }).ToList();
+            statistic = (from l in loops.GroupBy(g => g.FlowmeterManufacturer).Select(s => s.Key).ToList()
+                         join s in statistic on l equals s.Description into temp
+                         from tt in temp.DefaultIfEmpty()
+                         select new EarlyWarningAccuracyStatistics
+                         {
+                             Description = l,
+                             CorrectNumber = tt != null ? tt.CorrectNumber : 0,
+                             ErrorNumber = tt != null ? tt.ErrorNumber : 0,
+                             Accuracy = tt != null ? (int)tt.Accuracy : 100
+                         }).ToList();
             EarlyWarningAccuracyStatistics earlyWarningAccuracyStatistics = new EarlyWarningAccuracyStatistics();
-            earlyWarningAccuracyStatistics.Description = "汇总"; earlyWarningAccuracyStatistics.Accuracy = solutionAccuracyStatistics.Select(x => x.Accuracy).Average();
-            solutionAccuracyStatistics.Insert(0, earlyWarningAccuracyStatistics);
+            earlyWarningAccuracyStatistics.Description = "汇总"; earlyWarningAccuracyStatistics.Accuracy = (int)statistic.Select(x => x.Accuracy).Average();
+            statistic.Insert(0, earlyWarningAccuracyStatistics);
             #endregion
             #region 设备完好率统计
             List<string> Alarms = new List<string> { "压力变送器通讯故障", "温度变送器通讯故障", "色谱分析仪器与流量计算机通讯", "流量计与流量计算机通讯报警", "压力变送器通讯故障", "流量计计量失败报警", "声道1状态", "声道2状态", "声道3状态", "声道4状态", "流量计算机报警", "流量计算机过程报警", "流量计算机系统报警", "冷启动", "热启动", "流量计算机RAM故障报警", "流量计算机ROM故障报警", "累积量初始化为0", "部分累积量错误", "累积量寄存器冲突", "组态参数更改", "累积量达到最大值初始化", "超声波故障报警", "流量计算机维护模式" };
@@ -2030,7 +2044,7 @@ namespace Respository
             OverviewData["EarlyWarnings"] = earlyWarnings.OrderBy(x => x.StatusNumber);
             OverviewData["EarlyWarningStatistics"] = earlyWarningNumber;
             OverviewData["EarlyWarningNotificationRateBrandStatistics"] = notificationRateBrandStatistics.OrderByDescending(x => x.BrandName);
-            OverviewData["SolutionNotificationRateBrandStatistics"] = solutionAccuracyStatistics.OrderByDescending(x => x.Description);
+            OverviewData["SolutionNotificationRateBrandStatistics"] = statistic.OrderByDescending(x => x.Description);
             OverviewData["EquipmentAvalability"] = avalabilities;
             return OverviewData;
         }
@@ -2286,7 +2300,7 @@ namespace Respository
                                     }
                                 }
                                 rate.AlarmNumber = AlarmNumber;
-                                rate.NotificationRate = AlarmNumber / rate.EarlywarningNumber * 100;
+                                rate.NotificationRate = AlarmNumber / (float)rate.EarlywarningNumber * 100;
                             }
                             earlyWarningNotificationRates.Add(rate);
                             break;
@@ -2441,7 +2455,7 @@ namespace Respository
                                     }
                                 }
                                 rate.AlarmNumber = AlarmNumber;
-                                rate.NotificationRate = AlarmNumber / rate.EarlywarningNumber * 100;
+                                rate.NotificationRate = AlarmNumber / (float)rate.EarlywarningNumber * 100;
                             }
                             earlyWarningNotificationRates.Add(rate);
                             break;
@@ -2596,7 +2610,7 @@ namespace Respository
                                     }
                                 }
                                 rate.AlarmNumber = AlarmNumber;
-                                rate.NotificationRate = AlarmNumber / rate.EarlywarningNumber * 100;
+                                rate.NotificationRate = AlarmNumber / (float)rate.EarlywarningNumber * 100;
                             }
                             earlyWarningNotificationRates.Add(rate);
                             break;
@@ -2699,7 +2713,7 @@ namespace Respository
                                     }
                                 }
                                 rate.AlarmNumber = AlarmNumber;
-                                rate.NotificationRate = AlarmNumber / rate.EarlywarningNumber * 100;
+                                rate.NotificationRate = AlarmNumber / (float)rate.EarlywarningNumber * 100;
                             }
                             earlyWarningNotificationRates.Add(rate);
                             break;
@@ -2737,7 +2751,7 @@ namespace Respository
                                                    {
                                                        BrandName = rateGroup.Key.BrandName,
                                                        NotificationRate = (int)rateGroup.Average(rete => rete.NotificationRate)
-                                                   }).ToList();
+                                                   }).OrderBy(x => x.BrandName).ToList();
             NotificationRateBrandStatistics NotificationRateStatistics = new NotificationRateBrandStatistics();
             NotificationRateStatistics.BrandName = "汇总"; NotificationRateStatistics.NotificationRate = (int)notificationRateBrandStatistics.Select(x => x.NotificationRate).Average();
             notificationRateBrandStatistics.Insert(0, NotificationRateStatistics);
@@ -2782,10 +2796,10 @@ namespace Respository
                                                   Description = l,
                                                   CorrectNumber = tt != null ? tt.CorrectNumber : 0,
                                                   ErrorNumber = tt != null ? tt.ErrorNumber : 0,
-                                                  Accuracy = tt != null ? tt.Accuracy : 100
-                                              }).ToList();
+                                                  Accuracy = tt != null ? (int)tt.Accuracy : 100
+                                              }).OrderBy(x => x.Description).ToList();
             EarlyWarningAccuracyStatistics earlyWarningAccuracyStatistics = new EarlyWarningAccuracyStatistics();
-            earlyWarningAccuracyStatistics.Description = "汇总"; earlyWarningAccuracyStatistics.Accuracy = solutionAccuracyStatistics.Select(x => x.Accuracy).Average();
+            earlyWarningAccuracyStatistics.Description = "汇总"; earlyWarningAccuracyStatistics.Accuracy = (int)solutionAccuracyStatistics.Select(x => x.Accuracy).Average();
             solutionAccuracyStatistics.Insert(0, earlyWarningAccuracyStatistics);
             #endregion
             #region 预警告知率 公司
@@ -2795,13 +2809,13 @@ namespace Respository
                                                      {
                                                          CompanyName = rateGroup.Key.CompanyName,
                                                          NotificationRate = (int)rateGroup.Average(rete => rete.NotificationRate)
-                                                     }).ToList();
+                                                     }).OrderBy(x => x.CompanyName).ToList();
             NotificationRateCompanyStatistics CompanyNotificationRateStatistics = new NotificationRateCompanyStatistics
             {
                 CompanyName = "汇总",
                 NotificationRate = (int)notificationRateBrandStatistics.Select(x => x.NotificationRate).Average()
             };
-            //notificationRateCompanyStatistics.Insert(0, CompanyNotificationRateStatistics);
+            notificationRateCompanyStatistics.Insert(0, CompanyNotificationRateStatistics);
             #endregion
             #region 建议告知率 公司
             var companyStatistics = (from statistic in accuracys
@@ -2821,14 +2835,14 @@ namespace Respository
                                                          Description = c,
                                                          CorrectNumber = tt != null ? tt.CorrectNumber : 0,
                                                          ErrorNumber = tt != null ? tt.ErrorNumber : 0,
-                                                         Accuracy = tt != null ? tt.Accuracy : 100
-                                                     }).ToList();
+                                                         Accuracy = tt != null ? (int)tt.Accuracy : 100
+                                                     }).OrderBy(x => x.Description).ToList();
             EarlyWarningAccuracyStatistics earlyWarningCompanyAccuracyStatistics = new EarlyWarningAccuracyStatistics
             {
                 Description = "汇总",
-                Accuracy = solutionCompanyAccuracyStatistics.Select(x => x.Accuracy).Average()
+                Accuracy = (int)solutionCompanyAccuracyStatistics.Select(x => x.Accuracy).Average()
             };
-            //solutionCompanyAccuracyStatistics.Insert(0, earlyWarningCompanyAccuracyStatistics);
+            solutionCompanyAccuracyStatistics.Insert(0, earlyWarningCompanyAccuracyStatistics);
             #endregion
             #region 预警告知率 口径
             var notificationRateCaliberStatistics = (from rate in earlyWarningNotificationRates
@@ -2836,8 +2850,9 @@ namespace Respository
                                                      select new NotificationRateCaliberStatistics
                                                      {
                                                          Caliber = rateGroup.Key.Caliber,
+                                                         OrderNumber = Convert.ToInt32(rateGroup.Key.Caliber.Replace("DN", "")),
                                                          NotificationRate = (int)rateGroup.Average(rete => rete.NotificationRate)
-                                                     }).ToList();
+                                                     }).OrderBy(x => x.OrderNumber).ToList();
             NotificationRateCaliberStatistics CaliberNotificationRateStatistics = new NotificationRateCaliberStatistics
             {
                 Caliber = "汇总",
@@ -2853,31 +2868,32 @@ namespace Respository
                                          Description = g.Key,
                                          CorrectNumber = g.Sum(s => s.KnowledgeSolution.Contains(s.SceneSolution.Replace("检查", "")) ? 1 : 0),
                                          ErrorNumber = g.Sum(s => !s.KnowledgeSolution.Contains(s.SceneSolution.Replace("检查", "")) ? 1 : 0),
-                                         Accuracy = g.Sum(s => s.KnowledgeSolution.Contains(s.SceneSolution.Replace("检查", "")) ? 1.0 : 0) / g.Count() * 100
+                                         Accuracy = g.Sum(s => s.KnowledgeSolution.Contains(s.SceneSolution.Replace("检查", "")) ? 1.0 : 0) / g.Count() * 100, 
                                      }).ToList();
             var solutionCaliberAccuracyStatistics = (from c in _context.StationLoops.GroupBy(g => g.Caliber).Select(s => s.Key).ToList()
                                                      join s in caliberStatistics on c equals s.Description into temp
                                                      from tt in temp.DefaultIfEmpty()
                                                      select new EarlyWarningAccuracyStatistics
                                                      {
+                                                         OrderNumber = Convert.ToInt32(c.Replace("DN", "")),
                                                          Description = c,
                                                          CorrectNumber = tt != null ? tt.CorrectNumber : 0,
                                                          ErrorNumber = tt != null ? tt.ErrorNumber : 0,
-                                                         Accuracy = tt != null ? tt.Accuracy : 100
-                                                     }).ToList();
+                                                         Accuracy = tt != null ? (int)tt.Accuracy : 100
+                                                     }).OrderBy(x => x.OrderNumber).ToList();
             EarlyWarningAccuracyStatistics earlyWarningCaliberAccuracyStatistics = new EarlyWarningAccuracyStatistics
             {
                 Description = "汇总",
-                Accuracy = solutionCaliberAccuracyStatistics.Select(x => x.Accuracy).Average()
+                Accuracy = (int)solutionCaliberAccuracyStatistics.Select(x => x.Accuracy).Average()
             };
             solutionCaliberAccuracyStatistics.Insert(0, earlyWarningCaliberAccuracyStatistics);
             #endregion
-            OverviewData["EarlyWarningNotificationRateBrandStatistics"] = notificationRateBrandStatistics.OrderBy(x => x.BrandName);
-            OverviewData["SolutionNotificationRateBrandStatistics"] = solutionAccuracyStatistics.OrderBy(x => x.Description);
-            OverviewData["EarlyWarningNotificationRateCompanyStatistics"] = notificationRateCompanyStatistics.OrderBy(x => x.CompanyName).Append(CompanyNotificationRateStatistics);
-            OverviewData["SolutionNotificationRateCompanyStatistics"] = solutionCompanyAccuracyStatistics.OrderBy(x => x.Description).Append(earlyWarningCompanyAccuracyStatistics);
-            OverviewData["EarlyWarningNotificationRateCaliberStatistics"] = notificationRateCaliberStatistics.OrderBy(x => x.Caliber);
-            OverviewData["SolutionNotificationRateCaliberStatistics"] = solutionCaliberAccuracyStatistics.OrderBy(x => x.Description);
+            OverviewData["EarlyWarningNotificationRateBrandStatistics"] = notificationRateBrandStatistics;
+            OverviewData["SolutionNotificationRateBrandStatistics"] = solutionAccuracyStatistics;
+            OverviewData["EarlyWarningNotificationRateCompanyStatistics"] = notificationRateCompanyStatistics;
+            OverviewData["SolutionNotificationRateCompanyStatistics"] = solutionCompanyAccuracyStatistics;
+            OverviewData["EarlyWarningNotificationRateCaliberStatistics"] = notificationRateCaliberStatistics;
+            OverviewData["SolutionNotificationRateCaliberStatistics"] = solutionCaliberAccuracyStatistics;
             return OverviewData;
         }
 
@@ -2910,8 +2926,8 @@ namespace Respository
                                      AreaName = area.Name,
                                      CompanyName = company.Name,
                                      DateTime = warning.DateTime,
-                                     Customer=loop.Customer,
-                                     Caliber=loop.Caliber,
+                                     Customer = loop.Customer,
+                                     Caliber = loop.Caliber,
                                      FlowmeterManufacturer = loop.FlowmeterManufacturer,
                                      ForwordPreDayStandardCumulative = loopGasTransmission == null ? 0 : loopGasTransmission.ForwordPreDayStandardCumulative,
                                      EarlyWarningParameterDetail = string.Join("、", _context.earlyWarningDetails.Where(detail => detail.LoopID == warning.LoopID && detail.IsWarn == true).Select(detail => detail.Description))
@@ -2921,7 +2937,7 @@ namespace Respository
             earlyWarningNumber["NormalNumber"] = earlyWarnings.Where(item => item.Status == "运行正常").Count();
             earlyWarningNumber["CommunicationBadNumber"] = earlyWarnings.Where(item => item.Status == "通讯失败").Count();
             #endregion
-         
+
             OverviewData["EarlyWarnings"] = earlyWarnings.OrderBy(x => x.StatusNumber);
             OverviewData["EarlyWarningStatistics"] = earlyWarningNumber;
             return OverviewData;
@@ -3095,7 +3111,7 @@ namespace Respository
                         Description = l,
                         CorrectNumber = tt != null ? tt.CorrectNumber : 0,
                         ErrorNumber = tt != null ? tt.ErrorNumber : 0,
-                        Accuracy = tt != null ? tt.Accuracy : 100
+                        Accuracy = tt != null ? (int)tt.Accuracy : 100
                     }).ToList();
         }
     }

@@ -47,5 +47,6 @@ namespace Models
     {
         public string Caliber { get; set; }
         public int NotificationRate { get; set; }
+        public int OrderNumber { get; set; } 
     }
 }
